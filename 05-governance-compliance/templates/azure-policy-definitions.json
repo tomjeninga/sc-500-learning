@@ -1,0 +1,181 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "policyEffect": {
+      "type": "string",
+      "defaultValue": "Audit",
+      "allowedValues": ["Deny", "Audit", "Disabled"],
+      "metadata": {
+        "description": "Effect for the CostCenter tag policy. Use Audit to test first, then switch to Deny."
+      }
+    },
+    "requiredTagName": {
+      "type": "string",
+      "defaultValue": "CostCenter",
+      "metadata": {
+        "description": "The tag name that must be present on all resources."
+      }
+    },
+    "policyAssignmentScope": {
+      "type": "string",
+      "defaultValue": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/rg-sc500-lab')]",
+      "metadata": {
+        "description": "The scope at which to assign the policy. Defaults to rg-sc500-lab resource group."
+      }
+    }
+  },
+  "variables": {
+    "policyDefinitionName": "require-costcenter-tag-sc500",
+    "policyAssignmentName": "assign-costcenter-tag-sc500",
+    "policyDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/policyDefinitions/', variables('policyDefinitionName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/policyDefinitions",
+      "apiVersion": "2023-04-01",
+      "name": "[variables('policyDefinitionName')]",
+      "properties": {
+        "displayName": "Require CostCenter tag on resources",
+        "description": "Enforces the presence of a CostCenter tag on all resources (excluding resource groups and deployments).",
+        "policyType": "Custom",
+        "mode": "Indexed",
+        "metadata": {
+          "category": "SC500-Lab",
+          "version": "1.0.0"
+        },
+        "parameters": {
+          "effect": {
+            "type": "String",
+            "defaultValue": "[parameters('policyEffect')]",
+            "allowedValues": ["Deny", "Audit", "Disabled"],
+            "metadata": {
+              "displayName": "Effect",
+              "description": "Deny blocks non-compliant resources; Audit only logs them."
+            }
+          },
+          "tagName": {
+            "type": "String",
+            "defaultValue": "[parameters('requiredTagName')]",
+            "metadata": {
+              "displayName": "Required tag name",
+              "description": "The name of the tag that must exist on all resources."
+            }
+          }
+        },
+        "policyRule": {
+          "if": {
+            "allOf": [
+              {
+                "field": "type",
+                "notIn": [
+                  "Microsoft.Resources/resourceGroups",
+                  "Microsoft.Resources/deployments",
+                  "Microsoft.Authorization/policyAssignments",
+                  "Microsoft.Authorization/roleAssignments",
+                  "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+                ]
+              },
+              {
+                "field": "[[concat('tags[', parameters('tagName'), ']')]",
+                "exists": false
+              }
+            ]
+          },
+          "then": {
+            "effect": "[[parameters('effect')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/policyAssignments",
+      "apiVersion": "2023-04-01",
+      "name": "[variables('policyAssignmentName')]",
+      "dependsOn": [
+        "[variables('policyDefinitionId')]"
+      ],
+      "properties": {
+        "displayName": "Deny/Audit - Require CostCenter Tag (SC-500 Lab)",
+        "description": "Enforces CostCenter tag requirement in the SC-500 lab resource group.",
+        "policyDefinitionId": "[variables('policyDefinitionId')]",
+        "scope": "[parameters('policyAssignmentScope')]",
+        "enforcementMode": "Default",
+        "nonComplianceMessages": [
+          {
+            "message": "Resource must have a 'CostCenter' tag. Please add the CostCenter tag before creating resources."
+          }
+        ],
+        "parameters": {
+          "effect": {
+            "value": "[parameters('policyEffect')]"
+          },
+          "tagName": {
+            "value": "[parameters('requiredTagName')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/policyDefinitions",
+      "apiVersion": "2023-04-01",
+      "name": "require-environment-tag-sc500",
+      "properties": {
+        "displayName": "Require Environment tag on resources",
+        "description": "Requires an Environment tag with specific allowed values.",
+        "policyType": "Custom",
+        "mode": "Indexed",
+        "metadata": {
+          "category": "SC500-Lab",
+          "version": "1.0.0"
+        },
+        "parameters": {
+          "allowedValues": {
+            "type": "Array",
+            "defaultValue": ["Production", "Staging", "Dev", "Lab", "Test"],
+            "metadata": {
+              "displayName": "Allowed environment tag values",
+              "description": "The list of allowed values for the Environment tag."
+            }
+          }
+        },
+        "policyRule": {
+          "if": {
+            "allOf": [
+              {
+                "field": "type",
+                "notIn": [
+                  "Microsoft.Resources/resourceGroups",
+                  "Microsoft.Resources/deployments"
+                ]
+              },
+              {
+                "not": {
+                  "field": "tags['Environment']",
+                  "in": "[[parameters('allowedValues')]"
+                }
+              }
+            ]
+          },
+          "then": {
+            "effect": "Audit"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "policyDefinitionId": {
+      "type": "string",
+      "value": "[variables('policyDefinitionId')]"
+    },
+    "policyAssignmentId": {
+      "type": "string",
+      "value": "[concat(parameters('policyAssignmentScope'), '/providers/Microsoft.Authorization/policyAssignments/', variables('policyAssignmentName'))]"
+    },
+    "assignedEffect": {
+      "type": "string",
+      "value": "[parameters('policyEffect')]"
+    }
+  }
+}

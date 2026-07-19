@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "policyDisplayName": {
+      "type": "string",
+      "defaultValue": "CA-01: Require MFA for Administrators",
+      "metadata": {
+        "description": "Display name for the Conditional Access policy. Note: CA policies are managed via Microsoft Graph API, not ARM. This template documents the intended configuration as a reference."
+      }
+    },
+    "policyState": {
+      "type": "string",
+      "defaultValue": "enabledForReportingButNotEnforced",
+      "allowedValues": [
+        "enabled",
+        "disabled",
+        "enabledForReportingButNotEnforced"
+      ],
+      "metadata": {
+        "description": "State of the Conditional Access policy. Always start with report-only mode."
+      }
+    }
+  },
+  "variables": {},
+  "resources": [],
+  "outputs": {
+    "note": {
+      "type": "string",
+      "value": "Conditional Access policies are managed via Microsoft Graph API. Use the PowerShell script in scripts/setup-entra-id-lab.ps1 to create CA policies programmatically. This ARM template serves as a reference for the intended policy configuration."
+    },
+    "graphApiReference": {
+      "type": "string",
+      "value": "https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies"
+    },
+    "policyDesign": {
+      "type": "object",
+      "value": {
+        "displayName": "[parameters('policyDisplayName')]",
+        "state": "[parameters('policyState')]",
+        "conditions": {
+          "users": {
+            "includeRoles": [
+              "62e90394-69f5-4237-9190-012177145e10",
+              "194ae4cb-b126-40b2-bd5b-6091b380977d",
+              "fe930be7-5e62-47db-91af-98c3a49a38b1",
+              "b1be1c3e-b65d-4f19-8427-f6fa0d97feb9"
+            ],
+            "includeRoleDescriptions": [
+              "Global Administrator",
+              "Security Administrator",
+              "User Administrator",
+              "Privileged Role Administrator"
+            ]
+          },
+          "applications": {
+            "includeApplications": ["All"]
+          },
+          "clientAppTypes": ["all"]
+        },
+        "grantControls": {
+          "operator": "OR",
+          "builtInControls": ["mfa"]
+        }
+      }
+    }
+  }
+}

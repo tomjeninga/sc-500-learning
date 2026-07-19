@@ -1,0 +1,171 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sqlServerName": {
+      "type": "string",
+      "metadata": { "description": "Globally unique SQL server name (lowercase, 1-63 chars)." }
+    },
+    "databaseName": {
+      "type": "string",
+      "defaultValue": "sqldb-sc500-lab",
+      "metadata": { "description": "Name of the SQL database." }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": { "description": "Azure region for the SQL resources." }
+    },
+    "sqlAdminObjectId": {
+      "type": "string",
+      "metadata": { "description": "Object ID of the Entra ID user or group to set as SQL Administrator." }
+    },
+    "sqlAdminLogin": {
+      "type": "string",
+      "metadata": { "description": "Display name/login of the Entra ID SQL Administrator." }
+    },
+    "allowedClientIp": {
+      "type": "string",
+      "defaultValue": "0.0.0.0",
+      "metadata": { "description": "Client IP to allow through SQL firewall. Set to 0.0.0.0 to allow Azure services only." }
+    },
+    "auditLogWorkspaceId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "Resource ID of Log Analytics workspace for audit logs. Leave empty to skip." }
+    }
+  },
+  "variables": {
+    "auditDiagnosticSettingsName": "sql-audit-diagnostic"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[parameters('sqlServerName')]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "Purpose": "SC-500 Learning Lab",
+        "Domain": "04-Data-Protection"
+      },
+      "properties": {
+        "administratorLogin": null,
+        "administratorLoginPassword": null,
+        "administrators": {
+          "administratorType": "ActiveDirectory",
+          "principalType": "User",
+          "login": "[parameters('sqlAdminLogin')]",
+          "sid": "[parameters('sqlAdminObjectId')]",
+          "tenantId": "[subscription().tenantId]",
+          "azureADOnlyAuthentication": true
+        },
+        "minimalTlsVersion": "1.2",
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('sqlServerName'), '/AllowAzureServices')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ],
+      "properties": {
+        "startIpAddress": "0.0.0.0",
+        "endIpAddress": "0.0.0.0"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('sqlServerName'), '/AllowClientIP')]",
+      "condition": "[not(equals(parameters('allowedClientIp'), '0.0.0.0'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ],
+      "properties": {
+        "startIpAddress": "[parameters('allowedClientIp')]",
+        "endIpAddress": "[parameters('allowedClientIp')]"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('sqlServerName'), '/', parameters('databaseName'))]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "GP_S_Gen5_1",
+        "tier": "GeneralPurpose",
+        "family": "Gen5",
+        "capacity": 1
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ],
+      "properties": {
+        "autoPauseDelay": 60,
+        "minCapacity": 0.5,
+        "readScale": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('sqlServerName'), '/', parameters('databaseName'), '/current')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlServerName'), parameters('databaseName'))]"
+      ],
+      "properties": {
+        "state": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/advancedThreatProtectionSettings",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('sqlServerName'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ],
+      "properties": {
+        "state": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/auditingSettings",
+      "apiVersion": "2023-02-01-preview",
+      "name": "[concat(parameters('sqlServerName'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ],
+      "properties": {
+        "state": "Enabled",
+        "isAzureMonitorTargetEnabled": "[if(empty(parameters('auditLogWorkspaceId')), bool('false'), bool('true'))]",
+        "isDevopsAuditEnabled": false,
+        "retentionDays": 90,
+        "auditActionsAndGroups": [
+          "SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP",
+          "FAILED_DATABASE_AUTHENTICATION_GROUP",
+          "BATCH_COMPLETED_GROUP"
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "sqlServerId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+    },
+    "sqlServerFQDN": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName]"
+    },
+    "databaseId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlServerName'), parameters('databaseName'))]"
+    },
+    "connectionString": {
+      "type": "string",
+      "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName, ',1433;Database=', parameters('databaseName'), ';Authentication=Active Directory Default;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+    }
+  }
+}
