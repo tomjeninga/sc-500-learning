@@ -26,8 +26,8 @@
     }
   },
   "variables": {
-    "policyDefinitionName": "require-costtcenter-tag-sc500",
-    "policyAssignmentName": "assign-costtcenter-tag-sc500",
+    "policyDefinitionName": "require-costcenter-tag-sc500",
+    "policyAssignmentName": "assign-costcenter-tag-sc500",
     "policyDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/policyDefinitions/', variables('policyDefinitionName'))]"
   },
   "resources": [

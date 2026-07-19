@@ -91,7 +91,7 @@
                   { "variableName": "RequestUri" }
                 ],
                 "operator": "Contains",
-                "negationConditon": false,
+                "negationCondition": false,
                 "matchValues": ["/"]
               }
             ]
