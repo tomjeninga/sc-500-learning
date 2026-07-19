@@ -1,0 +1,104 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "principalId": {
+      "type": "string",
+      "metadata": {
+        "description": "The object ID of the user, group, or service principal to assign the role to."
+      }
+    },
+    "principalType": {
+      "type": "string",
+      "defaultValue": "Group",
+      "allowedValues": ["User", "Group", "ServicePrincipal"],
+      "metadata": {
+        "description": "The type of principal being assigned."
+      }
+    },
+    "roleDefinitionName": {
+      "type": "string",
+      "defaultValue": "Security Reader",
+      "allowedValues": [
+        "Owner",
+        "Contributor",
+        "Reader",
+        "Security Reader",
+        "Security Admin",
+        "User Access Administrator"
+      ],
+      "metadata": {
+        "description": "The built-in role to assign."
+      }
+    },
+    "resourceGroupName": {
+      "type": "string",
+      "defaultValue": "rg-sc500-lab",
+      "metadata": {
+        "description": "The resource group to scope the role assignment to."
+      }
+    }
+  },
+  "variables": {
+    "roleDefinitionIds": {
+      "Owner": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "Contributor": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "Reader": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+      "Security Reader": "39bc4728-0917-49c7-9d2c-d95423bc2eb4",
+      "Security Admin": "fb1c8493-542b-48eb-b624-b4c8fea62acd",
+      "User Access Administrator": "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"
+    },
+    "roleDefinitionId": "[variables('roleDefinitionIds')[parameters('roleDefinitionName')]]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2021-04-01",
+      "name": "[parameters('resourceGroupName')]",
+      "location": "[deployment().location]",
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "rbacAssignment",
+      "resourceGroup": "[parameters('resourceGroupName')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups', parameters('resourceGroupName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "name": "[guid(resourceGroup().id, parameters('principalId'), variables('roleDefinitionId'))]",
+              "properties": {
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitionId'))]",
+                "principalId": "[parameters('principalId')]",
+                "principalType": "[parameters('principalType')]"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "roleAssignmentId": {
+      "type": "string",
+      "value": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Authorization/roleAssignments/', guid(parameters('resourceGroupName'), parameters('principalId'), variables('roleDefinitionId')))]"
+    },
+    "assignedRole": {
+      "type": "string",
+      "value": "[parameters('roleDefinitionName')]"
+    },
+    "assignedScope": {
+      "type": "string",
+      "value": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('resourceGroupName'))]"
+    }
+  }
+}

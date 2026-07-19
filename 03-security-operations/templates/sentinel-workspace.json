@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "law-sc500-sentinel",
+      "metadata": { "description": "Name of the existing Log Analytics workspace to enable Sentinel on." }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": { "description": "Azure region — must match the workspace region." }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.OperationsManagement/solutions",
+      "apiVersion": "2015-11-01-preview",
+      "name": "[concat('SecurityInsights(', parameters('workspaceName'), ')')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+      },
+      "plan": {
+        "name": "[concat('SecurityInsights(', parameters('workspaceName'), ')')]",
+        "product": "OMSGallery/SecurityInsights",
+        "promotionCode": "",
+        "publisher": "Microsoft"
+      }
+    }
+  ],
+  "outputs": {
+    "sentinelSolutionId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.OperationsManagement/solutions', concat('SecurityInsights(', parameters('workspaceName'), ')'))]"
+    },
+    "sentinelWorkspaceName": {
+      "type": "string",
+      "value": "[parameters('workspaceName')]"
+    },
+    "sentinelPortalUrl": {
+      "type": "string",
+      "value": "[concat('https://portal.azure.com/#blade/Microsoft_Azure_Security_Insights/MainMenuBlade/Overview/id/', uri('', concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))))]"
+    }
+  }
+}
