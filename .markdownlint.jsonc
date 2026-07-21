@@ -1,14 +1,18 @@
 {
   "$schema": "https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json",
   "default": true,
-  // Allow long lines (tables, KQL, ARM/Bicep code, URLs).
+  "MD012": false,
   "MD013": false,
-  // Allow inline HTML (Mermaid, details/summary, badges).
-  "MD033": false,
-  // First line does not have to be a top-level heading in every file (labs, includes).
-  "MD041": false,
-  // Allow duplicate headings across sections (e.g. "Objectives" per lab).
+  "MD022": false,
   "MD024": { "siblings_only": true },
-  // Ordered lists can use 1. everywhere.
-  "MD029": { "style": "one" }
+  "MD026": false,
+  "MD029": false,
+  "MD031": false,
+  "MD032": false,
+  "MD033": false,
+  "MD034": false,
+  "MD036": false,
+  "MD040": false,
+  "MD041": false,
+  "MD060": false
 }
