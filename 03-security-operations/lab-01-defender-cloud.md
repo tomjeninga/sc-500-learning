@@ -27,7 +27,7 @@ You will enable Microsoft Defender for Cloud, review your Secure Score, enable t
 
 - Azure subscription with `rg-sc500-lab` resource group
 - Security Admin or Security Reader role (Reader to view, Admin to remediate)
-- At least one VM deployed in `rg-sc500-lab` (from Domain 2 lab) for Defender for Servers
+- At least one VM deployed in `rg-sc500-lab` (from Module 2 lab) for Defender for Servers
 
 ---
 
@@ -129,7 +129,7 @@ This is a low-cost, high-impact remediation.
 
 ## Part 5: Just-in-Time (JIT) VM Access
 
-If you have a VM deployed from Domain 2:
+If you have a VM deployed from Module 2:
 
 ### Step 5.1 — Enable JIT on a VM
 

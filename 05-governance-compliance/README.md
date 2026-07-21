@@ -1,8 +1,8 @@
-# Domain 5: Governance & Compliance
+# Module 5: Governance & Compliance
 
 ## Learning Objectives
 
-By completing this domain, you will be able to:
+By completing this module, you will be able to:
 
 - Create and assign Azure Policy definitions and initiatives
 - Understand all policy effects (Deny, Audit, AuditIfNotExists, DeployIfNotExists, Modify, Append, Disabled)
@@ -15,13 +15,13 @@ By completing this domain, you will be able to:
 
 ---
 
-## Domain Overview
+## Module Overview
 
 Governance ensures your Azure environment stays compliant with organizational policies and regulatory requirements over time. Azure Policy and Management Groups are the primary tools.
 
-### SC-500 Exam Weight: ~15–20%
+### Mapped SC-500 Skill Areas
 
-Expect questions on:
+This module primarily maps to **Manage identity, access, and governance (20-25%)** for policy, RBAC, locks, backup security, and governance-as-code. It also supports **Manage and monitor security posture (20-25%)** through compliance assessment workflows in Defender for Cloud. Expect questions on:
 - Policy effect differences (Deny vs Audit vs DeployIfNotExists)
 - Initiative definitions (a group of policies)
 - Regulatory compliance standards and how to assign them
@@ -33,7 +33,7 @@ Expect questions on:
 
 ---
 
-## Labs in This Domain
+## Labs in This Module
 
 | Lab | Topic | Est. Time |
 |-----|-------|-----------|

@@ -43,21 +43,21 @@ federated credentials for CI/CD.
 
 ## Prerequisites
 
-- `kv-sc500-lab` from Domain 4 Lab 01
-- A storage account from Domain 4 Lab 01
+- `kv-sc500-lab` from Module 4 Lab 01
+- A storage account from Module 4 Lab 01
 - Contributor on `rg-sc500-lab`
 - User Access Administrator or Owner to assign roles
 
-> Recommended learning path: treat `kv-sc500-lab` and the storage account as **shared lab resources** for a multi-lab study block, not as one-lab-only assets. Complete this lab before doing full cleanup from Domain 4 Lab 01.
-> If you already cleaned up after Domain 4 Lab 01, rerun the minimal setup from that lab first or redeploy the template so you have a Key Vault and storage account to target.
+> Recommended learning path: treat `kv-sc500-lab` and the storage account as **shared lab resources** for a multi-lab study block, not as one-lab-only assets. Complete this lab before doing full cleanup from Module 4 Lab 01.
+> If you already cleaned up after Module 4 Lab 01, rerun the minimal setup from that lab first or redeploy the template so you have a Key Vault and storage account to target.
 
 ### Suggested Study Flow
 
 Use this lab sequence to reduce backtracking:
 
 1. Build the shared foundation once:
-   - Domain 2 Lab 01 for the resource group, VNet, and subnet
-   - Domain 4 Lab 01 for Key Vault and storage account
+   - Module 2 Lab 01 for the resource group, VNet, and subnet
+   - Module 4 Lab 01 for Key Vault and storage account
 2. Reuse those same resources across dependent labs:
    - This lab for managed identity and secretless access
    - Later private access or validation steps that need the same storage account

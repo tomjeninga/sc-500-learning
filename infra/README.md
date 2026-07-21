@@ -1,6 +1,6 @@
 # SC-500 Bicep Infrastructure
 
-Bicep versions of the ARM templates in each domain's `templates/` folder. These are the primary IaC assets going forward - ARM templates remain as reference.
+Bicep versions of the ARM templates in each module's `templates/` folder. These are the primary IaC assets going forward - ARM templates remain as reference.
 
 ## Modules
 

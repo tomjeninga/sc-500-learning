@@ -1,4 +1,4 @@
-# Domain 4 Study Guide: Data Protection
+# Module 4 Study Guide: Data Protection
 
 ## Learning Objectives (SC-500 Aligned)
 
