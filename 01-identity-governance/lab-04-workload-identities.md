@@ -37,12 +37,33 @@ federated credentials for CI/CD.
 
 ---
 
+> **Depends on:** `04-data-protection/lab-01-storage-encryption.md` for `kv-sc500-lab` and the storage account
+> **Reused by:** no required follow-up lab; this lab mainly consumes shared resources rather than creating them
+> **Delete after:** you validate managed identity access and no longer need `mi-sc500-workload`; keep Key Vault and storage only if another lab still needs them
+
 ## Prerequisites
 
 - `kv-sc500-lab` from Domain 4 Lab 01
 - A storage account from Domain 4 Lab 01
 - Contributor on `rg-sc500-lab`
 - User Access Administrator or Owner to assign roles
+
+> Recommended learning path: treat `kv-sc500-lab` and the storage account as **shared lab resources** for a multi-lab study block, not as one-lab-only assets. Complete this lab before doing full cleanup from Domain 4 Lab 01.
+> If you already cleaned up after Domain 4 Lab 01, rerun the minimal setup from that lab first or redeploy the template so you have a Key Vault and storage account to target.
+
+### Suggested Study Flow
+
+Use this lab sequence to reduce backtracking:
+
+1. Build the shared foundation once:
+   - Domain 2 Lab 01 for the resource group, VNet, and subnet
+   - Domain 4 Lab 01 for Key Vault and storage account
+2. Reuse those same resources across dependent labs:
+   - This lab for managed identity and secretless access
+   - Later private access or validation steps that need the same storage account
+3. Do cleanup only after you finish the whole study block, not immediately after each lab
+
+If you prefer fully isolated labs, expect some redeployment between domains. If you prefer faster learning with less setup churn, keep a small shared lab environment alive for a few related labs and clean it up at the end.
 
 ---
 
@@ -205,6 +226,7 @@ Confirm:
 2. Delete the test secret from Key Vault
 3. Delete the managed identity if not needed
 4. Remove any temporary role assignments
+5. Keep the Key Vault and storage account if you still plan to use them in later labs
 
 ---
 

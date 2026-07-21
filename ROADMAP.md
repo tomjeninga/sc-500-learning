@@ -21,10 +21,10 @@ This roadmap follows the official SC-500 study guide, not the older AZ-500 domai
 | --- | --- | --- | --- | --- |
 | 1 | Orientation and environment | `AZURE-SETUP.md`, `resources/exam-tips.md` | SC-500 study guide, exam sandbox | Lab tenant ready |
 | 2 | Identity and access | `01-identity-governance/study-guide.md`, `lab-01`, `lab-02` | Entra ID, MFA/passwordless, Conditional Access, PIM | Explain Entra roles vs Azure RBAC |
-| 3 | App identity, Key Vault, governance | `01-identity-governance/`, Key Vault content in `04-data-protection/`, `05-governance-compliance/` | App registrations, managed identities, OAuth consent, Key Vault, Azure Policy | Secure app identity and secrets |
-| 4 | Storage security | `04-data-protection/lab-01-storage-encryption.md` | Storage firewall, Defender for Storage, private endpoints | Storage locked down |
-| 5 | Database security | `04-data-protection/lab-02-database-security.md` | Azure SQL, TDE, Always Encrypted, Defender for Databases | SQL with Entra auth + Defender |
-| 6 | Network security | `02-platform-protection/lab-01-network-security.md`, `lab-02-waf-setup.md` | NSG, ASG, Azure Firewall, Private Link, WAF, Virtual WAN, Entra Private Access | Choose NSG vs Firewall vs WAF |
+| 3 | Foundation resources for later labs | `02-platform-protection/lab-01-network-security.md`, `04-data-protection/lab-01-storage-encryption.md`, `01-identity-governance/lab-04-workload-identities.md` | Managed identities, Key Vault, private endpoints, secure storage | Shared lab environment ready |
+| 4 | Database and private access | `04-data-protection/lab-02-database-security.md`, `02-platform-protection/lab-03-private-access-patterns.md` | Azure SQL, TDE, Always Encrypted, Private Link, DNS | SQL + private-only access working |
+| 5 | Identity governance and app identity | `01-identity-governance/`, `05-governance-compliance/` | App registrations, OAuth consent, PIM, Access Reviews, Azure Policy | Secure app identity and governance controls |
+| 6 | Network security extras | `02-platform-protection/lab-02-waf-setup.md` | NSG, ASG, Azure Firewall, WAF, Virtual WAN, Entra Private Access | Choose NSG vs Firewall vs WAF |
 | 7 | Compute: servers and VMs | Extend `02-platform-protection/` with VM/Bastion/JIT | Disk encryption, Bastion, JIT, Arc, Defender for Servers, secure boot, vTPM | Secure VM without public RDP/SSH |
 | 8 | Compute: containers, apps, APIs | Notes in `02-platform-protection/`, app service and APIM references | AKS, ACR, Container Apps, Functions, Logic Apps, App Service, WAF, APIM policies | Explain secure app platform controls |
 | 9 | AI workload security | `06-ai-workload-security/` all labs | Foundry, AI Gateway in APIM, Purview DSPM for AI, Defender for AI Service, Entra Agent ID, Copilot Studio | Secure an end-to-end AI workload |
@@ -39,6 +39,18 @@ This roadmap follows the official SC-500 study guide, not the older AZ-500 domai
 3. **60-90 min** - Complete the hands-on task in Azure or Microsoft 365.
 4. **20 min** - Validate: logs, portal evidence, Defender recommendation, or KQL.
 5. **15 min** - Write "Why this control? What are the distractor answers?" in your study notes.
+
+## Shared lab environment guidance
+
+For the smoothest first pass, keep these resources alive across multiple weeks:
+
+- `vnet-sc500-lab`
+- `kv-sc500-lab`
+- the storage account from Domain 4 Lab 01
+- the SQL server from Domain 4 Lab 02
+- one test VM for JIT / Defender / private DNS checks
+
+Delete them after Week 6 or after you finish the dependent labs, not immediately after the first lab that created them.
 
 ## Lab evidence to record
 

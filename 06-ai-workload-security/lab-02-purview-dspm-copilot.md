@@ -13,6 +13,10 @@
 - Take a remediation action: restrict oversharing or apply a sensitivity label.
 - Understand how DSPM complements DLP and sensitivity labels.
 
+> **Depends on:** Microsoft Purview, Microsoft 365 Copilot activity, and ideally `04-data-protection/lab-03-purview-labels-dlp-dspm.md` if you want ready-made labeled content and policy context
+> **Reused by:** no required follow-up lab; this lab usually consumes the Purview setup rather than creating a later dependency
+> **Delete after:** you finish DSPM validation and no longer need the test oversharing or Copilot activity scenario
+
 ## Prerequisites
 
 - Microsoft 365 tenant with **Microsoft Purview** and **Microsoft 365 Copilot** licenses.

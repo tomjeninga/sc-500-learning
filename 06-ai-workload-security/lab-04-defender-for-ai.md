@@ -13,6 +13,10 @@
 - Explore the Data and AI security dashboard in Defender for Cloud.
 - Understand where AI signals come from (Foundry, APIM, Purview, Defender XDR).
 
+> **Depends on:** `06-ai-workload-security/lab-01-ai-gateway.md` or an equivalent Foundry deployment path, plus Defender for Cloud and diagnostic settings on the AI resources
+> **Reused by:** no required follow-up lab; this is usually the last consumer of the AI Gateway and Foundry monitoring chain
+> **Delete after:** you finish alert and dashboard validation and disable paid AI protection features you no longer need
+
 ## Prerequisites
 
 - Same lab subscription used in Lab 01 (AI Gateway).

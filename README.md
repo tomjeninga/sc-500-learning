@@ -4,6 +4,8 @@ Hands-on study repository for **Microsoft Certified: Cloud and AI Security Engin
 
 This repository is a practical study companion: read the concept, build the control, validate the result, clean up, and explain the decision like an exam case study.
 
+The repository is organized by **exam domain**, but some labs create **shared foundation resources** that are reused later. Do not assume every cleanup section means "delete this immediately before moving on."
+
 ## Who this repo is for
 
 This repository is designed for:
@@ -30,6 +32,70 @@ Recommended flow:
 5. Use `resources/kql-workbook.md` and `resources/exam-tips.md` alongside the labs.
 6. Track weak areas in your own notes or local `notes/` folder.
 
+### Recommended default path
+
+For most learners, the best approach is:
+
+1. Use the folder structure to understand the **exam domains**.
+2. Use `ROADMAP.md` and `resources/lab-matrix.md` to choose the **actual lab execution order**.
+3. Do **not** follow the folders as a strict hands-on sequence on your first pass.
+
+The repository should stay organized by SC-500 topic because that matches how the exam is measured. The labs, however, should be executed in a **dependency-aware build order** when that gives you less setup churn and lower cost.
+
+### Two ways to move through the repo
+
+Use both of these views together:
+
+1. **Domain view**: follow the folder structure to study the exam objectives.
+2. **Build view**: follow the dependency-aware order below when you want the smoothest hands-on experience.
+
+If there is a conflict between the two, prefer the **build view** for your first full hands-on pass and return to the **domain view** for review and exam revision.
+
+### Recommended build order for hands-on labs
+
+If you want to avoid jumping back and forth, use this order for the first full pass:
+
+1. **Environment setup**
+   - `AZURE-SETUP.md`
+2. **Foundation network**
+   - `02-platform-protection/lab-01-network-security.md`
+   - Keep `vnet-sc500-lab` and the subnets for later labs.
+3. **Foundation data services**
+   - `04-data-protection/lab-01-storage-encryption.md`
+   - Keep `kv-sc500-lab` and the storage account for later labs.
+4. **Identity for workloads**
+   - `01-identity-governance/lab-04-workload-identities.md`
+   - Reuses the Key Vault and storage account from Domain 4 Lab 01.
+5. **Database security**
+   - `04-data-protection/lab-02-database-security.md`
+   - Creates the SQL server that is reused by private access testing.
+6. **Private access patterns**
+   - `02-platform-protection/lab-03-private-access-patterns.md`
+   - Reuses the VNet, storage account, and SQL server.
+7. **VM and posture labs**
+   - `02-platform-protection/lab-04-vm-security.md`
+   - `03-security-operations/lab-01-defender-cloud.md`
+8. **Sentinel sequence**
+   - `03-security-operations/lab-02-sentinel-setup.md`
+   - `03-security-operations/lab-03-sentinel-triage-investigation.md`
+9. **Independent identity and governance labs**
+   - `01-identity-governance/lab-01`, `lab-02`, `lab-03`, `lab-05`
+   - `05-governance-compliance/lab-01`, `lab-02`
+10. **AI workload labs**
+    - `06-ai-workload-security/`
+
+### Shared lab environment rule
+
+Treat these as **keep-until-later** resources on your first pass:
+
+- `vnet-sc500-lab`
+- `kv-sc500-lab`
+- the storage account from `04-data-protection/lab-01`
+- the SQL server from `04-data-protection/lab-02`
+- any VM used for Defender for Cloud, JIT, or private DNS validation
+
+Delete them only after you finish the labs that explicitly reuse them.
+
 ## Cost and licensing warning
 
 Some labs can incur real cost or require paid licensing. Before you begin, review:
@@ -38,7 +104,7 @@ Some labs can incur real cost or require paid licensing. Before you begin, revie
 - Microsoft Entra ID licensing requirements such as **P1** or **P2**
 - Microsoft 365 / Purview requirements for **DSPM for AI**, **DLP**, and **sensitivity labels**
 
-Use a dedicated lab resource group, set budgets, and delete resources promptly after each lab.
+Use a dedicated lab resource group, set budgets, and delete resources promptly after each lab **unless the lab says the resource is part of the shared lab environment**.
 
 ## Disclaimer
 
@@ -75,6 +141,8 @@ Use this pattern for every topic:
 3. **Validate** using Defender for Cloud, Sentinel/KQL, Purview, portal evidence, or logs.
 4. **Explain** why the chosen control is better than the distractors.
 5. **Clean up** resources and record weak areas.
+
+> Tip: For your first pass, interpret cleanup as **"remove temporary extras unless this lab created a shared dependency for a later lab."**
 
 ## Repository modules
 

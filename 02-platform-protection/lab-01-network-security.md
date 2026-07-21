@@ -29,6 +29,10 @@ VNet: vnet-sc500-lab (10.0.0.0/16)
 
 ---
 
+> **Depends on:** `rg-sc500-lab`
+> **Reused by:** `04-data-protection/lab-01-storage-encryption.md`, `02-platform-protection/lab-03-private-access-patterns.md`, and any later VM or DNS validation that uses `vnet-sc500-lab`
+> **Delete after:** you finish the last lab that needs `vnet-sc500-lab` or its subnets
+
 ## Prerequisites
 
 - `rg-sc500-lab` resource group exists
