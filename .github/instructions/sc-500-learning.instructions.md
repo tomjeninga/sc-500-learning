@@ -1,6 +1,6 @@
 ---
 description: "Use when working in this SC-500 learning repository. Applies to study guides, labs, KQL notes, ARM/Bicep templates, and any Microsoft security content generation for Entra ID, Key Vault, Defender for Cloud, Sentinel, Purview, Microsoft Foundry, AI Gateway, and Entra Agent ID."
-applyTo: ["**/*.md", "**/*.bicep", "**/*.json", "**/*.ps1"]
+applyTo: "**/*.md,**/*.bicep,**/*.json,**/*.ps1"
 ---
 
 # SC-500 learning repository conventions
