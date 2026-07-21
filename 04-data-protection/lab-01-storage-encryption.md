@@ -10,12 +10,12 @@
 
 ## What You'll Build and WHY
 
-You will create an Azure Key Vault, generate an encryption key, create a storage account, configure it to use Customer-Managed Keys (CMK) from Key Vault, deploy a Private Endpoint, and disable public network access.
+You will create an Azure Key Vault, generate an encryption key, create a storage account, configure it to use Customer-Managed Keys (CMK) from Key Vault, deploy a Private Endpoint, disable public network access, and add a small Defender for Storage protection baseline.
 
 **Why this matters:**
 - CMK is a common compliance requirement for regulated industries
 - Private Endpoints are the recommended approach for isolating PaaS storage
-- SC-500 tests CMK configuration, Key Vault RBAC, and storage isolation controls
+- SC-500 tests CMK configuration, Key Vault RBAC, storage isolation controls, and Defender for Storage threat protection
 
 **Architecture:**
 
@@ -26,6 +26,7 @@ You will create an Azure Key Vault, generate an encryption key, create a storage
 [Storage Account: stsc500lab<suffix>]
   ├── Encryption: CMK via Key Vault (using Managed Identity)
   ├── Public network access: Disabled
+   ├── Defender for Storage: Enabled
   └── Private Endpoint → snet-data subnet
 ```
 
@@ -164,9 +165,44 @@ If the managed identity needs to be granted access separately:
 
 ---
 
-## Part 5: Test Access
+## Part 5: Add a Defender for Storage baseline
 
-### Step 5.1 — Test that public access is blocked
+### Step 5.1 - Enable Defender for Storage
+
+For this lab, enable Defender for Storage at the **storage account level** so you can validate the control without widening the scope to every storage account in the subscription.
+
+1. Open **Microsoft Defender for Cloud**
+2. Go to **Environment settings**
+3. Select your subscription
+4. Open the **Defender plans** area
+5. Find **Storage** and review the enablement path for the lab storage account
+6. Enable Defender for Storage for the lab storage account if it is not already enabled
+
+> For production design, subscription-level enablement is usually the better answer because it protects existing and new storage accounts by default. For a lab, storage-account scope is a cheaper and narrower validation path.
+
+### Step 5.2 - Review the protection surfaces
+
+After enablement, record the main protections Defender for Storage adds:
+
+- **Activity monitoring** for suspicious data access and exfiltration patterns
+- **Sensitive data threat detection**
+- **Malware scanning** for uploaded blobs
+
+### Step 5.3 - Review malware-scanning behavior
+
+If malware scanning is exposed in your tenant or region, review these settings and notes:
+
+- whether on-upload malware scanning is enabled
+- whether a monthly scanning cap is configured
+- where results appear: blob index tags, Defender for Cloud security alerts, and optional Log Analytics or Event Grid integrations
+
+For this lab, do **not** widen into full automation or EICAR-style testing. The goal is to verify that the protection is enabled and that you can explain the result surfaces.
+
+---
+
+## Part 6: Test Access
+
+### Step 6.1 — Test that public access is blocked
 
 ```powershell
 # This should fail with AuthorizationFailure or network error
@@ -176,7 +212,7 @@ Get-AzStorageContainer -Context $ctx
 # Expected: Error — public access disabled
 ```
 
-### Step 5.2 — Test via private endpoint (from VM in VNet)
+### Step 6.2 — Test via private endpoint (from VM in VNet)
 
 From a VM deployed in `snet-data` or `snet-backend`:
 ```bash
@@ -226,6 +262,12 @@ $pe = Get-AzPrivateEndpoint -ResourceGroupName $rg -Name "pe-storage-sc500"
 Write-Host "Private Endpoint: $($pe.Name) - State: $($pe.ProvisioningState)"
 ```
 
+In the portal, also validate all of the following:
+
+- Defender for Storage is enabled for the lab storage account
+- You can identify whether malware scanning is enabled and whether a scan cap is configured
+- You can explain where scan results would appear if a file were scanned
+
 ---
 
 ## Troubleshooting
@@ -236,6 +278,7 @@ Write-Host "Private Endpoint: $($pe.Name) - State: $($pe.ProvisioningState)"
 | Cannot access storage after private endpoint | DNS not resolving to private IP | Ensure private DNS zone is linked to VNet |
 | Storage account creation fails | Name already taken (globally unique) | Add more random suffix |
 | Key rotation fails | Soft delete enabled, old key in recovery | Wait for soft-delete period or recover the key |
+| Defender for Storage options aren't visible | Plan not enabled, unsupported region, or portal rollout difference | Confirm the storage plan state in Defender for Cloud and review current feature availability |
 
 ---
 
@@ -274,4 +317,12 @@ Remove-AzKeyVault -VaultName "kv-sc500-lab" -ResourceGroupName $rg -Force
 - Key Vault must use **RBAC permission model** for managed identity access to work cleanly
 - Private Endpoint requires a **private DNS zone** to ensure proper name resolution
 - Disabling public access on storage + private endpoint = **zero public internet exposure**
+- Defender for Storage adds **threat detection and malware-scanning coverage** that encryption and private networking do not provide
 - Key rotation updates the DEK wrapper; data is **not re-encrypted** during rotation
+
+## Exam Traps
+
+- **CMK** protects encryption keys and data at rest; it does **not** detect malicious uploads
+- **Private Endpoint** removes public exposure; it does **not** replace Defender for Storage threat detection
+- **Defender for Storage** can monitor and scan without being the same thing as storage firewalling or private networking
+- For broad governance, subscription-level Defender for Storage enablement is usually the stronger exam answer than one-off per-account enablement

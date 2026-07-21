@@ -17,6 +17,10 @@ You will enable a regulatory compliance standard (CIS Microsoft Azure Foundation
 - You need to know how to assign a compliance standard, read the dashboard, and export reports
 - Understanding which framework applies to which industry is tested conceptually
 
+> **Depends on:** `05-governance-compliance/lab-01-azure-policy.md` and ideally `05-governance-compliance/lab-03-rbac-locks-backup-iac.md` so the compliance view is anchored to real governance controls
+> **Reused by:** no required follow-up lab; this is usually the governance wrap-up view
+> **Delete after:** you export the compliance evidence and no longer need the temporary standards enabled for study
+
 ---
 
 ## Prerequisites

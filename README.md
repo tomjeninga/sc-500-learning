@@ -77,12 +77,24 @@ If you want to avoid jumping back and forth, use this order for the first full p
    - `03-security-operations/lab-01-defender-cloud.md`
 8. **Sentinel sequence**
    - `03-security-operations/lab-02-sentinel-setup.md`
+   - `03-security-operations/lab-04-sentinel-ingestion-dcr.md`
    - `03-security-operations/lab-03-sentinel-triage-investigation.md`
+   - `03-security-operations/lab-05-sentinel-automation-playbooks.md`
+   - `03-security-operations/lab-06-logic-apps-security-for-playbooks.md`
 9. **Independent identity and governance labs**
-   - `01-identity-governance/lab-01`, `lab-02`, `lab-03`, `lab-05`
-   - `05-governance-compliance/lab-01`, `lab-02`
+   - `01-identity-governance/lab-01-entra-id-setup.md`
+   - `01-identity-governance/lab-02-conditional-access.md`
+   - `01-identity-governance/lab-03-pim-access-governance.md`
+   - `01-identity-governance/lab-05-enterprise-app-governance.md`
+   - `05-governance-compliance/lab-01-azure-policy.md`
+   - `05-governance-compliance/lab-03-rbac-locks-backup-iac.md`
+   - `05-governance-compliance/lab-02-compliance-assessment.md`
 10. **AI workload labs**
-    - `06-ai-workload-security/`
+    - `06-ai-workload-security/lab-01-ai-gateway.md`
+    - `06-ai-workload-security/lab-03-entra-agent-id.md`
+    - `06-ai-workload-security/lab-04-defender-for-ai.md`
+    - `06-ai-workload-security/lab-05-agent-governance-guardrails.md`
+    - `06-ai-workload-security/lab-02-purview-dspm-copilot.md` if you also want the Microsoft 365 and Purview AI data-governance path in the same pass
 
 ### Shared lab environment rule
 
@@ -301,7 +313,7 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 
 ## SC-500 priority path (do these labs first)
 
-If your goal is the **fastest path to exam readiness**, do these 11 labs before
+If your goal is the **fastest path to exam readiness**, do these 12 labs before
 anything else. They cover the highest-yield SC-500 decisions without drowning
 you in too much Azure-only detail.
 
@@ -315,32 +327,50 @@ you in too much Azure-only detail.
 | 6 | `04-data-protection/lab-02-database-security.md` | TDE, Entra auth, auditing, Defender for SQL, and data classification |
 | 7 | `03-security-operations/lab-01-defender-cloud.md` | Defender for Cloud plans, recommendations, and Secure Score |
 | 8 | `03-security-operations/lab-02-sentinel-setup.md` | Sentinel onboarding, connectors, analytics rules, and KQL basics |
-| 9 | `03-security-operations/lab-03-sentinel-triage-investigation.md` | Incident triage and KQL pivots - more SC-500 realistic than setup alone |
-| 10 | `04-data-protection/lab-03-purview-labels-dlp-dspm.md` | Purview labels, DLP, and DSPM for AI are major SC-500 differentiators |
-| 11 | `06-ai-workload-security/lab-01-ai-gateway.md` | AI Gateway in APIM is one of the most distinctive new SC-500 topics |
+| 9 | `03-security-operations/lab-04-sentinel-ingestion-dcr.md` | Adds the AMA + DCR ingestion model, Content hub awareness, and richer event collection |
+| 10 | `03-security-operations/lab-03-sentinel-triage-investigation.md` | Incident triage and KQL pivots - more SC-500 realistic than setup alone |
+| 11 | `04-data-protection/lab-03-purview-labels-dlp-dspm.md` | Purview labels, DLP, and DSPM for AI are major SC-500 differentiators |
+| 12 | `06-ai-workload-security/lab-01-ai-gateway.md` | AI Gateway in APIM is one of the most distinctive new SC-500 topics |
 
-**Then finish with these AI labs:**
-- `06-ai-workload-security/lab-02-purview-dspm-copilot.md`
+**Then continue in this first-time learner order:**
+- `05-governance-compliance/lab-03-rbac-locks-backup-iac.md`
 - `06-ai-workload-security/lab-03-entra-agent-id.md`
 - `06-ai-workload-security/lab-04-defender-for-ai.md`
+- `06-ai-workload-security/lab-05-agent-governance-guardrails.md`
+
+**Add this in parallel or immediately after the AI sequence if you have Microsoft 365 / Purview access:**
+- `06-ai-workload-security/lab-02-purview-dspm-copilot.md`
+
+**Then finish the Sentinel response track:**
+- `03-security-operations/lab-05-sentinel-automation-playbooks.md`
+- `03-security-operations/lab-06-logic-apps-security-for-playbooks.md`
+
+**Then extend posture coverage with these hybrid and multicloud labs:**
+- `03-security-operations/lab-07-defender-cloud-hybrid-arc.md`
+- `03-security-operations/lab-08-defender-cloud-multicloud-connectors.md`
 
 **Suggested order by week:**
 1. **Week 1:** Priorities 1-3
 2. **Week 2:** Priorities 4-6
-3. **Week 3:** Priorities 7-9
-4. **Week 4:** Priorities 10-11 + the remaining three AI labs
+3. **Week 3:** Priorities 7-10
+4. **Week 4:** Priorities 11-12 + `05-governance-compliance/lab-03-rbac-locks-backup-iac.md`, the remaining AI labs, and the Sentinel response labs
 
-## Final 3 additions for near-complete SC-500 coverage
+## Additional labs for near-complete SC-500 coverage
 
-After you finish the priority path, use these three labs to close the biggest
+After you finish the priority path, use these labs to close the biggest
 remaining official study-guide gaps:
 
-1. `01-identity-governance/lab-05-enterprise-app-governance.md`
-   - Covers enterprise apps, app registrations, OAuth permission grants, admin consent workflow, and assignment controls
-2. `02-platform-protection/lab-04-vm-security.md`
-   - Covers Defender for Servers, JIT VM access, trusted launch, secure boot, vTPM, and agentless scanning
-3. `02-platform-protection/lab-05-app-platform-security.md`
-   - Covers App Service, Functions, Container Apps, and API Management back-end protection
+1. `01-identity-governance/lab-05-enterprise-app-governance.md` - Covers enterprise apps, app registrations, OAuth permission grants, admin consent workflow, and assignment controls
+2. `02-platform-protection/lab-04-vm-security.md` - Covers Defender for Servers, JIT VM access, trusted launch, secure boot, vTPM, and agentless scanning
+3. `02-platform-protection/lab-05-app-platform-security.md` - Covers App Service, Functions, Container Apps, and API Management back-end protection
+4. `02-platform-protection/lab-06-aks-acr-defender-containers.md` - Covers AKS, ACR, workload identity, and Defender for Containers
+5. `02-platform-protection/lab-07-logic-apps-and-apim-security.md` - Covers Logic Apps workflow hardening and APIM token and throttling enforcement
+6. `02-platform-protection/lab-08-network-breadth-validation.md` - Covers Network Watcher effective rules, IP flow verify, Azure Firewall rule families, Virtual WAN, VPN, Entra Private Access, and Private Link service decisions
+7. `03-security-operations/lab-07-defender-cloud-hybrid-arc.md` - Covers Azure Arc onboarding and Defender for Servers on hybrid machines
+8. `03-security-operations/lab-08-defender-cloud-multicloud-connectors.md` - Covers AWS/GCP connectors, CSPM vs CWPP decisions, and multicloud posture coverage
+9. `05-governance-compliance/lab-03-rbac-locks-backup-iac.md` - Covers resource locks, custom roles, overprivileged RBAC review, backup security, and governance-as-code thinking
+10. `06-ai-workload-security/lab-05-agent-governance-guardrails.md` - Covers Copilot Studio governance, Microsoft 365 agent management, and Foundry guardrails
+11. `03-security-operations/lab-09-security-copilot-agents.md` - Covers Security Copilot roles, plugin dependencies, and a small agent setup path
 
 These are not the fastest-pass labs, but they bring the repo much closer to the
 full official study guide.

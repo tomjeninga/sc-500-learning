@@ -1,187 +1,198 @@
-# Lab 05: App Platform Security with App Service, Functions, Container Apps, and API Management
+# Lab 05: Intro to App Platform Security
 
-## Overview
+## SC-500 Skill Mapping
 
-**Estimated Time:** 60-90 minutes  
-**Estimated Cost:** ~$2-6 depending on the services you create for the lab  
-**Difficulty:** Intermediate
+This lab maps to SC-500 secure compute objectives around:
+
+- Implementing security controls for Azure App Service
+- Implementing security controls for Azure Functions
+- Implementing security controls for Container Apps
+- Recognizing when API Management becomes the next protection layer for back-end APIs
 
 ---
 
-## What You'll Build and WHY
+## Learning Objectives
 
-You will apply core security controls across Azure application platform services:
-App Service, Azure Functions, Azure Container Apps, and API Management.
+After completing this lab, you will be able to:
 
-**Why this matters for SC-500:**
-- The official study guide explicitly includes application platform services
-- Candidates often know infrastructure security but overlook service-native controls
-- The exam loves scenarios that ask where to apply authentication, network controls,
-  secrets handling, and API protection
-
-**Architecture:**
-
-```text
-User / client
-    |
-    v
-API Management
-    |
-    +--> App Service (auth + access restrictions)
-    +--> Function App (auth + network restrictions)
-    \--> Container App (controlled ingress)
-```
+- Identify the baseline security controls common to Azure application platform services
+- Apply authentication, ingress restriction, and secretless access patterns to App Service and Functions
+- Choose the correct ingress and identity posture for Container Apps
+- Distinguish service-native protection from deeper API gateway enforcement
 
 ---
 
 ## Prerequisites
 
 - Contributor on `rg-sc500-lab`
-- Optional existing API Management instance from the AI workload lab
-- A test Entra ID group or user for app authentication
+- Optional `01-identity-governance/lab-04-workload-identities.md` if you want to reuse managed identity and Key Vault patterns
+- A test Entra user or group for authentication validation
 
 ---
 
-## Part 1: Secure an App Service web app
+## Architecture (in words)
 
-### Step 1.1 - Create or reuse an App Service
+This intro lab focuses on the baseline controls that live on the application service itself. Clients reach App Service, Functions, or Container Apps directly or through a later gateway layer. The first decision is whether the workload is properly authenticated, minimally exposed, and free of embedded secrets.
+
+```text
+User or caller
+    |
+    +--> App Service
+    +--> Function App
+    \--> Container App
+
+Baseline controls on each service:
+- identity and authentication
+- ingress and network exposure
+- managed identity and secret handling
+```
+
+---
+
+> **Depends on:** `01-identity-governance/lab-04-workload-identities.md` if you want to reuse managed identity and Key Vault patterns
+> **Reused by:** `02-platform-protection/lab-06-aks-acr-defender-containers.md` and `02-platform-protection/lab-07-logic-apps-and-apim-security.md`
+> **Delete after:** you finish the platform-service validation that depends on the apps or temporary ingress settings
+
+## Part 1: Lock in the baseline control model
+
+Before building anything, use this mental map:
+
+| Control | What question it answers |
+| --- | --- |
+| Authentication | Who is allowed to call the app? |
+| Network exposure | Who can even reach the endpoint? |
+| Managed identity | How does the app reach Azure resources without secrets? |
+| Gateway layer | Do you need separate API-edge enforcement? |
+
+**Why this control, not the distractor:**
+
+- App authentication does not automatically mean the app is network-isolated
+- Private or restricted ingress does not replace user or workload authentication
+- Managed identity is usually stronger than storing connection secrets in configuration
+- API Management is a follow-up enforcement layer, not the first baseline control to learn here
+
+---
+
+## Part 2: Secure an App Service web app
+
+### Step 2.1 - Create or reuse an App Service
 
 1. Create a basic Web App in `rg-sc500-lab`, or reuse an existing one
 2. Turn on:
    - **HTTPS Only**
    - **Minimum TLS 1.2**
 
-### Step 1.2 - Enable built-in authentication
+### Step 2.2 - Enable built-in authentication
 
 1. Open the Web App -> **Authentication**
 2. Add **Microsoft Entra ID** as the identity provider
 3. Configure the app to require authentication
 4. Test sign-in with an allowed user
 
-### Step 1.3 - Add access restrictions
+### Step 2.3 - Reduce network exposure
 
 1. Open **Networking** -> **Access restrictions**
 2. Allow only:
    - Your current IP for testing, or
-   - The APIM subnet / trusted ingress source
+   - Another explicitly trusted source
 3. Add a deny-all rule below the allow rules
 
-> App Service security is often about combining **identity** and **network** controls.
+> App Service security starts with the combination of identity, TLS, and intentional ingress.
 
 ---
 
-## Part 2: Secure a Function App
+## Part 3: Secure a Function App
 
-### Step 2.1 - Create or reuse a Function App
+### Step 3.1 - Create or reuse a Function App
 
 1. Create a basic HTTP-trigger Function App or reuse an existing one
 2. Turn on:
    - **HTTPS Only**
    - **Authentication**
 
-### Step 2.2 - Lock down access
+### Step 3.2 - Review trigger exposure
 
-1. In **Authentication**, require sign-in with Microsoft Entra ID
-2. In **Networking**, review access restrictions or private endpoint options based on your plan
-3. If the app is publicly reachable, add restrictions so only approved callers can reach it
+1. In **Authentication**, require sign-in with Microsoft Entra ID if the function should not be public
+2. In **Networking**, review access restrictions or private endpoint options based on your hosting plan
+3. If the function is publicly reachable, restrict callers to only the approved path
 
-### Step 2.3 - Review secret handling
+### Step 3.3 - Review secret handling
 
 1. Review **Application settings**
-2. Prefer references to **Key Vault** or managed identity over embedded secrets
+2. Prefer:
+   - **Managed identity**
+   - **Key Vault references**
+3. Avoid embedded secrets when a managed option exists
 
-> Functions questions often test whether you know to protect both the trigger and the app configuration.
+> Functions questions usually test whether you can secure both the function trigger and the app configuration.
 
 ---
 
-## Part 3: Secure a Container App
+## Part 4: Secure a Container App
 
-### Step 3.1 - Create a Container App
+### Step 4.1 - Create or reuse a Container App
 
 1. Deploy a simple Container App in a Container Apps environment
 2. Choose one of these ingress patterns:
-   - **Internal ingress only** for back-end workloads, or
-   - External ingress only when a front-end is required
+   - **Internal ingress only** for back-end workloads
+   - **External ingress** only when there is a clear caller requirement
 
-### Step 3.2 - Review security controls
+### Step 4.2 - Review the baseline controls
 
 Inspect:
+
 - Ingress exposure
 - Secrets
-- Revisions
 - Managed identity support
+- Revision and environment boundaries
 
-### Step 3.3 - Reduce exposure
+### Step 4.3 - Reduce unnecessary exposure
 
 For the lab, set the app so it is not broadly internet-exposed unless you explicitly need that for testing.
 
-> For SC-500, the design principle matters: minimize exposure and prefer managed identity over secrets.
+> For SC-500, the exam decision is usually about minimizing exposure and preferring managed identity over secrets.
 
 ---
 
-## Part 4: Protect back-end APIs with API Management
+## Part 5: Know when to step into the next lab
 
-### Step 4.1 - Create or reuse APIM
+Use this quick map to decide whether the baseline is enough or whether you need the next protection layer.
 
-1. Open your API Management instance
-2. Import or create a simple API for the App Service or Function App backend
-
-### Step 4.2 - Add inbound protection
-
-Apply security policies such as:
-
-- `validate-jwt` to require a valid token
-- `rate-limit-by-key` or subscription key control for caller throttling
-- Header filtering or transformation if needed
-
-### Step 4.3 - Protect the back end
-
-Where supported:
-- Use **managed identity** for outbound calls from APIM
-- Restrict the back-end app so APIM is the intended caller
-
-> This is the generic non-AI version of the same idea you practiced in the AI Gateway lab.
+| If the question is about... | Start with... | Then go deeper in... |
+| --- | --- | --- |
+| App sign-in, TLS, and direct endpoint exposure | This lab | — |
+| Function trigger exposure and configuration secrets | This lab | — |
+| Container ingress and identity | This lab | `lab-06-aks-acr-defender-containers.md` for container platform depth |
+| JWT validation, throttling, and API-edge policy enforcement | This lab for baseline backend hardening | `lab-07-logic-apps-and-apim-security.md` |
 
 ---
 
-## Part 5: Compare the service-native controls
-
-Create this mental map:
-
-| Service | Most likely exam controls |
-| --- | --- |
-| App Service | Entra auth, access restrictions, private endpoints, TLS, Key Vault references |
-| Functions | Entra auth, trigger auth, access restrictions, private endpoints, managed identity |
-| Container Apps | Ingress mode, secrets, managed identity, environment isolation |
-| API Management | JWT validation, throttling, backend auth, policy enforcement |
-
----
-
-## Validation Steps
+## Validate
 
 Confirm all of the following:
 
 - App Service requires authentication
 - Function App requires authentication and is not openly exposed without need
 - Container App ingress is intentionally chosen and not left overly broad
-- APIM enforces at least one security policy in front of a backend API
+- You can explain why API Management is a follow-up enforcement layer rather than the main hands-on focus of this intro lab
 
 ---
 
-## Exam traps
+## Exam Traps
 
 - **App Service Authentication** is not the same as **network restriction**
-- **Functions** need both app auth and secure trigger/network design
-- **API Management** protects the API edge and backend policy plane; it is not just a developer portal
+- **Functions** need both trigger awareness and secure app configuration
+- **Container Apps** should not default to broad external ingress without a reason
 - **Managed identity** is usually preferred over app settings with secrets
+- **API Management** is important, but deep token and throttling enforcement belong in the follow-up lab, not this baseline lab
 
 ---
 
-## Cleanup Instructions
+## Cleanup
 
 1. Delete test platform services if you created them only for the lab
 2. Remove temporary IP allow rules
-3. Remove test APIs from APIM
+3. Leave any reusable app resources only if you plan to continue to the follow-up labs
 
 ---
 
@@ -190,4 +201,3 @@ Confirm all of the following:
 - <https://learn.microsoft.com/en-us/azure/app-service/overview-authentication-authorization>
 - <https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts>
 - <https://learn.microsoft.com/en-us/azure/container-apps/security>
-- <https://learn.microsoft.com/en-us/azure/api-management/api-management-policies>

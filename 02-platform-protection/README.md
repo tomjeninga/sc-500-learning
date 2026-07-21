@@ -13,7 +13,7 @@ By completing this domain, you will be able to:
 - Understand encryption in transit (TLS) and at rest (server-side encryption, disk encryption)
 - Compare Private Endpoint vs Service Endpoint for PaaS isolation
 - Secure virtual machines with Defender for Servers, JIT, and trusted launch
-- Implement application platform security for App Service, Functions, Container Apps, and API Management
+- Implement application platform security for App Service, Functions, Container Apps, Logic Apps, API Management, AKS, and ACR
 
 ---
 
@@ -32,6 +32,8 @@ Expect questions on:
 - Encryption at rest options (PMK vs CMK, Azure Disk Encryption)
 - JIT VM access, secure boot, vTPM, and Defender for Servers
 - App Service and Functions authentication/network restrictions
+- AKS and ACR security controls, workload identity, and Defender for Containers
+- Logic Apps identity, trigger exposure, and workflow security
 - API Management as a protection boundary for back-end APIs
 
 ---
@@ -45,6 +47,9 @@ Expect questions on:
 | `lab-03-private-access-patterns.md` | Private access patterns for Storage + SQL | 60–90 min |
 | `lab-04-vm-security.md` | Defender for Servers, JIT, trusted launch, and agentless scanning | 60–90 min |
 | `lab-05-app-platform-security.md` | App Service, Functions, Container Apps, and APIM protection | 60–90 min |
+| `lab-06-aks-acr-defender-containers.md` | AKS, ACR, workload identity, and Defender for Containers | 60–90 min |
+| `lab-07-logic-apps-and-apim-security.md` | Logic Apps identity and API Management policy enforcement | 60–90 min |
+| `lab-08-network-breadth-validation.md` | Compact Network Watcher, Azure Firewall, Virtual WAN, and access-model coverage | 30–45 min |
 
 ---
 
@@ -66,6 +71,8 @@ Expect questions on:
 - [SC-500: Implement platform protection](https://learn.microsoft.com/en-us/training/paths/implement-platform-protection/)
 - [Plan your Defender for Servers deployment](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction)
 - [Security in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/overview-security)
+- [Security concepts for AKS applications and clusters](https://learn.microsoft.com/en-us/azure/aks/concepts-security)
+- [Enable Defender for Containers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-enable-plan)
 
 ---
 
@@ -76,6 +83,9 @@ Expect questions on:
 3. Complete `lab-02-waf-setup.md` — deploy and test WAF
 4. Complete `lab-03-private-access-patterns.md` — validate Private Endpoints and DNS resolution
 5. Complete `lab-04-vm-security.md` — secure a VM with Defender for Servers, JIT, and trusted launch controls
-6. Complete `lab-05-app-platform-security.md` — apply security controls across platform services and API Management
-7. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
-8. Answer the self-check questions at the end of each file
+6. Complete `lab-08-network-breadth-validation.md` — close the remaining network-control decision and validation gaps
+7. Complete `lab-05-app-platform-security.md` — apply the core app-service controls across platform services
+8. Complete `lab-06-aks-acr-defender-containers.md` — extend into container platform and runtime protection
+9. Complete `lab-07-logic-apps-and-apim-security.md` — secure workflows and API enforcement paths
+10. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
+11. Answer the self-check questions at the end of each file

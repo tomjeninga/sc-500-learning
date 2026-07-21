@@ -65,6 +65,16 @@ These are the Microsoft-published learning paths and modules that best map to th
 - [Azure Bastion documentation](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview)
 - [Azure Private Link documentation](https://learn.microsoft.com/en-us/azure/private-link/private-link-overview)
 
+### App Platform and Container Breadth Resources
+
+- [Security concepts for AKS applications and clusters](https://learn.microsoft.com/en-us/azure/aks/concepts-security)
+- [Enable Defender for Containers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-enable-plan)
+- [Azure Container Registry introduction](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-intro)
+- [Authentication and authorization in Azure App Service and Azure Functions](https://learn.microsoft.com/en-us/azure/app-service/overview-authentication-authorization)
+- [Security overview for Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/security)
+- [Validate JWT policy in Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy)
+- [Limit call rate by key policy in Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/rate-limit-by-key-policy)
+
 ---
 
 ## Domain 3: Security Operations
@@ -86,6 +96,29 @@ These are the Microsoft-published learning paths and modules that best map to th
 - [KQL Quick Reference](https://learn.microsoft.com/en-us/azure/data-explorer/kql-quick-reference)
 - [KQL Tutorial for Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/kusto-overview)
 - [Azure Data Explorer free cluster](https://dataexplorer.azure.com/clusters/help/databases/Samples) (free KQL playground)
+
+### Sentinel Breadth Resources
+
+- [Deploy and manage Microsoft Sentinel out-of-the-box content](https://learn.microsoft.com/en-us/azure/sentinel/sentinel-solutions-deploy)
+- [Ingest Windows Security Events in Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/connect-windows-security-events)
+- [Ingest Syslog and CEF messages with AMA](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama)
+- [Authenticate playbooks to Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/automation/authenticate-playbooks-to-sentinel)
+
+### Security Copilot Resources
+
+- [Get started with Microsoft Security Copilot](https://learn.microsoft.com/en-us/copilot/security/get-started-security-copilot)
+- [Understand authentication in Microsoft Security Copilot](https://learn.microsoft.com/en-us/copilot/security/authentication)
+- [Setup and manage Security Copilot agents](https://learn.microsoft.com/en-us/copilot/security/agents-manage)
+- [Microsoft Security Copilot agents overview](https://learn.microsoft.com/en-us/copilot/security/agents-overview)
+- [Microsoft Security Store in Microsoft Security Copilot](https://learn.microsoft.com/en-us/copilot/security/security-store-integration)
+
+### Defender for Cloud Hybrid and Multicloud Resources
+
+- [Connect non-Azure machines to Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-machines)
+- [Select a Defender for Servers plan and deployment scope](https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-defender-for-servers-select-plan)
+- [Connect AWS accounts to Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-aws)
+- [Connect GCP projects to Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-gcp)
+- [Secure your hybrid and multicloud machines by using Azure Arc-enabled servers](https://learn.microsoft.com/en-us/training/modules/secure-azure-arc-enabled-servers/)
 
 ---
 
@@ -122,6 +155,33 @@ These are the Microsoft-published learning paths and modules that best map to th
 | [Organize your resources with management groups](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) | MG hierarchy, policy inheritance | 20 min |
 | [Configure Azure Policy](https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/) | Definitions, initiatives, assignments, effects | 45 min |
 | [Implement and Manage Enforcement of Cloud Governance Policies](https://learn.microsoft.com/en-us/training/modules/implement-manage-enforcement-cloud-governance-policies/) | Policy enforcement, governance controls, regulatory compliance | 45 min |
+
+### Governance Breadth Resources
+
+- [Lock your Azure resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)
+- [Azure custom roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles)
+- [List Azure role assignments using the Azure portal](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-list-portal)
+- [Azure Backup security overview](https://learn.microsoft.com/en-us/azure/backup/security-overview)
+
+---
+
+## Domain 6: AI Workload Security
+
+### Core Docs and Modules
+
+| Module | Topics Covered | Duration |
+|--------|---------------|---------|
+| [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/) | Foundry projects, model deployments, AI app security context | Varies |
+| [AI Gateway in Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities) | Token limits, caching, content safety, observability | 30-45 min |
+| [Microsoft Purview DSPM for AI](https://learn.microsoft.com/en-us/purview/ai-microsoft-purview) | Oversharing, Copilot risk discovery, AI posture | 30-45 min |
+| [Microsoft Entra Agent ID overview](https://learn.microsoft.com/en-us/entra/identity/agentid/overview) | Agent identities, Conditional Access, governance | 20-30 min |
+| [Defender for Cloud AI security](https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-security) | AI threat protection, onboarding, alerts | 30 min |
+
+### AI Governance and Guardrail Resources
+
+- [Security and governance in Microsoft Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance)
+- [Foundry content filtering and guardrails](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-filtering)
+- [Data and AI security dashboard overview](https://learn.microsoft.com/en-us/azure/defender-for-cloud/data-aware-security-dashboard-overview)
 
 ---
 
