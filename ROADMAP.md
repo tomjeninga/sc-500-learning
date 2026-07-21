@@ -1,4 +1,4 @@
-# SC-500 Study Roadmap: 12-Week Plan for Tom Jeninga
+# SC-500 Study Roadmap: 12-Week Plan
 
 **Audience:** Cloud engineer preparing for **Microsoft Certified: Cloud and AI Security Engineer Associate**
 **Exam:** SC-500 - Implementing End-to-End Security Controls for Cloud and AI Workloads
@@ -72,5 +72,4 @@ Do not book the exam until:
 
 ## Next step
 
-Go to Week 1: complete `AZURE-SETUP.md`, then start Week 2. Ask the **SC-500 Coach** agent for a first-session teach-block on PIM.
-
+Go to Week 1: complete `AZURE-SETUP.md`, then start Week 2. Optionally use the **SC-500 Coach** agent for a first-session teach-block on PIM.

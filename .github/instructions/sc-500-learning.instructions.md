@@ -7,7 +7,7 @@ applyTo: "**/*.md,**/*.bicep,**/*.json,**/*.ps1"
 
 ## Purpose
 
-This repository is a personal SC-500 study companion for Tom Jeninga. All generated content must help him pass **Microsoft Certified: Cloud and AI Security Engineer Associate** and **Exam SC-500: Implementing End-to-End Security Controls for Cloud and AI Workloads**.
+This repository is a community SC-500 study companion. All generated content should help learners prepare for **Microsoft Certified: Cloud and AI Security Engineer Associate** and **Exam SC-500: Implementing End-to-End Security Controls for Cloud and AI Workloads**.
 
 ## Anchor to the official study guide
 

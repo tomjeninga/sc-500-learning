@@ -1,8 +1,51 @@
 # SC-500: Cloud and AI Security Engineer Associate
 
-Personal learning repository for **Tom Jeninga** to prepare for **Microsoft Certified: Cloud and AI Security Engineer Associate** and **Exam SC-500: Implementing End-to-End Security Controls for Cloud and AI Workloads**.
+Hands-on study repository for **Microsoft Certified: Cloud and AI Security Engineer Associate** and **Exam SC-500: Implementing End-to-End Security Controls for Cloud and AI Workloads**.
 
-This repository is a hands-on study companion: read the concept, build the control, validate the result, clean up, and explain the decision like an exam case study.
+This repository is a practical study companion: read the concept, build the control, validate the result, clean up, and explain the decision like an exam case study.
+
+## Who this repo is for
+
+This repository is designed for:
+
+- Security engineers preparing for **SC-500**
+- Cloud engineers who already know basic Azure administration and want stronger security depth
+- Microsoft Entra ID, Defender for Cloud, Sentinel, Purview, and AI security learners
+- People who prefer a **hands-on path** instead of only reading Microsoft Learn modules
+
+This repository is **not** meant to be:
+
+- A full replacement for Microsoft Learn
+- A first Azure tutorial for complete beginners
+- A guarantee that every portal screen looks identical over time
+
+## How to use this repo
+
+Recommended flow:
+
+1. Read this `README.md` end to end.
+2. Review `ROADMAP.md` for the full study sequence.
+3. Complete `AZURE-SETUP.md` and confirm you understand lab cost and licensing needs.
+4. Follow the **SC-500 priority path** first.
+5. Use `resources/kql-workbook.md` and `resources/exam-tips.md` alongside the labs.
+6. Track weak areas in your own notes or local `notes/` folder.
+
+## Cost and licensing warning
+
+Some labs can incur real cost or require paid licensing. Before you begin, review:
+
+- Azure consumption for services such as **API Management**, **Application Gateway WAF**, **Sentinel / Log Analytics**, **SQL**, and **Defender plans**
+- Microsoft Entra ID licensing requirements such as **P1** or **P2**
+- Microsoft 365 / Purview requirements for **DSPM for AI**, **DLP**, and **sensitivity labels**
+
+Use a dedicated lab resource group, set budgets, and delete resources promptly after each lab.
+
+## Disclaimer
+
+- This is an **unofficial community study repository**
+- Always validate pricing, licensing, and portal steps against current Microsoft documentation
+- Use this repo together with the official SC-500 study guide and Microsoft Learn
+- Exam objectives can change over time, so treat the official study guide as the source of truth
 
 ## Why this path is different from AZ-500
 
@@ -177,13 +220,16 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 | `06-ai-workload-security/` | **AI security module** - Foundry, APIM AI Gateway, Purview DSPM, Entra Agent ID, Defender for AI |
 | `06-ai-workload-security/architecture.md` | Mermaid stack + sequence + trust-boundary diagrams for AI workloads |
 | `infra/` | **Bicep** versions of every ARM template + `main.bicep` orchestrator |
+| `resources/lab-matrix.md` | Quick prerequisites, cost, and time matrix for the main labs |
 | `resources/kql-workbook.md` | Reusable KQL queries grouped by SC-500 skill area |
 | `resources/exam-tips.md` | Exam metadata, AI keyword-to-answer table, common traps |
-| `notes/` | Personal wrong-answer journal (git-ignored except README) |
+| `notes/` | Private notes template (git-ignored except README) |
 | `.github/agents/sc-500-coach.agent.md` | **SC-500 Coach** teaching agent (pick from Copilot Chat agent picker) |
 | `.github/instructions/` | Repo-wide conventions auto-applied by Copilot |
 | `.github/skills/sc-500-study-session/` | Slash-callable study session workflow |
 | `.github/workflows/` | CI: markdown lint + Bicep/ARM validate |
+| `CONTRIBUTING.md` | Contribution guidelines for public improvements |
+| `LICENSE` | Repository license |
 
 ## SC-500 priority path (do these labs first)
 

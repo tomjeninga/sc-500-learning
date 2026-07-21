@@ -1,7 +1,7 @@
-# Notes - Personal Study Journal (git-ignored)
+# Private Notes Template (git-ignored)
 
 Everything in `notes/` except this README is git-ignored (see `.gitignore`).
-Use this folder for a **wrong-answer journal** and any private study notes.
+Use this folder for a **wrong-answer journal**, lab debriefs, and any private study notes that should stay local to each learner.
 
 ## Why keep a wrong-answer journal?
 
@@ -62,5 +62,5 @@ Once you have a few entries, ask the SC-500 Coach agent:
 > "Read `notes/wrong-answers/` and generate a targeted 60-minute study session
 > focused on my weakest SC-500 skill areas."
 
-The Coach agent (in `.github/agents/sc-500-coach.agent.md`) knows to weight
+The Coach agent (in `.github/agents/sc-500-coach.agent.md`) can weight
 its next teach-block and quiz around your recurring miss themes.
