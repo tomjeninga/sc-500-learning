@@ -8,7 +8,7 @@ Naming convention: each query header is `// [Area] [What it answers]` so you can
 > - Microsoft Entra ID (SigninLogs, AuditLogs, IdentityInfo)
 > - Microsoft Defender for Cloud (SecurityAlert, SecurityRecommendation, SecurityRegulatoryCompliance)
 > - Azure Activity (AzureActivity)
-> - Azure Firewall / NSG flow logs (AZFWNetworkRule, AzureNetworkAnalytics_CL)
+> - Azure Firewall / network flow telemetry (AZFWNetworkRule, AzureNetworkAnalytics_CL)
 > - Microsoft 365 Defender (via XDR connector: EmailEvents, CloudAppEvents, DeviceProcessEvents)
 
 ---
@@ -97,7 +97,7 @@ SecurityAlert
 ```
 
 ```kql
-// [Network] NSG flow denies aggregated by source
+// [Network] Flow-log denies aggregated by source
 AzureNetworkAnalytics_CL
 | where SubType_s == "FlowLog"
 | where FlowStatus_s == "D"           // Denied

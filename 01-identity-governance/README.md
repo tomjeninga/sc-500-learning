@@ -62,8 +62,8 @@ This is the **heaviest domain** on the exam. Expect questions on:
 - [Configure Azure Active Directory](https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/)
 - [Manage identities in Microsoft Entra ID](https://learn.microsoft.com/en-us/training/modules/manage-identities-microsoft-entra-id/)
 - [Configure role-based access control](https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/)
-- [Manage Microsoft Entra identities](https://learn.microsoft.com/en-us/training/paths/implement-identity-access-management/)
-- [Secure applications with Microsoft Entra ID](https://learn.microsoft.com/en-us/training/modules/secure-applications-with-entra-id/)
+- [Protect identity and access in Azure](https://learn.microsoft.com/en-us/training/paths/secure-identity-access/)
+- [Microsoft identity platform documentation](https://learn.microsoft.com/en-us/entra/identity-platform/)
 
 ---
 

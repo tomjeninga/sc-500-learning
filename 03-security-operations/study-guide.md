@@ -282,5 +282,5 @@ Sentinel fulfils **both** SIEM and SOAR roles.
 - [SC-500: Manage security operations](https://learn.microsoft.com/en-us/training/paths/manage-security-operations/)
 - [Mitigate threats with Defender for Cloud](https://learn.microsoft.com/en-us/training/paths/sc-200-mitigate-threats-using-azure-defender/)
 - [Microsoft Sentinel overview](https://learn.microsoft.com/en-us/azure/sentinel/overview)
-- [Write KQL queries for Sentinel](https://learn.microsoft.com/en-us/training/modules/construct-kql-statements-microsoft-sentinel/)
+- [Kusto Query Language overview for Microsoft Sentinel](https://learn.microsoft.com/en-us/kusto/query/kusto-sentinel-overview?toc=%2Fazure%2Fsentinel%2FTOC.json&bc=%2Fazure%2Fsentinel%2Fbreadcrumb%2Ftoc.json)
 - [Automate threat response with Sentinel playbooks](https://learn.microsoft.com/en-us/azure/sentinel/automate-responses-with-playbooks)

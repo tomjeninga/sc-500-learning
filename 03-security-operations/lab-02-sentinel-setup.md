@@ -58,8 +58,8 @@ Entra ID Sign-in logs
 4. Once deployed, open `law-sc500-sentinel`
 5. Review:
    - **Overview:** Workspace ID, Resource ID
-   - **Agents:** Where to download the Log Analytics agent
-   - **Advanced settings:** Workspace ID and Primary key (used by agents)
+   - **Agents:** Review agent onboarding options, noting that Azure Monitor Agent (AMA) is the current agent
+   - **Advanced settings:** Workspace ID and Primary key (legacy agent onboarding details still appear here)
 
 ---
 

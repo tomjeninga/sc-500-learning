@@ -54,7 +54,7 @@ Expect questions on:
 - [Configure Azure Key Vault](https://learn.microsoft.com/en-us/training/modules/configure-and-manage-azure-key-vault/)
 - [Secure Azure Storage](https://learn.microsoft.com/en-us/training/modules/secure-azure-storage-account/)
 - [Secure your Azure SQL Database](https://learn.microsoft.com/en-us/training/modules/secure-your-azure-sql-database/)
-- [SC-500: Secure data and applications](https://learn.microsoft.com/en-us/training/paths/secure-data-applications/)
+- [Secure your cloud data in Azure](https://learn.microsoft.com/en-us/training/paths/secure-your-cloud-data/)
 
 ---
 

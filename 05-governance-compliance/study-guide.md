@@ -54,7 +54,7 @@ Effects determine what happens when the policy conditions are met:
 | **Deny** | Block the CREATE/UPDATE operation | Prevent storage accounts without HTTPS |
 | **Audit** | Allow but create a compliance finding | Log VMs not using managed disks |
 | **AuditIfNotExists** | Audit if a related resource doesn't exist | Audit VMs without Defender extension |
-| **DeployIfNotExists** | Deploy a related resource if it doesn't exist | Auto-deploy Log Analytics agent on VMs |
+| **DeployIfNotExists** | Deploy a related resource if it doesn't exist | Auto-deploy Azure Monitor Agent or another required extension on VMs |
 | **Modify** | Change tags or properties during create/update | Auto-add environment tag during resource creation |
 | **Append** | Add fields to a resource during create/update | Append a required property to storage accounts |
 | **Disabled** | No action (used to disable a policy in an initiative) | — |
@@ -127,7 +127,7 @@ Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists �
 |--------|--------|
 | "Require secure transfer to storage accounts" | Deny |
 | "Ensure SSL connection is enabled for PostgreSQL" | Audit |
-| "Deploy Log Analytics agent for Windows VMs" | DeployIfNotExists |
+| "Deploy Azure Monitor Agent to Windows VMs" | DeployIfNotExists |
 | "Allowed locations" | Deny |
 | "Inherit a tag from the resource group" | Modify |
 | "Add a tag to resources" | Modify |
@@ -275,7 +275,7 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 
 ## Microsoft Learn Resources
 
-- [SC-500: Manage governance and compliance](https://learn.microsoft.com/en-us/training/paths/governance-compliance-azure-security/)
+- [Implement and manage enforcement of cloud governance policies](https://learn.microsoft.com/en-us/training/modules/implement-manage-enforcement-cloud-governance-policies/)
 - [Azure Policy overview](https://learn.microsoft.com/en-us/azure/governance/policy/overview)
 - [Azure Policy effects](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects)
 - [Management Group overview](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview)

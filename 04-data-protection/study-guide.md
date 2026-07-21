@@ -270,7 +270,7 @@ DLP policies detect and prevent the sharing of sensitive information:
 
 ## Microsoft Learn Resources
 
-- [SC-500: Secure data and applications](https://learn.microsoft.com/en-us/training/paths/secure-data-applications/)
+- [Secure your cloud data in Azure](https://learn.microsoft.com/en-us/training/paths/secure-your-cloud-data/)
 - [Configure and manage Azure Key Vault](https://learn.microsoft.com/en-us/training/modules/configure-and-manage-azure-key-vault/)
 - [Secure your Azure SQL Database](https://learn.microsoft.com/en-us/training/modules/secure-your-azure-sql-database/)
 - [Protect data with MIP sensitivity labels](https://learn.microsoft.com/en-us/training/modules/m365-compliance-information-protect-information/)

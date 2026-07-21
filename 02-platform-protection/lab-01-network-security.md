@@ -141,17 +141,24 @@ For each NSG:
 
 ---
 
-## Part 5: Enable NSG Flow Logs
+## Part 5: Enable Virtual Network Flow Logs
 
-NSG Flow Logs record which flows are allowed/denied, enabling traffic analysis.
+> **Important:** New **NSG flow logs** can no longer be created after June 30, 2025,
+> and the feature is scheduled for retirement on September 30, 2027. Use
+> **Virtual network flow logs** instead.
+
+Virtual network flow logs record IP traffic flowing through the virtual network
+and are the current Microsoft-recommended replacement for NSG flow logs.
 
 ### Step 5.1 — Enable flow logs
 
-1. Open `nsg-frontend` → **NSG flow logs** → **+ Create**
-2. **Storage account:** Create new → `stsc500flowlogs<random>`
-3. **Retention:** 7 days
-4. **Traffic Analytics:** Enable (optional, provides visual analytics)
-5. Click **Save**
+1. Search for **Network Watcher** in the Azure portal.
+2. Open **Flow logs** and click **+ Create**.
+3. Select the target **virtual network**: `vnet-sc500-lab`.
+4. **Storage account:** Create new → `stsc500flowlogs<random>`
+5. **Retention:** 7 days
+6. **Traffic Analytics:** Enable (optional, provides visual analytics)
+7. Click **Save**
 
 ---
 
@@ -201,7 +208,7 @@ $nsg.Subnets | ForEach-Object { Write-Host "NSG associated with subnet: $($_.Id.
 | Cannot reach VM on port 443 | NSG rule not matching | Check NSG effective security rules on NIC |
 | NSG rule not applying | NSG not associated with subnet/NIC | Verify association in NSG → Subnets |
 | Two NSGs in conflict | NSG on subnet AND NSG on NIC | Both apply; NIC NSG takes precedence for inbound |
-| Flow logs not appearing | Storage account not accessible | Check storage account network rules; allow Azure services |
+| Virtual network flow logs not appearing | Storage account not accessible or flow log not attached to the VNet | Check storage account network rules and confirm the flow log targets `vnet-sc500-lab` |
 
 **Check effective NSG rules:**
 1. VM → Networking → Network Interface
@@ -231,4 +238,4 @@ Remove-AzNetworkSecurityGroup -Name "nsg-data" -ResourceGroupName $rg -Force
 - NSG rules are evaluated by **priority** (lower number = evaluated first)
 - ASGs simplify NSG management for multi-VM scenarios
 - **Never expose port 22 or 3389 to Internet** — use Azure Bastion instead
-- NSG Flow Logs are essential for security investigations
+- Virtual network flow logs are the current flow-logging option for network investigations

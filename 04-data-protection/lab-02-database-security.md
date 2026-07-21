@@ -223,7 +223,7 @@ $serverName = "sql-sc500-lab-<suffix>"
 # Verify SQL server exists with Entra-only auth
 $server = Get-AzSqlServer -ResourceGroupName $rg -ServerName $serverName
 Write-Host "Authentication: $($server.MinimalTlsVersion)"
-Write-Host "Azure AD Only Auth: $($server.Administrators.AzureADOnlyAuthentication)"
+Write-Host "Microsoft Entra-only auth (AzureADOnlyAuthentication): $($server.Administrators.AzureADOnlyAuthentication)"
 
 # Verify TDE
 $tde = Get-AzSqlDatabaseTransparentDataEncryption -ResourceGroupName $rg -ServerName $serverName -DatabaseName "sqldb-sc500-lab"
