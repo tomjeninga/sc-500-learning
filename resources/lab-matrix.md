@@ -66,46 +66,54 @@ Treat `vnet-sc500-lab`, `kv-sc500-lab`, the storage account, the SQL server, and
 | `06-ai-workload-security/lab-04-defender-for-ai.md` | Defender for AI enablement, Data and AI security dashboard evidence, AI alerts | AI Gateway or equivalent Foundry deployment, Defender for Cloud, diagnostics | AI alert validation is complete and paid protections are disabled if no longer needed |
 | `06-ai-workload-security/lab-05-agent-governance-guardrails.md` | Copilot Studio governance review, M365 agent governance decisions, Foundry content-filter evidence | Foundry deployment, Copilot Studio agent, optional Entra Agent ID and Defender for AI context | AI governance validation is complete and you no longer need the temporary test agent or filter settings |
 
-| Lab | Azure subscription | Entra P1/P2 | M365 / Purview | Estimated cost risk | Estimated time | Reuse guidance |
-| --- | --- | --- | --- | --- | --- | --- |
-| `01-identity-governance/lab-02-conditional-access.md` | Optional | P1/P2 | No | Low | 60-90 min | Standalone |
-| `01-identity-governance/lab-03-pim-access-governance.md` | No | P2 | No | Low | 60-90 min | Standalone |
-| `01-identity-governance/lab-04-workload-identities.md` | Yes | No | No | Low | 60-90 min | Reuse Key Vault + Storage from `04-data-protection/lab-01` |
-| `01-identity-governance/lab-05-enterprise-app-governance.md` | No | Recommended | No | Low | 60-90 min | Standalone |
-| `02-platform-protection/lab-01-network-security.md` | Yes | No | No | Medium | 60-90 min | Keep VNet/subnets for later labs |
-| `02-platform-protection/lab-02-waf-setup.md` | Yes | No | No | Medium-High | 90-120 min | Standalone; delete when done |
-| `02-platform-protection/lab-03-private-access-patterns.md` | Yes | No | No | Medium | 60-90 min | Reuse VNet + Storage + SQL |
-| `02-platform-protection/lab-04-vm-security.md` | Yes | No | No | Medium | 60-90 min | Keep VM if you plan Defender/JIT follow-up |
-| `02-platform-protection/lab-08-network-breadth-validation.md` | Yes | Optional | No | Low | 30-45 min | Reuse the VNet and VM from earlier network labs; delete the firewall policy object when done |
-| `02-platform-protection/lab-05-app-platform-security.md` | Yes | No | No | Medium | 60-90 min | Reuse apps or access settings for later app-platform labs |
-| `02-platform-protection/lab-06-aks-acr-defender-containers.md` | Yes | Optional | No | Medium-High | 60-90 min | Reuse Defender for Cloud setup if you want container findings |
-| `02-platform-protection/lab-07-logic-apps-and-apim-security.md` | Yes | Optional | No | Medium | 60-90 min | Reuse App Service, Functions, or APIM from the previous lab |
-| `03-security-operations/lab-01-defender-cloud.md` | Yes | No | No | Medium | 45-60 min | Better after VM and Storage labs |
-| `03-security-operations/lab-02-sentinel-setup.md` | Yes | Optional | No | Medium | 60-90 min | Reusable workspace for later investigations |
-| `03-security-operations/lab-04-sentinel-ingestion-dcr.md` | Yes | Optional | No | Medium | 60-90 min | Reuse Sentinel workspace and keep AMA source only while later labs need it |
-| `03-security-operations/lab-03-sentinel-triage-investigation.md` | Yes | Optional | No | Medium | 60-90 min | Reuse Sentinel workspace |
-| `03-security-operations/lab-05-sentinel-automation-playbooks.md` | Yes | Optional | No | Low-Medium | 60-90 min | Reuse Sentinel workspace and a test incident path |
-| `03-security-operations/lab-06-logic-apps-security-for-playbooks.md` | Yes | Optional | No | Low | 45-60 min | Reuse the playbook from the previous lab |
-| `03-security-operations/lab-09-security-copilot-agents.md` | Optional | Optional | Optional | Low-Medium | 30-45 min | Reuse Sentinel workspace and assign only temporary Copilot and plugin roles for validation |
-| `03-security-operations/lab-07-defender-cloud-hybrid-arc.md` | Yes | Optional | No | Medium | 60-90 min | Reuse Defender for Cloud setup; keep Arc machine only while validating hybrid posture |
-| `03-security-operations/lab-08-defender-cloud-multicloud-connectors.md` | Yes | Optional | No | Medium | 60-90 min | Reuse Defender for Cloud setup; remove connector after study if not needed |
-| `04-data-protection/lab-01-storage-encryption.md` | Yes | No | No | Low-Medium | 45-60 min | Keep Key Vault + Storage for later labs |
-| `04-data-protection/lab-02-database-security.md` | Yes | No | No | Medium | 60-90 min | Keep SQL for private endpoint lab |
-| `04-data-protection/lab-03-purview-labels-dlp-dspm.md` | Optional | Optional | Yes | Low-Medium | 60-90 min | Standalone |
-| `05-governance-compliance/lab-01-azure-policy.md` | Yes | No | No | Low | 45-60 min | Standalone unless you want policies left in place |
-| `05-governance-compliance/lab-03-rbac-locks-backup-iac.md` | Yes | No | No | Low-Medium | 60-90 min | Reuse subscription governance context and remove temporary locks before cleanup |
-| `05-governance-compliance/lab-02-compliance-assessment.md` | Yes | No | No | Low | 30-45 min | Best after policy / Defender posture work |
-| `06-ai-workload-security/lab-01-ai-gateway.md` | Yes | Optional | Optional | High | 60-90 min | Standalone; delete promptly |
-| `06-ai-workload-security/lab-02-purview-dspm-copilot.md` | No | No | Yes | Low-Medium | 45-60 min | Standalone |
-| `06-ai-workload-security/lab-03-entra-agent-id.md` | Optional | Recommended | Optional | Low | 45-60 min | Standalone |
-| `06-ai-workload-security/lab-04-defender-for-ai.md` | Yes | No | Optional | Medium | 45-60 min | Better after AI Gateway / Foundry setup |
-| `06-ai-workload-security/lab-05-agent-governance-guardrails.md` | Yes | Recommended | Optional | Low-Medium | 60-90 min | Reuse Foundry, Copilot Studio, and agent identity setup from earlier AI labs |
+| Lab | Azure subscription | Entra P1/P2 | M365 / Purview | Estimated cost risk | Est. $ if left 24h | Estimated time | Reuse guidance |
+| --- | --- | --- | --- | --- | ---: | --- | --- |
+| `01-identity-governance/lab-02-conditional-access.md` | Optional | P1/P2 | No | Low | ~$0 | 60-90 min | Standalone |
+| `01-identity-governance/lab-03-pim-access-governance.md` | No | P2 | No | Low | ~$0 | 60-90 min | Standalone |
+| `01-identity-governance/lab-04-workload-identities.md` | Yes | No | No | Low | <$1 | 60-90 min | Reuse Key Vault + Storage from `04-data-protection/lab-01` |
+| `01-identity-governance/lab-05-enterprise-app-governance.md` | No | Recommended | No | Low | ~$0 | 60-90 min | Standalone |
+| `02-platform-protection/lab-01-network-security.md` | Yes | No | No | Medium | <$1 | 60-90 min | Keep VNet/subnets for later labs |
+| `02-platform-protection/lab-02-waf-setup.md` | Yes | No | No | Medium-High | $8-$12 | 90-120 min | Standalone; delete when done |
+| `02-platform-protection/lab-03-private-access-patterns.md` | Yes | No | No | Medium | $1-$2 | 60-90 min | Reuse VNet + Storage + SQL |
+| `02-platform-protection/lab-04-vm-security.md` | Yes | No | No | Medium | $1-$3 | 60-90 min | Keep VM if you plan Defender/JIT follow-up |
+| `02-platform-protection/lab-08-network-breadth-validation.md` | Yes | Optional | No | Low | <$1 (~$30 if you actually deploy Azure Firewall) | 30-45 min | Reuse the VNet and VM from earlier network labs; delete the firewall policy object when done |
+| `02-platform-protection/lab-05-app-platform-security.md` | Yes | No | No | Medium | $1-$2 | 60-90 min | Reuse apps or access settings for later app-platform labs |
+| `02-platform-protection/lab-06-aks-acr-defender-containers.md` | Yes | Optional | No | Medium-High | $5-$10 | 60-90 min | Reuse Defender for Cloud setup if you want container findings |
+| `02-platform-protection/lab-07-logic-apps-and-apim-security.md` | Yes | Optional | No | Medium | ~$1.60 (APIM Developer) | 60-90 min | Reuse App Service, Functions, or APIM from the previous lab |
+| `03-security-operations/lab-01-defender-cloud.md` | Yes | No | No | Medium | $1-$2 (per enabled plan) | 45-60 min | Better after VM and Storage labs |
+| `03-security-operations/lab-02-sentinel-setup.md` | Yes | Optional | No | Medium | ~$0 in free tier, else $1-$3 | 60-90 min | Reusable workspace for later investigations |
+| `03-security-operations/lab-04-sentinel-ingestion-dcr.md` | Yes | Optional | No | Medium | $1-$5 (depends on ingest volume) | 60-90 min | Reuse Sentinel workspace and keep AMA source only while later labs need it |
+| `03-security-operations/lab-03-sentinel-triage-investigation.md` | Yes | Optional | No | Medium | ~$0-$1 | 60-90 min | Reuse Sentinel workspace |
+| `03-security-operations/lab-05-sentinel-automation-playbooks.md` | Yes | Optional | No | Low-Medium | ~$0 (Logic App Consumption) | 60-90 min | Reuse Sentinel workspace and a test incident path |
+| `03-security-operations/lab-06-logic-apps-security-for-playbooks.md` | Yes | Optional | No | Low | ~$0 | 45-60 min | Reuse the playbook from the previous lab |
+| `03-security-operations/lab-09-security-copilot-agents.md` | Optional | Optional | Optional | Low-Medium | ~$0 for roles; SCU capacity billed separately if provisioned | 30-45 min | Reuse Sentinel workspace and assign only temporary Copilot and plugin roles for validation |
+| `03-security-operations/lab-07-defender-cloud-hybrid-arc.md` | Yes | Optional | No | Medium | ~$0.50 (Defender for Servers per node) | 60-90 min | Reuse Defender for Cloud setup; keep Arc machine only while validating hybrid posture |
+| `03-security-operations/lab-08-defender-cloud-multicloud-connectors.md` | Yes | Optional | No | Medium | ~$0 for foundational CSPM; paid plans per protected resource | 60-90 min | Reuse Defender for Cloud setup; remove connector after study if not needed |
+| `04-data-protection/lab-01-storage-encryption.md` | Yes | No | No | Low-Medium | <$1 | 45-60 min | Keep Key Vault + Storage for later labs |
+| `04-data-protection/lab-02-database-security.md` | Yes | No | No | Medium | $1-$3 (Serverless SQL + Defender for SQL) | 60-90 min | Keep SQL for private endpoint lab |
+| `04-data-protection/lab-03-purview-labels-dlp-dspm.md` | Optional | Optional | Yes | Low-Medium | ~$0 (covered by M365/Purview licensing) | 60-90 min | Standalone |
+| `05-governance-compliance/lab-01-azure-policy.md` | Yes | No | No | Low | ~$0 | 45-60 min | Standalone unless you want policies left in place |
+| `05-governance-compliance/lab-03-rbac-locks-backup-iac.md` | Yes | No | No | Low-Medium | ~$0 (empty vault); backup storage billed only if items protected | 60-90 min | Reuse subscription governance context and remove temporary locks before cleanup |
+| `05-governance-compliance/lab-02-compliance-assessment.md` | Yes | No | No | Low | ~$0 | 30-45 min | Best after policy / Defender posture work |
+| `06-ai-workload-security/lab-01-ai-gateway.md` | Yes | Optional | Optional | High | $2-$5 idle (APIM Developer + Content Safety); token spend on top | 60-90 min | Standalone; delete promptly |
+| `06-ai-workload-security/lab-02-purview-dspm-copilot.md` | No | No | Yes | Low-Medium | ~$0 (covered by M365/Purview licensing) | 45-60 min | Standalone |
+| `06-ai-workload-security/lab-03-entra-agent-id.md` | Optional | Recommended | Optional | Low | ~$0 | 45-60 min | Standalone |
+| `06-ai-workload-security/lab-04-defender-for-ai.md` | Yes | No | Optional | Medium | ~$0-$1 idle; billed per protected AI resource | 45-60 min | Better after AI Gateway / Foundry setup |
+| `06-ai-workload-security/lab-05-agent-governance-guardrails.md` | Yes | Recommended | Optional | Low-Medium | ~$0 (guardrail config); model token spend if you test agents | 60-90 min | Reuse Foundry, Copilot Studio, and agent identity setup from earlier AI labs |
 
 ## Interpreting cost risk
 
 - **Low**: little or no incremental cost
 - **Medium**: billable Azure resources but manageable if cleaned up promptly
 - **High**: services like APIM, WAF, Sentinel, or Defender plans that can add noticeable cost if left running
+
+## Interpreting the 24h idle-cost column
+
+- Values are **rough USD estimates** for a common pay-as-you-go region assuming the lab's primary billable resources are **left running idle for ~24 hours** after the lab ends.
+- They **exclude** per-request or per-token spend (Foundry model calls, Content Safety calls, egress) and any Microsoft 365 / Entra P1-P2 / Purview licensing you already pay for.
+- They **exclude** Log Analytics or Sentinel data-ingestion volume beyond the free tier; a noisy VM or connector can easily add several dollars per day.
+- Estimates assume the smallest realistic SKU per resource (for example, App Service B1, APIM Developer, Serverless SQL, Basic ACR, 2-node B-series AKS, Standard Bastion **not** deployed unless the lab requires it).
+- Always check **Cost Management + Billing** in the Azure portal for your actual spend, and set a **budget alert** before starting the higher-cost labs.
 
 ## Interpreting reuse guidance
 
