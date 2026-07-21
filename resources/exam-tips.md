@@ -195,7 +195,7 @@ Arrange steps in correct order for a process.
 
 | Source | Cost | Notes |
 |--------|------|-------|
-| [Microsoft Learn (free questions)](https://learn.microsoft.com/en-us/credentials/certifications/exams/sc-500) | Free | Practice assessment at end of each learning path |
+| [Microsoft Learn study guide and learning paths](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500) | Free | Use the official study guide plus the self-checks and knowledge checks inside each Microsoft Learn path |
 | MeasureUp SC-500 | Paid (~$99) | Most exam-like; highly recommended |
 | Whizlabs SC-500 | Paid (~$25) | Good volume of questions |
 | Udemy (Scott Duffy, AZ-500 overlap) | Paid (~$15) | Some SC-500 content |

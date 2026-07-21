@@ -56,7 +56,7 @@ Entra ID
 ### Step 1.2 - Make the assignment eligible instead of active
 
 1. Open **Microsoft Entra ID** -> **Privileged Identity Management**
-2. Go to **Azure AD roles** -> **Assignments**
+2. Go to **Microsoft Entra roles** -> **Assignments**
 3. Choose a role such as **Security Administrator**
 4. Click **Add assignments**
 5. Select `grp-sc500-privileged`
@@ -68,7 +68,7 @@ Entra ID
 
 ### Step 1.3 - Configure activation settings
 
-1. In PIM, open **Azure AD roles** -> **Roles** -> **Security Administrator**
+1. In PIM, open **Microsoft Entra roles** -> **Roles** -> **Security Administrator**
 2. Open **Settings**
 3. Configure:
    - **Activation maximum duration:** 4 hours

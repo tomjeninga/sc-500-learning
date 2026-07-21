@@ -4,19 +4,19 @@ Curated Microsoft Learn paths and modules organized by SC-500 exam domain.
 
 ---
 
-## Official SC-500 Learning Paths
+## Official Microsoft Learn Starting Points
 
-These are the Microsoft-published learning paths that map directly to the SC-500 exam:
+These are the Microsoft-published learning paths and modules that best map to the SC-500 exam. Microsoft occasionally changes path slugs, so use the study guide if a link moves again.
 
 | Learning Path | Domain Alignment | Duration |
 |---------------|-----------------|---------|
-| [SC-500: Implement identity and access management](https://learn.microsoft.com/en-us/training/paths/implement-identity-access-management/) | Domain 1 | ~6 hrs |
+| [Protect identity and access in Azure](https://learn.microsoft.com/en-us/training/paths/secure-identity-access/) | Domain 1 | ~6 hrs |
 | [SC-500: Implement platform protection](https://learn.microsoft.com/en-us/training/paths/implement-platform-protection/) | Domain 2 | ~5 hrs |
 | [SC-500: Manage security operations](https://learn.microsoft.com/en-us/training/paths/manage-security-operations/) | Domain 3 | ~8 hrs |
-| [SC-500: Secure data and applications](https://learn.microsoft.com/en-us/training/paths/secure-data-applications/) | Domain 4 | ~5 hrs |
-| [SC-500: Manage governance and compliance](https://learn.microsoft.com/en-us/training/paths/governance-compliance-azure-security/) | Domain 5 | ~3 hrs |
+| [Secure your cloud data in Azure](https://learn.microsoft.com/en-us/training/paths/secure-your-cloud-data/) | Domain 4 | ~5 hrs |
+| [Implement and manage enforcement of cloud governance policies](https://learn.microsoft.com/en-us/training/modules/implement-manage-enforcement-cloud-governance-policies/) | Domain 5 | ~45 min |
 
-**Total Microsoft Learn Study Time:** ~27 hours
+**Approximate Microsoft Learn Time for the items above:** ~25 hours
 
 ---
 
@@ -29,8 +29,8 @@ These are the Microsoft-published learning paths that map directly to the SC-500
 | [Configure Azure Active Directory](https://learn.microsoft.com/en-us/training/modules/configure-azure-active-directory/) | Tenants, users, groups, licenses | 45 min |
 | [Manage identities in Microsoft Entra ID](https://learn.microsoft.com/en-us/training/modules/manage-identities-microsoft-entra-id/) | User lifecycle, guest users, B2B | 45 min |
 | [Configure role-based access control](https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/) | RBAC scopes, built-in roles, custom roles | 45 min |
-| [Manage Microsoft Entra groups](https://learn.microsoft.com/en-us/training/modules/manage-microsoft-entra-groups/) | Security groups, M365 groups, dynamic groups | 30 min |
-| [Configure Azure AD Conditional Access](https://learn.microsoft.com/en-us/training/modules/azure-ad-privileged-identity-management/) | Policy conditions, controls, report-only | 45 min |
+| [How to manage groups - Microsoft Entra](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) | Security groups, M365 groups, dynamic groups | 30 min |
+| [Plan, implement, and administer Conditional Access](https://learn.microsoft.com/en-us/training/modules/plan-implement-administer-conditional-access/) | Policy conditions, controls, report-only | 45 min |
 | [Plan and implement Privileged Identity Management](https://learn.microsoft.com/en-us/training/modules/plan-implement-privileged-access/) | PIM, JIT access, access reviews | 60 min |
 | [Protect identities with Entra ID Protection](https://learn.microsoft.com/en-us/training/modules/protect-identities-with-aad-idp/) | Risk policies, risky users, risky sign-ins | 45 min |
 
@@ -53,8 +53,8 @@ These are the Microsoft-published learning paths that map directly to the SC-500
 | [Secure network connectivity on Azure](https://learn.microsoft.com/en-us/training/modules/secure-network-connectivity-azure/) | NSG, Firewall, DDoS, Bastion, VPN | 45 min |
 | [Introduction to Azure Firewall](https://learn.microsoft.com/en-us/training/modules/introduction-azure-firewall/) | DNAT, network rules, app rules, threat intel | 30 min |
 | [Introduction to Azure Web Application Firewall](https://learn.microsoft.com/en-us/training/modules/introduction-azure-web-application-firewall/) | WAF modes, OWASP, custom rules | 30 min |
-| [Configure Azure DDoS Protection](https://learn.microsoft.com/en-us/training/modules/configure-azure-ddos-protection/) | DDoS Basic vs Standard, telemetry | 30 min |
-| [Implement Private Endpoints](https://learn.microsoft.com/en-us/training/modules/implement-azure-container-apps/) | Private Link, Private Endpoints, DNS | 45 min |
+| [Azure DDoS Protection overview](https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview) | DDoS IP Protection vs Network Protection, telemetry | 30 min |
+| [Design and implement private access to Azure Services](https://learn.microsoft.com/en-us/training/modules/design-implement-private-access-to-azure-services/) | Private Link, Private Endpoints, DNS | 45 min |
 | [Host security in Azure](https://learn.microsoft.com/en-us/training/modules/host-security/) | JIT, Bastion, disk encryption | 45 min |
 
 ### Supplementary Resources
@@ -77,7 +77,7 @@ These are the Microsoft-published learning paths that map directly to the SC-500
 | [Explain Defender for Cloud features and capabilities](https://learn.microsoft.com/en-us/training/modules/what-is-azure-defender/) | CSPM, CWPP, workload protection | 30 min |
 | [Introduction to Microsoft Sentinel](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-sentinel/) | Workspace, connectors, analytics | 30 min |
 | [Create and manage analytics rules in Sentinel](https://learn.microsoft.com/en-us/training/modules/use-entity-behavior-analytics-azure-sentinel/) | Scheduled, NRT, Fusion, ML rules | 45 min |
-| [Construct KQL statements for Microsoft Sentinel](https://learn.microsoft.com/en-us/training/modules/construct-kql-statements-microsoft-sentinel/) | KQL basics, operators, aggregation | 60 min |
+| [Kusto Query Language overview for Microsoft Sentinel](https://learn.microsoft.com/en-us/kusto/query/kusto-sentinel-overview?toc=%2Fazure%2Fsentinel%2FTOC.json&bc=%2Fazure%2Fsentinel%2Fbreadcrumb%2Ftoc.json) | KQL basics, operators, aggregation | 60 min |
 | [Automate threat response in Sentinel](https://learn.microsoft.com/en-us/training/modules/automation-microsoft-sentinel/) | Playbooks, Logic Apps, automation rules | 45 min |
 | [Configure SIEM security operations using Microsoft Sentinel](https://learn.microsoft.com/en-us/training/modules/configure-siem-security-operations-using-microsoft-sentinel/) | Workbooks, hunt, UEBA | 60 min |
 
@@ -98,8 +98,8 @@ These are the Microsoft-published learning paths that map directly to the SC-500
 | [Configure and manage Azure Key Vault](https://learn.microsoft.com/en-us/training/modules/configure-and-manage-azure-key-vault/) | Keys, secrets, certs, access control | 45 min |
 | [Secure your Azure Storage account](https://learn.microsoft.com/en-us/training/modules/secure-azure-storage-account/) | SAS, network rules, encryption | 45 min |
 | [Secure your Azure SQL Database](https://learn.microsoft.com/en-us/training/modules/secure-your-azure-sql-database/) | TDE, auth, firewall, auditing | 45 min |
-| [Implement database security](https://learn.microsoft.com/en-us/training/modules/implement-database-security/) | SQL TDE, Always Encrypted, masking | 45 min |
-| [Configure Azure Defender for SQL](https://learn.microsoft.com/en-us/training/modules/configure-azure-sql-advanced-data-security/) | Vulnerability assessment, ATP | 30 min |
+| [Implement a secure environment for a database service](https://learn.microsoft.com/en-us/training/paths/implement-secure-environment-database-service/) | SQL TDE, Always Encrypted, masking | 45 min |
+| [Benefits and features of Defender for Azure SQL Databases](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-introduction) | Vulnerability assessment, ATP | 30 min |
 | [Protect information with Microsoft Purview](https://learn.microsoft.com/en-us/training/modules/m365-compliance-information-protect-information/) | Sensitivity labels, DLP | 60 min |
 
 ### Supplementary Resources
@@ -119,9 +119,9 @@ These are the Microsoft-published learning paths that map directly to the SC-500
 |--------|---------------|---------|
 | [Introduction to Azure governance](https://learn.microsoft.com/en-us/training/modules/intro-to-governance/) | Locks, policy, management groups | 30 min |
 | [Build a cloud governance strategy on Azure](https://learn.microsoft.com/en-us/training/modules/build-cloud-governance-strategy-azure/) | Policy, RBAC, Cost Management | 45 min |
-| [Describe Azure management groups](https://learn.microsoft.com/en-us/training/modules/describe-azure-management-groups/) | MG hierarchy, policy inheritance | 20 min |
+| [Organize your resources with management groups](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview) | MG hierarchy, policy inheritance | 20 min |
 | [Configure Azure Policy](https://learn.microsoft.com/en-us/training/modules/configure-azure-policy/) | Definitions, initiatives, assignments, effects | 45 min |
-| [Regulatory compliance in Defender for Cloud](https://learn.microsoft.com/en-us/training/modules/governance-security/) | Dashboard, standards, export | 30 min |
+| [Implement and Manage Enforcement of Cloud Governance Policies](https://learn.microsoft.com/en-us/training/modules/implement-manage-enforcement-cloud-governance-policies/) | Policy enforcement, governance controls, regulatory compliance | 45 min |
 
 ---
 
@@ -130,7 +130,6 @@ These are the Microsoft-published learning paths that map directly to the SC-500
 ### Official Microsoft Resources
 
 - **SC-500 Exam Study Guide:** [https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500)
-- **SC-500 Exam Page:** [https://learn.microsoft.com/en-us/credentials/certifications/exams/sc-500](https://learn.microsoft.com/en-us/credentials/certifications/exams/sc-500)
 - **Microsoft Security Documentation Hub:** [https://learn.microsoft.com/en-us/azure/security/](https://learn.microsoft.com/en-us/azure/security/)
 - **Microsoft Cloud Security Blog:** [https://www.microsoft.com/en-us/security/blog/](https://www.microsoft.com/en-us/security/blog/)
 

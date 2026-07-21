@@ -222,4 +222,4 @@ Confirm you can answer all of these:
 
 - <https://learn.microsoft.com/en-us/azure/sentinel/investigate-cases>
 - <https://learn.microsoft.com/en-us/azure/sentinel/tutorial-detect-threats-built-in>
-- <https://learn.microsoft.com/en-us/training/modules/construct-kql-statements-microsoft-sentinel/>
+- <https://learn.microsoft.com/en-us/kusto/query/kusto-sentinel-overview?toc=%2Fazure%2Fsentinel%2FTOC.json&bc=%2Fazure%2Fsentinel%2Fbreadcrumb%2Ftoc.json>

@@ -128,7 +128,7 @@ Conditional Access is an **if-then policy engine** in Entra ID. It evaluates sig
 IF (User + App + Location + Device + Risk) THEN (Allow | Block | Require MFA | Require compliant device)
 ```
 
-> **Real-world context:** Your organization wants to allow employees to access the Azure Portal, but only if they're using a company-managed device AND have completed MFA. You create a Conditional Access policy that targets the "Microsoft Azure Management" app, requires MFA (control), and requires a Hybrid Azure AD joined device (condition).
+> **Real-world context:** Your organization wants to allow employees to access the Azure Portal, but only if they're using a company-managed device AND have completed MFA. You create a Conditional Access policy that targets the "Microsoft Azure Management" app, requires MFA (control), and requires a Microsoft Entra hybrid joined device (condition).
 
 ### Policy Anatomy
 
@@ -144,7 +144,7 @@ IF (User + App + Location + Device + Risk) THEN (Allow | Block | Require MFA | R
 
 **Access Controls (enforcement):**
 - **Grant controls:** Block access | Require MFA | Require compliant device | Require Hybrid AD join | Require approved app
-- **Session controls:** Sign-in frequency | Persistent browser session | Conditional Access App Control (MCAS)
+- **Session controls:** Sign-in frequency | Persistent browser session | Conditional Access App Control (Microsoft Defender for Cloud Apps)
 
 ### Policy Modes
 
@@ -314,7 +314,7 @@ Identity is the foundation. Entra ID, RBAC, Conditional Access, and PIM are the 
 
 ## Microsoft Learn Resources
 
-- [SC-500: Implement identity and access management](https://learn.microsoft.com/en-us/training/paths/implement-identity-access-management/)
+- [Protect identity and access in Azure](https://learn.microsoft.com/en-us/training/paths/secure-identity-access/)
 - [What is Privileged Identity Management?](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure)
 - [Conditional Access overview](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview)
 - [Plan a Conditional Access deployment](https://learn.microsoft.com/en-us/entra/identity/conditional-access/plan-conditional-access)

@@ -47,9 +47,9 @@ Expect questions on:
 ## Key Microsoft Learn Links
 
 - [Govern Azure resources with Azure Policy](https://learn.microsoft.com/en-us/training/modules/intro-to-governance/)
-- [Introduction to Management Groups](https://learn.microsoft.com/en-us/training/modules/describe-azure-management-groups/)
+- [Organize your resources with management groups](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview)
 - [Regulatory compliance in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard)
-- [SC-500: Manage governance and compliance](https://learn.microsoft.com/en-us/training/paths/governance-compliance-azure-security/)
+- [Implement and manage enforcement of cloud governance policies](https://learn.microsoft.com/en-us/training/modules/implement-manage-enforcement-cloud-governance-policies/)
 
 ---
 
