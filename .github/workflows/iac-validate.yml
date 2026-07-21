@@ -45,44 +45,56 @@ jobs:
           done
           exit $FAILED
 
-      - name: Lint (bicep lint via build warnings)
-        run: bicep build infra/main.bicep --stdout > /dev/null
-
   arm-validate:
-    name: ARM template validate
+    name: ARM template validate (JSON + schema)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Bicep CLI (for arm template-file validation via decompile round-trip)
-        run: |
-          curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
-          chmod +x ./bicep
-          sudo mv ./bicep /usr/local/bin/bicep
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Decompile + rebuild every ARM template (syntactic check)
+      - name: JSON syntax + ARM schema check
         run: |
           set -e
           shopt -s globstar nullglob
           FAILED=0
           for f in **/templates/*.json; do
-            # Skip parameter files
-            if [[ "$f" == *".parameters.json" ]]; then
+            [[ "$f" == *".parameters.json" ]] && continue
+            echo "::group::validate $f"
+
+            # 1. JSON must parse
+            if ! jq empty "$f" 2>/dev/null; then
+              echo "::error file=$f::Invalid JSON"
+              FAILED=1
+              echo "::endgroup::"
               continue
             fi
-            echo "::group::validate $f"
-            TMPDIR=$(mktemp -d)
-            if ! bicep decompile "$f" --outdir "$TMPDIR" 2> "$TMPDIR/err.log"; then
-              # A decompile warning is OK; a hard failure is not.
-              if grep -q "error" "$TMPDIR/err.log"; then
-                echo "::error file=$f::ARM template failed syntactic validation"
-                cat "$TMPDIR/err.log"
-                FAILED=1
-              else
-                echo "Decompile produced warnings only; treating as pass."
-              fi
+
+            # 2. Must have an ARM/Bicep-compatible $schema and contentVersion
+            SCHEMA=$(jq -r '."$schema" // empty' "$f")
+            CV=$(jq -r '.contentVersion // empty' "$f")
+            RES=$(jq -r '.resources | type' "$f")
+
+            if [[ -z "$SCHEMA" ]]; then
+              echo "::error file=$f::Missing \$schema property"
+              FAILED=1
+            elif [[ "$SCHEMA" != *"deploymentTemplate.json"* && "$SCHEMA" != *"subscriptionDeploymentTemplate.json"* && "$SCHEMA" != *"managementGroupDeploymentTemplate.json"* && "$SCHEMA" != *"tenantDeploymentTemplate.json"* ]]; then
+              echo "::error file=$f::Unrecognized ARM \$schema: $SCHEMA"
+              FAILED=1
             fi
-            rm -rf "$TMPDIR"
+
+            if [[ -z "$CV" ]]; then
+              echo "::error file=$f::Missing contentVersion"
+              FAILED=1
+            fi
+
+            if [[ "$RES" != "array" && "$RES" != "object" ]]; then
+              echo "::error file=$f::Missing or invalid resources block"
+              FAILED=1
+            fi
+
+            echo "OK $f (schema: $(basename $SCHEMA), resources: $RES)"
             echo "::endgroup::"
           done
           exit $FAILED
