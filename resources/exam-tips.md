@@ -7,7 +7,7 @@
 | **Exam Code** | SC-500 |
 | **Full Name** | Implementing End-to-End Security Controls for Cloud and AI Workloads |
 | **Certification** | Microsoft Certified: Cloud and AI Security Engineer Associate |
-| **Duration** | 100 minutes of exam time (check the exam page for latest) |
+| **Duration** | 120 minutes of exam time (check the exam page for latest) |
 | **Passing Score** | 700/1000 |
 | **Delivery** | Pearson VUE (online or test center) |
 | **Study guide** | <https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500> |
@@ -66,12 +66,14 @@ Arrange steps in correct order for a process.
 
 ### During the Exam
 
-- **120 minutes for ~50 questions** = ~2.4 minutes per question
+- **120 minutes for ~40–50 questions** = ~2.4 minutes per question on average
 - Budget more time for case studies (~8–12 minutes each)
 - Flag questions you're unsure about and return to them
 - Don't spend more than 3 minutes on any single question
 
 ### Time Distribution Strategy
+
+Budget against the **120-minute** exam window (see overview). The per-question guidance below is intentionally conservative so you finish with time to review flagged questions.
 
 | Question Type | Time Budget |
 |---------------|------------|
