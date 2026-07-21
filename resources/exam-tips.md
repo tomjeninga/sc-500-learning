@@ -1,32 +1,30 @@
 # SC-500 Exam Tips
 
-## Exam Overview
+## Exam overview
 
 | Item | Details |
 |------|---------|
 | **Exam Code** | SC-500 |
-| **Full Name** | Microsoft Certified: Security Engineer Associate |
-| **Duration** | 120 minutes |
-| **Questions** | Approximately 40–60 questions |
+| **Full Name** | Implementing End-to-End Security Controls for Cloud and AI Workloads |
+| **Certification** | Microsoft Certified: Cloud and AI Security Engineer Associate |
+| **Duration** | 100 minutes of exam time (check the exam page for latest) |
 | **Passing Score** | 700/1000 |
-| **Price** | ~$165 USD (varies by country) |
 | **Delivery** | Pearson VUE (online or test center) |
-| **Languages** | English, Japanese, Korean, Simplified Chinese, French, German, Spanish, Portuguese (Brazil) |
-| **Certification** | Microsoft Azure Security Engineer Associate |
+| **Study guide** | <https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500> |
+| **Exam sandbox** | <https://aka.ms/examdemo> |
 
 ---
 
-## Exam Domain Weights
+## Exam skill areas (current weights)
 
-| Domain | Approximate Weight |
+| Skill area | Approximate weight |
 |--------|-------------------|
-| Manage identity and access | 25–30% |
-| Implement platform protection | 20–25% |
-| Manage security operations | 20–25% |
-| Secure data and applications | 15–20% |
-| Manage governance and compliance | 15–20% |
+| Manage identity, access, and governance | 20-25% |
+| Secure storage, databases, and networking | 25-30% |
+| Secure compute (servers, containers, apps, AI) | 20-25% |
+| Manage and monitor security posture | 20-25% |
 
-> **Key takeaway:** Identity (Domain 1) is the heaviest domain. Prioritize PIM, Conditional Access, and RBAC.
+> **Key takeaway:** the heaviest area is now **storage, databases, and networking**. AI security lives inside **Secure compute** and is often the differentiator against candidates who prepared only with AZ-500 material.
 
 ---
 
@@ -143,6 +141,17 @@ Arrange steps in correct order for a process.
 | Modify effect and existing resources | Modify applies to new/updated resources. To fix existing resources → create a Remediation Task. |
 | Compliance score ≠ certification | 100% Defender for Cloud compliance score does NOT mean you're certified ISO 27001 — you still need an audit. |
 
+### AI workload security (NEW for SC-500)
+
+| Gotcha | What You Need to Know |
+| --- | --- |
+| Purview DSPM for AI vs DLP | DSPM finds overexposure to Copilot/AI apps; DLP blocks data movement. Complementary. |
+| AI Gateway vs Foundry guardrails | AI Gateway (APIM) enforces per-user token limits, content safety, caching. Guardrails shape model behavior. |
+| Defender for AI Service | Detects prompt injection and abuse at runtime. Surfaces in the Data and AI security dashboard in Defender for Cloud. |
+| Entra Agent ID | Agents are principals. Use Conditional Access to require compliant devices, and Defender XDR to analyze blast radius. |
+| Copilot data oversharing | Root cause is usually SharePoint "Everyone except external users" or missing sensitivity labels. Purview DSPM highlights this. |
+| Managing agents | Users install agents via Microsoft 365 admin center; admins govern them there. |
+
 ---
 
 ## Keywords That Signal the Answer
@@ -171,6 +180,14 @@ Arrange steps in correct order for a process.
 | "Detect SQL injection in runtime" | Defender for SQL (Advanced Threat Protection) |
 | "Investigate incident" | Sentinel Incidents / Investigations |
 | "Monitor key usage" | Key Vault Diagnostic Logs / Azure Monitor |
+| "Identify data overexposure to Copilot" | Microsoft Purview DSPM for AI |
+| "Per-user token limits on a Foundry model" | AI Gateway policy in Azure API Management |
+| "Detect prompt injection at runtime" | Defender for AI Service (Defender for Cloud) |
+| "Content filter for the model" | Foundry guardrails / Azure AI Content Safety |
+| "Restrict an agent to compliant devices" | Conditional Access targeting Microsoft Entra Agent ID |
+| "Blast radius of a compromised agent" | Microsoft Defender XDR |
+| "Central AI posture and alerts" | Data and AI security dashboard in Defender for Cloud |
+| "Manage which agents users can install" | Microsoft 365 admin center |
 
 ---
 

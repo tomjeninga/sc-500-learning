@@ -1,0 +1,14 @@
+# SC-500 personal notes (git-ignored except README.md)
+notes/**
+!notes/
+!notes/README.md
+
+# Editor / OS junk
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Bicep build output
+*.bicep.json

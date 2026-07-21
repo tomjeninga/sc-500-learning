@@ -1,265 +1,213 @@
-# SC-500: Azure Security Engineer Associate Certification Lab
+# SC-500: Cloud and AI Security Engineer Associate
 
-Welcome to your comprehensive learning companion for the **Microsoft Azure SC-500** certification exam!
+Personal learning repository for **Tom Jeninga** to prepare for **Microsoft Certified: Cloud and AI Security Engineer Associate** and **Exam SC-500: Implementing End-to-End Security Controls for Cloud and AI Workloads**.
 
-This repository combines:
-- 📚 **Theory-First Learning** - Study guides explaining concepts before building
-- 🔧 **Hands-On Labs** - Step-by-step Azure Portal instructions with Infrastructure-as-Code
-- 🏗️ **ARM Templates & PowerShell** - Automation scripts to repeat labs efficiently
-- 📊 **Real-World Scenarios** - Security challenges based on actual Azure deployments
+This repository is a hands-on study companion: read the concept, build the control, validate the result, clean up, and explain the decision like an exam case study.
 
----
+## Why this path is different from AZ-500
 
-## 📋 What is SC-500?
+The original repository had useful Azure security content, but it was closer to AZ-500. SC-500 is newer and includes cloud plus AI security. The current exam focuses on:
 
-The **SC-500: Microsoft Certified - Azure Security Engineer Associate** certification validates your expertise in:
-- Implementing Azure security controls
-- Managing identity and access
-- Protecting data and applications
-- Operating security infrastructure
-- Ensuring governance and compliance
+- Identity, access, governance, Key Vault, RBAC, PIM, and policy.
+- Storage, database, and network security.
+- Compute security across VMs, servers, containers, app platforms, APIs, WAF, and AI.
+- Defender for Cloud, Microsoft Sentinel, Security Copilot, hybrid, and multicloud posture.
+- AI workload security with Microsoft Foundry, AI Gateway, Defender for AI Service, Purview DSPM, Copilot/agent risks, and Entra Agent ID.
 
-**Exam Format:** 40-60 questions | 120 minutes | Multiple choice, case studies, drag-and-drop
+## Official SC-500 skill map
 
----
+| Skill area | Weight | Repository coverage |
+| --- | ---: | --- |
+| Manage identity, access, and governance | 20-25% | `01-identity-governance/`, `05-governance-compliance/`, Key Vault content |
+| Secure storage, databases, and networking | 25-30% | `02-platform-protection/`, `04-data-protection/` |
+| Secure compute | 20-25% | VM/app platform security plus `06-ai-workload-security/` |
+| Manage and monitor security posture | 20-25% | `03-security-operations/`, Defender for Cloud, Sentinel |
 
-## 🎯 How to Use This Repository
+## Recommended learning loop
 
-### Learning Path (10-15 hours/week recommended)
+Use this pattern for every topic:
 
-1. **Start here:** Read `ROADMAP.md` for a week-by-week study plan
-2. **Setup:** Complete `AZURE-SETUP.md` to prepare your environment
-3. **Learn:** Follow the 5 exam domains in order:
-   - `01-identity-governance/` - Start with Entra ID and RBAC basics
-   - `02-platform-protection/` - Network and encryption security
-   - `03-security-operations/` - Defender and monitoring
-   - `04-data-protection/` - Data security and DLP
-   - `05-governance-compliance/` - Policies and compliance
+1. **Read** the Microsoft Learn skill bullet and repo study guide.
+2. **Build** the control in a lab subscription or developer tenant.
+3. **Validate** using Defender for Cloud, Sentinel/KQL, Purview, portal evidence, or logs.
+4. **Explain** why the chosen control is better than the distractors.
+5. **Clean up** resources and record weak areas.
 
-### Per Domain Structure
+## Repository modules
 
-Each domain folder contains:
-- **README.md** - Overview of learning objectives
-- **study-guide.md** - Detailed theory (READ FIRST)
-- **lab-01-*.md, lab-02-*.md** - Step-by-step labs (LEARN BY DOING)
-- **templates/** - ARM templates for infrastructure automation
-- **scripts/** - PowerShell scripts for setup and configuration
+| Module | Purpose |
+| --- | --- |
+| `01-identity-governance/` | Entra ID, RBAC, Conditional Access, PIM, MFA |
+| `02-platform-protection/` | NSGs, WAF, Bastion, private access, network isolation |
+| `03-security-operations/` | Defender for Cloud, Sentinel, KQL, detection and response |
+| `04-data-protection/` | Storage, SQL, Key Vault, CMK, private endpoints |
+| `05-governance-compliance/` | Azure Policy, compliance, remediation |
+| `06-ai-workload-security/` | AI Gateway, Foundry guardrails, Defender for AI Service, Purview DSPM, Entra Agent ID |
 
-### Learning Approach: Read → Build → Automate
+## SC-500 skills index (official study guide)
 
-```
-1. READ the study guide (understand the concept)
-   ↓
-2. FOLLOW lab instructions in Azure Portal (hands-on learning)
-   ↓
-3. USE ARM templates & scripts to repeat automatically (efficiency)
-   ↓
-4. PRACTICE scenarios and validate your understanding
-```
+Source: <https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500>
 
----
+Use this as your master checklist. Each bullet is an exam-measured skill. Tick them off as you complete the matching lab or study guide.
 
-## 📚 Repository Structure
+### 1. Manage identity, access, and governance (20-25%) -> `01-identity-governance/`, `05-governance-compliance/`
 
-```
-sc-500-learning/
-├── README.md                          # This file
-├── ROADMAP.md                         # Week-by-week learning plan
-├── AZURE-SETUP.md                     # Azure subscription setup guide
-├── 01-identity-governance/
-│   ├── README.md
-│   ├── study-guide.md
-│   ├── lab-01-entra-id-setup.md
-│   ├── lab-02-conditional-access.md
-│   ├── templates/
-│   │   ├── conditional-access-policy.json
-│   │   └── rbac-assignments.json
-│   └── scripts/
-│       ├── setup-entra-id-lab.ps1
-│       └── create-test-users.ps1
-├── 02-platform-protection/
-│   ├── README.md
-│   ├── study-guide.md
-│   ├── lab-01-network-security.md
-│   ├── lab-02-waf-setup.md
-│   ├── templates/
-│   │   ├── vnet-with-nsg.json
-│   │   └── app-gateway-waf.json
-│   └── scripts/
-│       └── deploy-network-lab.ps1
-├── 03-security-operations/
-│   ├── README.md
-│   ├── study-guide.md
-│   ├── lab-01-defender-cloud.md
-│   ├── lab-02-sentinel-setup.md
-│   └── templates/
-│       ├── log-analytics-workspace.json
-│       └── sentinel-workspace.json
-├── 04-data-protection/
-│   ├── README.md
-│   ├── study-guide.md
-│   ├── lab-01-storage-encryption.md
-│   ├── lab-02-database-security.md
-│   └── templates/
-│       ├── storage-account-encrypted.json
-│       └── sql-database-secured.json
-├── 05-governance-compliance/
-│   ├── README.md
-│   ├── study-guide.md
-│   ├── lab-01-azure-policy.md
-│   ├── lab-02-compliance-assessment.md
-│   └── templates/
-│       └── azure-policy-definitions.json
-├── resources/
-│   ├── microsoft-learn-links.md
-│   ├── exam-tips.md
-│   └── glossary.md
-└── scripts/
-    └── cleanup-resources.ps1
-```
+**Secure access to resources by using Microsoft Entra ID**
+- [ ] Implement and configure Privileged Identity Management (PIM)
+- [ ] Implement conditional access policies
+- [ ] Implement and configure authentication methods, including MFA and passwordless
+- [ ] Implement and configure identity for applications (enterprise apps and app registrations)
+- [ ] Manage OAuth permission grants and consent settings
+- [ ] Implement and configure managed identities for Azure resources
 
----
+**Secure secrets and keys by using Azure Key Vault**
+- [ ] Deploy Key Vault
+- [ ] Configure Key Vault settings
+- [ ] Configure access to Key Vault
+- [ ] Configure firewall settings on Key Vault
+- [ ] Manage keys, secrets, and certificates
+- [ ] Scan for secrets by using Defender CSPM
+- [ ] Implement Defender for Key Vault
 
-## ✅ Prerequisites
+**Implement governance to enforce security and regulatory compliance**
+- [ ] Implement security controls with Azure Policy (built-in and custom)
+- [ ] Evaluate regulatory compliance with Microsoft Defender for Cloud
+- [ ] Implement security standards and recommendations in Defender for Cloud
+- [ ] Implement resource locks
+- [ ] Manage Azure built-in role assignments
+- [ ] Manage custom roles (Azure and Entra roles)
+- [ ] Evaluate and remediate overprivileged access with Azure RBAC
+- [ ] Configure backup protection with Azure Backup security features
+- [ ] Implement security controls with Infrastructure as Code
 
-Before starting, ensure you have:
+### 2. Secure storage, databases, and networking (25-30%) -> `02-platform-protection/`, `04-data-protection/`
 
-- [ ] **Azure Subscription** (Free tier or paid) - See `AZURE-SETUP.md`
-- [ ] **PowerShell 7+** or **Azure CLI** for script execution
-- [ ] **Visual Studio Code** (optional but recommended)
-- [ ] **Azure Storage Explorer** (optional, for data protection labs)
-- [ ] **Basic understanding** of Azure fundamentals (VNets, resource groups, etc.)
+**Storage accounts**
+- [ ] Implement and configure security for storage accounts
+- [ ] Configure Azure Storage firewall rules
+- [ ] Implement Defender for Storage threat protection
+- [ ] Manage access to storage, including access policies
 
----
+**Databases**
+- [ ] Implement platform-level security in Azure SQL
+- [ ] Configure database auditing (Azure SQL DB and SQL Managed Instance)
+- [ ] Configure Defender for Databases across Azure database services
 
-## 🚀 Quick Start
+**Azure network services**
+- [ ] Implement and manage NSGs and ASGs
+- [ ] Configure network access policies with Azure Virtual Network Manager
+- [ ] Configure security for an Azure Virtual WAN
+- [ ] Configure security for VPN connections
+- [ ] Implement and configure Microsoft Entra Private Access
+- [ ] Configure Azure private endpoints for PaaS resources
+- [ ] Configure Azure Private Link services
+- [ ] Implement and configure Azure Firewall
+- [ ] Evaluate effective security rules with Network Watcher diagnostics
 
-### Step 1: Setup Your Azure Environment
-```bash
-# Read and follow Azure setup guide
-cat AZURE-SETUP.md
-```
+### 3. Secure compute (20-25%) -> `02-platform-protection/`, `06-ai-workload-security/`
 
-### Step 2: Start with Identity & Governance (Domain 1)
-```bash
-cd 01-identity-governance/
-# Read study guide first
-cat study-guide.md
-# Then follow lab 1
-cat lab-01-entra-id-setup.md
-```
+**Implement security for AI**
+- [ ] Identify overexposure of data in SharePoint
+- [ ] Identify Copilot/AI app risks using Microsoft Purview DSPM
+- [ ] Enable real-time protection for Microsoft Copilot Studio agents
+- [ ] Implement Conditional Access for Microsoft Entra Agent ID
+- [ ] Analyze blast radius for Entra Agent ID using Defender XDR
+- [ ] Manage Entra Agent ID access
+- [ ] Configure and deploy AI Gateway in Azure API Management for Microsoft Foundry
+- [ ] Enable Defender for AI Service in Defender for Cloud
+- [ ] Configure guardrails for agent security in Foundry
+- [ ] Monitor AI security with the Data and AI security dashboard in Defender for Cloud
+- [ ] Manage agents in the Microsoft 365 admin center
 
-### Step 3: Follow the Learning Path
-- Dedicate 2-3 hours per session
-- Complete one lab per session
-- Review concepts before moving forward
-- Take practice exams between domains
+**Servers and VMs**
+- [ ] Implement and configure disk encryption
+- [ ] Plan and implement Azure Bastion
+- [ ] Enable and enforce just-in-time (JIT) VM access
+- [ ] Extend security to hybrid/multicloud servers with Azure Arc
+- [ ] Onboard servers to Defender for Servers (hybrid and multicloud)
+- [ ] Configure Defender for Servers (vulnerability scanning, EDR)
+- [ ] Implement and manage agentless VM scanning
+- [ ] Configure VM security features (secure boot, vTPM, integrity monitoring, security type)
+- [ ] Enforce server configuration with Azure Machine Configuration
 
----
+**Application platform services**
+- [ ] Detect container misconfigurations and runtime risks with Defender for Containers
+- [ ] Implement security controls for Azure Kubernetes Service (AKS)
+- [ ] Implement security controls for Azure Container Registry
+- [ ] Implement security controls for Container Instances and Container Apps
+- [ ] Implement security controls for Azure Functions (auth and network access)
+- [ ] Implement security controls for Azure Logic Apps
+- [ ] Implement security controls for Azure App Service
+- [ ] Implement and configure Azure Web Application Firewall
+- [ ] Implement back-end API protection with API Management policies
 
-## 📖 Exam Domains (5 Total)
+### 4. Manage and monitor security posture (20-25%) -> `03-security-operations/`
 
-| Domain | Focus Area | Labs |
-|--------|-----------|------|
-| **01 - Identity & Governance** | Entra ID, RBAC, PIM, Conditional Access | 2 |
-| **02 - Platform Protection** | Network Security, Firewalls, WAF, Encryption | 2 |
-| **03 - Security Operations** | Defender for Cloud, Sentinel, Threat Detection | 2 |
-| **04 - Data Protection** | Data Classification, DLP, Database Security | 2 |
-| **05 - Governance & Compliance** | Azure Policy, Compliance Frameworks | 2 |
+**Defender for Cloud**
+- [ ] Identify security risks with Defender CSPM
+- [ ] Evaluate compliance against security frameworks
+- [ ] Enable and configure Defender for Cloud workload protection plans
+- [ ] Connect hybrid and multicloud (AWS, GCP)
+- [ ] Configure Microsoft Defender Vulnerability Management for Azure VMs
+- [ ] Discover unprotected assets with Microsoft Defender EASM
 
-**Total Labs:** 10 hands-on labs across all domains
+**Microsoft Sentinel**
+- [ ] Create and connect Sentinel workspaces
+- [ ] Assign roles in Microsoft Sentinel
+- [ ] Implement and use content hub solutions
+- [ ] Configure Microsoft data connectors for Azure resources
+- [ ] Configure syslog and CEF event collection
+- [ ] Configure Windows Security event collection with data collection rules (incl. WEF)
+- [ ] Create custom log tables in the workspace
+- [ ] Implement automation rules and playbooks
+- [ ] Implement data retention in Sentinel data stores
+- [ ] Query Microsoft Purview Audit in Defender XDR
 
----
+**Microsoft Security Copilot**
+- [ ] Configure workspaces for Security Copilot
+- [ ] Manage permissions and roles
+- [ ] Enable and configure plugins
+- [ ] Enable and configure Microsoft agents and Security Store agents
 
-## 💡 Learning Tips
+## Repo tour
 
-1. **Read First, Build Second** - Understanding concepts before implementing prevents confusion
-2. **Use Portal First** - Learn how Azure Portal works before automating with templates
-3. **Document Your Learning** - Take notes, create your own practice questions
-4. **Repeat Labs** - Run cleanup scripts and redo labs to build muscle memory
-5. **Connect Concepts** - See how security controls interact (e.g., NSG + WAF + DLP)
-6. **Reference Microsoft Learn** - Links provided in each study guide
-7. **Ask Copilot** - Use GitHub Copilot Chat to ask questions about security concepts
+| Path | What it is |
+| --- | --- |
+| `01-identity-governance/` … `05-governance-compliance/` | Traditional cloud security modules (labs + ARM templates) |
+| `06-ai-workload-security/` | **AI security module** - Foundry, APIM AI Gateway, Purview DSPM, Entra Agent ID, Defender for AI |
+| `06-ai-workload-security/architecture.md` | Mermaid stack + sequence + trust-boundary diagrams for AI workloads |
+| `infra/` | **Bicep** versions of every ARM template + `main.bicep` orchestrator |
+| `resources/kql-workbook.md` | Reusable KQL queries grouped by SC-500 skill area |
+| `resources/exam-tips.md` | Exam metadata, AI keyword-to-answer table, common traps |
+| `notes/` | Personal wrong-answer journal (git-ignored except README) |
+| `.github/agents/sc-500-coach.agent.md` | **SC-500 Coach** teaching agent (pick from Copilot Chat agent picker) |
+| `.github/instructions/` | Repo-wide conventions auto-applied by Copilot |
+| `.github/skills/sc-500-study-session/` | Slash-callable study session workflow |
+| `.github/workflows/` | CI: markdown lint + Bicep/ARM validate |
 
----
+## Start here
 
-## 🔗 Official Resources
+1. Read `ROADMAP.md`.
+2. Complete `AZURE-SETUP.md`.
+3. Review `resources\microsoft-learn-links.md`.
+4. Start Week 1 and track wrong answers in your own study notes.
+5. Use the workspace **SC-500 Coach** agent for study debriefs and lab review.
 
-- **Microsoft Learn Path**: [Azure Security Engineer Associate](https://learn.microsoft.com/en-us/training/browse/?resource_type=learning%20path&roles=security-engineer&products=azure)
-- **Exam Details**: [SC-500 Exam Page](https://learn.microsoft.com/en-us/credentials/certifications/exams/sc-500)
-- **Microsoft Azure Docs**: [Azure Security Documentation](https://learn.microsoft.com/en-us/azure/security/)
+## Exam readiness checklist
 
----
+- [ ] I can explain all four SC-500 skill areas without notes.
+- [ ] I completed every hands-on lab at least once.
+- [ ] I can write basic KQL for Sentinel investigation scenarios.
+- [ ] I can compare Key Vault RBAC/access policies, CMK/PMK, TDE/Always Encrypted, NSG/Firewall/WAF, and Private Endpoint/Service Endpoint.
+- [ ] I can describe AI workload security with Foundry guardrails, AI Gateway, Purview DSPM, Defender for AI Service, Entra Agent ID, and Security Copilot.
+- [ ] Practice scores are consistently above 80%, with no domain below 70%.
 
-## 💰 Cost Optimization
+## Official references
 
-- Use **Free Tier resources** where possible
-- Deploy labs in **non-production resource groups**
-- Use **cleanup scripts** after each lab to prevent unexpected costs
-- Monitor **Azure Cost Management** regularly
-- See `AZURE-SETUP.md` for cost management tips
+- SC-500 study guide: <https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500>
+- Exam sandbox: <https://aka.ms/examdemo>
+- Microsoft Defender for Cloud: <https://learn.microsoft.com/en-us/azure/defender-for-cloud/>
+- Microsoft Sentinel: <https://learn.microsoft.com/en-us/azure/sentinel/>
+- Microsoft Purview: <https://learn.microsoft.com/en-us/purview/>
 
----
-
-## 📝 Progress Tracking
-
-Use this checklist to track your progress:
-
-### Domain 1: Identity & Governance
-- [ ] Study guide completed
-- [ ] Lab 01 - Entra ID Setup completed
-- [ ] Lab 02 - Conditional Access completed
-- [ ] Practice scenarios completed
-
-### Domain 2: Platform Protection
-- [ ] Study guide completed
-- [ ] Lab 01 - Network Security completed
-- [ ] Lab 02 - WAF Setup completed
-
-### Domain 3: Security Operations
-- [ ] Study guide completed
-- [ ] Lab 01 - Defender for Cloud completed
-- [ ] Lab 02 - Sentinel Setup completed
-
-### Domain 4: Data Protection
-- [ ] Study guide completed
-- [ ] Lab 01 - Storage Encryption completed
-- [ ] Lab 02 - Database Security completed
-
-### Domain 5: Governance & Compliance
-- [ ] Study guide completed
-- [ ] Lab 01 - Azure Policy completed
-- [ ] Lab 02 - Compliance Assessment completed
-
----
-
-## 🤝 Contributing & Feedback
-
-This is your personal learning lab! Feel free to:
-- Add your own notes and insights
-- Create additional labs for scenarios you encounter
-- Share improvements with the community
-- Document your exam journey
-
----
-
-## 📬 Support
-
-- **Questions about labs?** Check the troubleshooting section in each lab
-- **Copilot Chat** - Use GitHub Copilot to ask security questions
-- **Microsoft Learn** - Link provided in each domain folder
-- **Azure Support** - For Azure-specific issues (free tier has limited support)
-
----
-
-## 🎓 Ready to Begin?
-
-👉 **Next Step:** Read `ROADMAP.md` for your week-by-week study plan
-
-Good luck on your SC-500 certification journey! 🚀
-
----
-
-*Last Updated: July 2026*
-*Designed for: Cloud Platform Engineers*
-*Time Commitment: 10-15 hours/week*
+Last updated: July 2026

@@ -1,0 +1,88 @@
+name: IaC validate (Bicep + ARM)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'infra/**'
+      - '**/templates/*.json'
+      - '.github/workflows/iac-validate.yml'
+  pull_request:
+    paths:
+      - 'infra/**'
+      - '**/templates/*.json'
+      - '.github/workflows/iac-validate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  bicep-build:
+    name: Bicep build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Bicep CLI
+        run: |
+          curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+          chmod +x ./bicep
+          sudo mv ./bicep /usr/local/bin/bicep
+          bicep --version
+
+      - name: Build every .bicep file
+        run: |
+          set -e
+          shopt -s globstar nullglob
+          FAILED=0
+          for f in infra/**/*.bicep; do
+            echo "::group::bicep build $f"
+            if ! bicep build "$f" --stdout > /dev/null; then
+              echo "::error file=$f::Bicep build failed"
+              FAILED=1
+            fi
+            echo "::endgroup::"
+          done
+          exit $FAILED
+
+      - name: Lint (bicep lint via build warnings)
+        run: bicep build infra/main.bicep --stdout > /dev/null
+
+  arm-validate:
+    name: ARM template validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Bicep CLI (for arm template-file validation via decompile round-trip)
+        run: |
+          curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+          chmod +x ./bicep
+          sudo mv ./bicep /usr/local/bin/bicep
+
+      - name: Decompile + rebuild every ARM template (syntactic check)
+        run: |
+          set -e
+          shopt -s globstar nullglob
+          FAILED=0
+          for f in **/templates/*.json; do
+            # Skip parameter files
+            if [[ "$f" == *".parameters.json" ]]; then
+              continue
+            fi
+            echo "::group::validate $f"
+            TMPDIR=$(mktemp -d)
+            if ! bicep decompile "$f" --outdir "$TMPDIR" 2> "$TMPDIR/err.log"; then
+              # A decompile warning is OK; a hard failure is not.
+              if grep -q "error" "$TMPDIR/err.log"; then
+                echo "::error file=$f::ARM template failed syntactic validation"
+                cat "$TMPDIR/err.log"
+                FAILED=1
+              else
+                echo "Decompile produced warnings only; treating as pass."
+              fi
+            fi
+            rm -rf "$TMPDIR"
+            echo "::endgroup::"
+          done
+          exit $FAILED

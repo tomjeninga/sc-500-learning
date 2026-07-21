@@ -1,313 +1,76 @@
-# SC-500 Study Roadmap: 12-Week Plan
+# SC-500 Study Roadmap: 12-Week Plan for Tom Jeninga
 
-**Audience:** Cloud Platform Engineer | **Pace:** 10–15 hrs/week | **Sessions:** 2–3 hrs, 4–5 sessions/week
+**Audience:** Cloud engineer preparing for **Microsoft Certified: Cloud and AI Security Engineer Associate**
+**Exam:** SC-500 - Implementing End-to-End Security Controls for Cloud and AI Workloads
+**Pace:** 10-15 hrs/week
 
----
+## Skill area alignment
 
-## Overview
+This roadmap follows the official SC-500 study guide, not the older AZ-500 domain model.
 
-| Phase | Weeks | Focus |
-|-------|-------|-------|
-| Foundation | 1–2 | Environment setup + Identity & Governance theory |
-| Build | 3–6 | Platform Protection + Security Operations |
-| Depth | 7–10 | Data Protection + Governance/Compliance |
-| Exam Prep | 11–12 | Review, practice exams, weak-area focus |
+| Skill area | Weight | Weeks covered |
+| --- | ---: | --- |
+| Manage identity, access, and governance | 20-25% | 2, 3 |
+| Secure storage, databases, and networking | 25-30% | 4, 5, 6 |
+| Secure compute (servers, containers, apps, AI) | 20-25% | 7, 8, 9 |
+| Manage and monitor security posture | 20-25% | 10, 11 |
 
----
+## Weekly plan
 
-## Week 1 — Environment Setup & SC-500 Orientation
+| Week | Focus | Repo work | Microsoft Learn / Docs | Milestone |
+| --- | --- | --- | --- | --- |
+| 1 | Orientation and environment | `AZURE-SETUP.md`, `resources/exam-tips.md` | SC-500 study guide, exam sandbox | Lab tenant ready |
+| 2 | Identity and access | `01-identity-governance/study-guide.md`, `lab-01`, `lab-02` | Entra ID, MFA/passwordless, Conditional Access, PIM | Explain Entra roles vs Azure RBAC |
+| 3 | App identity, Key Vault, governance | `01-identity-governance/`, Key Vault content in `04-data-protection/`, `05-governance-compliance/` | App registrations, managed identities, OAuth consent, Key Vault, Azure Policy | Secure app identity and secrets |
+| 4 | Storage security | `04-data-protection/lab-01-storage-encryption.md` | Storage firewall, Defender for Storage, private endpoints | Storage locked down |
+| 5 | Database security | `04-data-protection/lab-02-database-security.md` | Azure SQL, TDE, Always Encrypted, Defender for Databases | SQL with Entra auth + Defender |
+| 6 | Network security | `02-platform-protection/lab-01-network-security.md`, `lab-02-waf-setup.md` | NSG, ASG, Azure Firewall, Private Link, WAF, Virtual WAN, Entra Private Access | Choose NSG vs Firewall vs WAF |
+| 7 | Compute: servers and VMs | Extend `02-platform-protection/` with VM/Bastion/JIT | Disk encryption, Bastion, JIT, Arc, Defender for Servers, secure boot, vTPM | Secure VM without public RDP/SSH |
+| 8 | Compute: containers, apps, APIs | Notes in `02-platform-protection/`, app service and APIM references | AKS, ACR, Container Apps, Functions, Logic Apps, App Service, WAF, APIM policies | Explain secure app platform controls |
+| 9 | AI workload security | `06-ai-workload-security/` all labs | Foundry, AI Gateway in APIM, Purview DSPM for AI, Defender for AI Service, Entra Agent ID, Copilot Studio | Secure an end-to-end AI workload |
+| 10 | Posture: Defender for Cloud | `03-security-operations/lab-01-defender-cloud.md`, `05-governance-compliance/` | Defender CSPM, workload plans, EASM, AWS/GCP connectors, Defender Vulnerability Management | Prioritize posture risks |
+| 11 | Sentinel + Security Copilot | `03-security-operations/lab-02-sentinel-setup.md` | Sentinel workspaces, connectors, DCRs, automation, Security Copilot roles/plugins | Investigate with KQL |
+| 12 | Exam readiness | Weak labs redo, all self-checks | Practice assessment on Microsoft Learn, exam sandbox | Consistent 80%+ practice scores |
 
-**Goal:** Get your Azure environment ready and understand the exam structure.
+## Session template (2-3 hours)
 
-**Sessions (2–3 hrs each):**
+1. **10 min** - Read the SC-500 skill bullet you are targeting from `README.md`.
+2. **35 min** - Study the linked Microsoft Learn / Docs page.
+3. **60-90 min** - Complete the hands-on task in Azure or Microsoft 365.
+4. **20 min** - Validate: logs, portal evidence, Defender recommendation, or KQL.
+5. **15 min** - Write "Why this control? What are the distractor answers?" in your study notes.
 
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Read `AZURE-SETUP.md`, create free-tier subscription | `AZURE-SETUP.md` |
-| 2 | Install Az CLI, Az PowerShell, configure `rg-sc500-lab` | `AZURE-SETUP.md` |
-| 3 | Read `README.md` and `resources/exam-tips.md` | This repo |
-| 4 | Microsoft Learn: [SC-500 study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/sc-500) | Microsoft Learn |
+## Lab evidence to record
 
-**Milestone:** Azure subscription ready, tools installed, study plan confirmed.
+Every lab should end with a short note:
 
-**Self-assessment:**
-- [ ] Can you create a resource group with Az PowerShell?
-- [ ] Do you understand the 5 exam domains and their rough weightings?
+- Requirement: what security outcome was needed?
+- Control: what Microsoft service or feature implemented it?
+- Scope: tenant, subscription, resource group, resource, data plane, or app?
+- Validation: how did you prove it works?
+- Cleanup: what remains behind (policies, keys, assignments, diagnostic settings)?
+- Exam trap: what plausible-but-wrong answer would appear on the exam?
 
----
+## AI security readiness checklist
 
-## Week 2 — Identity & Governance: Theory
+Ready when you can:
 
-**Goal:** Master Entra ID, RBAC, Conditional Access, PIM, and MFA concepts.
+- Explain what AI Gateway in Azure API Management does for Microsoft Foundry.
+- Compare Foundry guardrails vs API Management policies vs Defender for AI Service.
+- Describe Microsoft Purview DSPM for AI and how it complements DLP.
+- Secure Microsoft Entra Agent ID with Conditional Access and blast-radius analysis in Defender XDR.
+- Know when Security Copilot helps and what workspaces/plugins/permissions it needs.
 
-**Sessions:**
+## Final readiness rules
 
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Read `01-identity-governance/study-guide.md` (full) | This repo |
-| 2 | MS Learn: [Manage identities in Azure AD](https://learn.microsoft.com/en-us/training/modules/manage-identities-microsoft-entra-id/) | Microsoft Learn |
-| 3 | MS Learn: [Configure RBAC](https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/) | Microsoft Learn |
-| 4 | MS Learn: [Protect identities with Azure AD](https://learn.microsoft.com/en-us/training/modules/protect-identities-with-aad-idp/) | Microsoft Learn |
-| 5 | Review `resources/glossary.md` — identity terms | This repo |
+Do not book the exam until:
 
-**Milestone:** Understand the difference between RBAC roles, Entra ID roles, and PIM.
+- You have scored 80%+ on the Microsoft Learn practice assessment twice.
+- You can explain every wrong answer in your own words.
+- You have completed every module lab at least once and re-run the weakest ones.
+- You reviewed the official study guide within the last 7 days.
 
-**Self-assessment:**
-- [ ] What is the difference between Owner, Contributor, and Reader roles?
-- [ ] How does Privileged Identity Management (PIM) differ from permanent role assignment?
-- [ ] What triggers a Conditional Access policy evaluation?
+## Next step
 
----
+Go to Week 1: complete `AZURE-SETUP.md`, then start Week 2. Ask the **SC-500 Coach** agent for a first-session teach-block on PIM.
 
-## Week 3 — Identity & Governance: Labs
-
-**Goal:** Build hands-on identity security controls.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Lab: `01-identity-governance/lab-01-entra-id-setup.md` (Portal steps) | This repo |
-| 2 | Lab: Deploy via ARM template (`templates/rbac-assignments.json`) | This repo |
-| 3 | Lab: `01-identity-governance/lab-02-conditional-access.md` | This repo |
-| 4 | Review + run `scripts/setup-entra-id-lab.ps1` | This repo |
-| 5 | Practice questions on Domain 1 | `resources/exam-tips.md` |
-
-**Milestone:** Created users/groups, assigned RBAC, created Conditional Access policies.
-
-**Checkpoint Self-Assessment:**
-- [ ] Can you explain when Conditional Access policies are evaluated?
-- [ ] What is a Privileged Access Workstation (PAW) and why does it matter?
-- [ ] How do you enable MFA for a specific group in Entra ID?
-
----
-
-## Week 4 — Platform Protection: Theory
-
-**Goal:** Master network security, WAF, encryption in transit/at rest.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Read `02-platform-protection/study-guide.md` | This repo |
-| 2 | MS Learn: [Configure network security groups](https://learn.microsoft.com/en-us/training/modules/configure-network-security-groups/) | Microsoft Learn |
-| 3 | MS Learn: [Introduction to Azure Firewall](https://learn.microsoft.com/en-us/training/modules/introduction-azure-firewall/) | Microsoft Learn |
-| 4 | MS Learn: [Secure network connectivity on Azure](https://learn.microsoft.com/en-us/training/modules/secure-network-connectivity-azure/) | Microsoft Learn |
-| 5 | Review NSG vs Firewall vs WAF comparison table in study guide | This repo |
-
-**Milestone:** Understand the layered network defence model in Azure.
-
-**Self-assessment:**
-- [ ] What is the difference between NSG and Azure Firewall?
-- [ ] When should you use Azure DDoS Standard vs Basic?
-- [ ] What is a Private Endpoint and how does it differ from a Service Endpoint?
-
----
-
-## Week 5 — Platform Protection: Labs
-
-**Goal:** Build network security controls and a WAF.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Lab: `02-platform-protection/lab-01-network-security.md` (Portal) | This repo |
-| 2 | Deploy `templates/vnet-with-nsg.json` via ARM | This repo |
-| 3 | Lab: `02-platform-protection/lab-02-waf-setup.md` | This repo |
-| 4 | Run `scripts/deploy-network-lab.ps1`, review WAF logs | This repo |
-| 5 | Cleanup + practice questions Domain 2 | `resources/exam-tips.md` |
-
-**Milestone:** Deployed VNet with NSGs, App Gateway WAF with OWASP ruleset.
-
-**Checkpoint Self-Assessment:**
-- [ ] How do you block all inbound traffic except port 443 using an NSG?
-- [ ] What OWASP ruleset version is recommended for Azure WAF?
-- [ ] What is Azure Bastion and why avoid exposing RDP/SSH to internet?
-
----
-
-## Week 6 — Security Operations: Theory
-
-**Goal:** Master Defender for Cloud, Secure Score, Microsoft Sentinel, and KQL basics.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Read `03-security-operations/study-guide.md` | This repo |
-| 2 | MS Learn: [Mitigate threats using Defender for Cloud](https://learn.microsoft.com/en-us/training/paths/sc-200-mitigate-threats-using-azure-defender/) | Microsoft Learn |
-| 3 | MS Learn: [Introduction to Microsoft Sentinel](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-sentinel/) | Microsoft Learn |
-| 4 | MS Learn: [KQL basics for Sentinel](https://learn.microsoft.com/en-us/training/modules/construct-kql-statements-microsoft-sentinel/) | Microsoft Learn |
-| 5 | Review KQL query examples in study guide | This repo |
-
-**Milestone:** Understand SIEM vs SOAR, Secure Score mechanics, analytics rule types.
-
-**Self-assessment:**
-- [ ] What is the difference between Defender for Cloud and Microsoft Sentinel?
-- [ ] Write a KQL query to find all sign-in failures in the last 24 hours.
-- [ ] What are the four types of analytics rules in Sentinel?
-
----
-
-## Week 7 — Security Operations: Labs
-
-**Goal:** Enable Defender for Cloud and deploy Sentinel with connectors and analytics rules.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Lab: `03-security-operations/lab-01-defender-cloud.md` | This repo |
-| 2 | Lab: Deploy `templates/log-analytics-workspace.json` | This repo |
-| 3 | Lab: `03-security-operations/lab-02-sentinel-setup.md` | This repo |
-| 4 | Deploy `templates/sentinel-workspace.json`, create analytics rule | This repo |
-| 5 | Practice KQL queries, review Secure Score recommendations | This repo |
-
-**Milestone:** Deployed Sentinel with connectors, created a scheduled analytics rule, ran KQL queries.
-
-**Checkpoint Self-Assessment:**
-- [ ] What Log Analytics table stores Azure Activity logs?
-- [ ] How do you create an automation rule that triggers a playbook in Sentinel?
-- [ ] What Defender for Cloud plan protects Azure VMs?
-
----
-
-## Week 8 — Data Protection: Theory
-
-**Goal:** Master storage encryption, Key Vault, SQL security, Purview/MIP, sensitivity labels.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Read `04-data-protection/study-guide.md` | This repo |
-| 2 | MS Learn: [Configure Azure Key Vault](https://learn.microsoft.com/en-us/training/modules/configure-and-manage-azure-key-vault/) | Microsoft Learn |
-| 3 | MS Learn: [Encrypt Azure Storage](https://learn.microsoft.com/en-us/training/modules/secure-azure-storage-account/) | Microsoft Learn |
-| 4 | MS Learn: [Secure your Azure SQL Database](https://learn.microsoft.com/en-us/training/modules/secure-your-azure-sql-database/) | Microsoft Learn |
-| 5 | Review CMK vs PMK comparison table | This repo |
-
-**Milestone:** Understand encryption at rest, in transit, Always Encrypted, and the Purview ecosystem.
-
-**Self-assessment:**
-- [ ] What is the difference between CMK and PMK?
-- [ ] How does Always Encrypted differ from TDE?
-- [ ] What is a sensitivity label and how does it interact with DLP?
-
----
-
-## Week 9 — Data Protection: Labs
-
-**Goal:** Implement storage CMK encryption, SQL security controls, and database auditing.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Lab: `04-data-protection/lab-01-storage-encryption.md` | This repo |
-| 2 | Deploy `templates/storage-account-encrypted.json` | This repo |
-| 3 | Lab: `04-data-protection/lab-02-database-security.md` | This repo |
-| 4 | Deploy `templates/sql-database-secured.json`, test Entra auth | This repo |
-| 5 | Cleanup + practice questions Domain 4 | `resources/exam-tips.md` |
-
-**Milestone:** Storage with CMK, SQL with TDE + Entra auth + auditing + Defender for SQL.
-
-**Checkpoint Self-Assessment:**
-- [ ] How do you rotate a CMK without data loss?
-- [ ] What Azure service provides sensitive data discovery and classification?
-- [ ] How does Defender for SQL detect SQL injection attacks?
-
----
-
-## Week 10 — Governance & Compliance: Theory + Labs
-
-**Goal:** Master Azure Policy, Management Groups, Regulatory Compliance dashboard.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Read `05-governance-compliance/study-guide.md` | This repo |
-| 2 | MS Learn: [Govern Azure subscriptions with Azure Policy](https://learn.microsoft.com/en-us/training/modules/intro-to-governance/) | Microsoft Learn |
-| 3 | Lab: `05-governance-compliance/lab-01-azure-policy.md` | This repo |
-| 4 | Deploy `templates/azure-policy-definitions.json` | This repo |
-| 5 | Lab: `05-governance-compliance/lab-02-compliance-assessment.md` | This repo |
-
-**Milestone:** Created custom deny policies, assigned initiative, reviewed compliance dashboard.
-
-**Checkpoint Self-Assessment:**
-- [ ] What is the difference between Audit and Deny policy effects?
-- [ ] How do Management Groups relate to subscriptions?
-- [ ] What is a regulatory compliance initiative in Defender for Cloud?
-
----
-
-## Week 11 — Full Review + Practice Exams
-
-**Goal:** Identify weak areas and fill gaps before the exam.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Review `resources/exam-tips.md` — question type strategies | This repo |
-| 2 | Take full practice exam (MeasureUp or Whizlabs) | `resources/exam-tips.md` |
-| 3 | Review wrong answers — map to domain study guides | This repo |
-| 4 | Re-read weak domain study guides | This repo |
-| 5 | Second practice exam + review | `resources/exam-tips.md` |
-
-**Milestone:** Scoring 75%+ on practice exams consistently.
-
-**Self-assessment:**
-- [ ] Which domain has the most questions?
-- [ ] Are you confident with KQL query writing?
-- [ ] Do you know the difference between Sentinel analytics rule types?
-
----
-
-## Week 12 — Final Exam Prep & Exam Day
-
-**Goal:** Fine-tune and pass SC-500.
-
-**Sessions:**
-
-| Day | Activity | Resource |
-|-----|----------|----------|
-| 1 | Review `resources/glossary.md` — any unfamiliar terms? | This repo |
-| 2 | Review all self-check questions across domains | This repo |
-| 3 | Final practice exam | `resources/exam-tips.md` |
-| 4 | Light review only — rest before exam | — |
-| 5 | **EXAM DAY** 🎓 | — |
-
-**Milestone:** SC-500 certification earned! 🏆
-
----
-
-## Microsoft Learn Learning Paths (Exam-Aligned)
-
-| Learning Path | Domain |
-|---------------|--------|
-| [SC-500: Implement identity and access management](https://learn.microsoft.com/en-us/training/paths/implement-identity-access-management/) | Domain 1 |
-| [SC-500: Implement platform protection](https://learn.microsoft.com/en-us/training/paths/implement-platform-protection/) | Domain 2 |
-| [SC-500: Manage security operations](https://learn.microsoft.com/en-us/training/paths/manage-security-operations/) | Domain 3 |
-| [SC-500: Secure data and applications](https://learn.microsoft.com/en-us/training/paths/secure-data-applications/) | Domain 4 |
-| [SC-500: Manage governance and compliance](https://learn.microsoft.com/en-us/training/paths/governance-compliance-azure-security/) | Domain 5 |
-
----
-
-## Weekly Time Budget (10–15 hrs/week)
-
-```
-Session 1: 2.5 hrs  ─ Theory reading + note-taking
-Session 2: 2.5 hrs  ─ Microsoft Learn module
-Session 3: 3.0 hrs  ─ Hands-on lab (Portal)
-Session 4: 2.5 hrs  ─ ARM template / PowerShell automation
-Session 5: 2.0 hrs  ─ Practice questions + review
-─────────────────────
-Total:    12.5 hrs/week
-```
-
----
-
-*Next Step:* Read `AZURE-SETUP.md` and complete your environment setup before beginning Week 1.
