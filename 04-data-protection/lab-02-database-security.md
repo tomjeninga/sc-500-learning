@@ -19,11 +19,15 @@ You will deploy an Azure SQL Database with TDE enabled (using Microsoft-managed 
 
 ---
 
+> **Depends on:** `rg-sc500-lab` and optionally `03-security-operations/lab-02-sentinel-setup.md` if you want to reuse `law-sc500-sentinel` for audit logs
+> **Reused by:** `02-platform-protection/lab-03-private-access-patterns.md`
+> **Delete after:** you finish private endpoint validation or any SQL auditing review that still uses this server
+
 ## Prerequisites
 
 - `rg-sc500-lab` resource group
 - Contributor role on `rg-sc500-lab`
-- Log Analytics workspace `law-sc500-sentinel` from Domain 3 (for audit log destination)
+- Optional: Log Analytics workspace `law-sc500-sentinel` from Domain 3 if you want to reuse an existing workspace for audit logs
 
 ---
 
@@ -121,13 +125,15 @@ ALTER ROLE db_datareader ADD MEMBER [alice-admin@yourtenant.onmicrosoft.com];
 2. Toggle **Azure SQL Auditing** to **On**
 3. **Audit log destination:**
    - Check **Log Analytics**
-   - Select `law-sc500-sentinel` workspace
+   - Select one of these options:
+     - Reuse `law-sc500-sentinel` if you already completed the Sentinel lab
+     - Or create/select a small dedicated workspace such as `law-sc500-sql`
 4. Click **Save**
 
 ### Step 5.2 — Verify audit logs appear
 
 After a few minutes:
-1. Open `law-sc500-sentinel` → **Logs**
+1. Open the Log Analytics workspace you selected for auditing → **Logs**
 2. Run:
 ```kql
 AzureDiagnostics
@@ -191,6 +197,8 @@ CREATE TABLE CustomerData (
 7. In the classification recommendations, click **Accept all recommendations**
 8. Click **Save**
 9. ✅ Columns are now labeled — any Defender for SQL alerts about these columns will include the classification context
+
+> **Keep for later labs:** Keep this SQL server alive if you plan to do `02-platform-protection/lab-03-private-access-patterns.md`, which reuses it for private endpoint testing.
 
 ---
 

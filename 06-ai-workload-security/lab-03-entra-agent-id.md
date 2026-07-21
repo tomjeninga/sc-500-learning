@@ -14,6 +14,10 @@
 - Review the agent's assigned permissions and connectors.
 - Use Defender XDR to analyze the blast radius of a compromised agent.
 
+> **Depends on:** a Microsoft 365 or Entra tenant with an agent identity, Microsoft Copilot Studio or equivalent agent surface, and Defender XDR access
+> **Reused by:** no required follow-up lab; this lab is best treated as a focused Agent ID exercise
+> **Delete after:** you finish Conditional Access and blast-radius validation and decide whether the test agent should remain
+
 ## Prerequisites
 
 - Microsoft 365 / Entra ID tenant with **Entra ID P2** or equivalent (for Conditional Access + risk).

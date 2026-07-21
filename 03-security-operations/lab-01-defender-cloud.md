@@ -19,6 +19,10 @@ You will enable Microsoft Defender for Cloud, review your Secure Score, enable t
 
 ---
 
+> **Depends on:** `02-platform-protection/lab-04-vm-security.md` if you want meaningful Defender for Servers findings on a real VM
+> **Reused by:** `05-governance-compliance/lab-02-compliance-assessment.md` can build on the posture and recommendation review from this lab
+> **Delete after:** you finish any posture review that depends on the VM, and you disable paid Defender plans you enabled just for lab use
+
 ## Prerequisites
 
 - Azure subscription with `rg-sc500-lab` resource group

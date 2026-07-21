@@ -38,6 +38,10 @@ Private Endpoints
 
 ---
 
+> **Depends on:** `02-platform-protection/lab-01-network-security.md`, `04-data-protection/lab-01-storage-encryption.md`, `04-data-protection/lab-02-database-security.md`, and a test VM in the VNet
+> **Reused by:** no required follow-up lab; this is usually the last consumer of the shared VNet, storage, and SQL chain
+> **Delete after:** you finish DNS and connectivity validation for Storage and SQL private access
+
 ## Prerequisites
 
 - `vnet-sc500-lab` and `snet-data` from Domain 2 Lab 01

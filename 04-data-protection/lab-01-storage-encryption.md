@@ -31,11 +31,17 @@ You will create an Azure Key Vault, generate an encryption key, create a storage
 
 ---
 
+> **Depends on:** `02-platform-protection/lab-01-network-security.md` for `vnet-sc500-lab` and `snet-data`
+> **Reused by:** `01-identity-governance/lab-04-workload-identities.md`, `02-platform-protection/lab-03-private-access-patterns.md`, and optional CMK work in `04-data-protection/lab-02-database-security.md`
+> **Delete after:** you finish the last lab that needs `kv-sc500-lab`, the storage account, or `pe-storage-sc500`
+
 ## Prerequisites
 
 - `rg-sc500-lab` resource group
 - `vnet-sc500-lab` with `snet-data` subnet (from Domain 2 Lab 01)
 - Owner or Contributor + Key Vault Crypto Officer on `rg-sc500-lab`
+
+> **Keep for later labs:** On your first pass, do **not** delete `kv-sc500-lab` or the storage account immediately after this lab. They are reused by `01-identity-governance/lab-04-workload-identities.md`, and the storage account can also support later private access validation.
 
 ---
 
@@ -234,6 +240,16 @@ Write-Host "Private Endpoint: $($pe.Name) - State: $($pe.ProvisioningState)"
 ---
 
 ## Cleanup Instructions
+
+Choose one of these paths:
+
+1. **First-pass / shared-environment path (recommended):**
+   - Keep `kv-sc500-lab`
+   - Keep the storage account
+   - Keep the private endpoint if you plan to do `02-platform-protection/lab-03-private-access-patterns.md`
+   - Remove only temporary test artifacts you no longer need
+
+2. **Full cleanup path:**
 
 ```powershell
 $rg = "rg-sc500-lab"

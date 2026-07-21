@@ -35,6 +35,10 @@ Azure VM
 
 ---
 
+> **Depends on:** a test VM in `rg-sc500-lab` and Microsoft Defender for Cloud access on the subscription
+> **Reused by:** `03-security-operations/lab-01-defender-cloud.md`
+> **Delete after:** you finish the Defender for Cloud follow-up lab and any JIT or trusted launch validation
+
 ## Prerequisites
 
 - A test VM in `rg-sc500-lab` such as `vm-frontend-01`, or create a new one

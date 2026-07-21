@@ -33,6 +33,10 @@ Goal:
 
 ---
 
+> **Depends on:** `03-security-operations/lab-02-sentinel-setup.md` and a workspace that is already ingesting the required logs
+> **Reused by:** no required follow-up lab; this is usually the final consumer of the Sentinel setup chain
+> **Delete after:** you finish the investigation and export any notes or screenshots you want to keep
+
 ## Prerequisites
 
 - Domain 3 Lab 02 complete

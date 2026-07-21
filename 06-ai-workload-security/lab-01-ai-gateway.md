@@ -13,6 +13,10 @@
 - Emit token and request metrics to Log Analytics and Application Insights.
 - Verify signals appear in Defender for Cloud's Data and AI security dashboard.
 
+> **Depends on:** a Microsoft Foundry project with a deployed model, APIM, Azure AI Content Safety, and logging resources such as Log Analytics and Application Insights
+> **Reused by:** `06-ai-workload-security/lab-04-defender-for-ai.md` and any optional monitoring or investigation flow that reuses the same AI traffic and diagnostics
+> **Delete after:** you finish Defender for AI validation and any APIM or AI Gateway policy testing
+
 ## Prerequisites
 
 - Azure subscription with Owner or Contributor + User Access Administrator on `rg-sc500-lab`.

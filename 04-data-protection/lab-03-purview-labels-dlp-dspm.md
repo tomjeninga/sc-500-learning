@@ -29,6 +29,10 @@ DSPM for AI       -> discovers risky AI data exposure and prompt patterns
 
 ---
 
+> **Depends on:** a Microsoft 365 tenant with Purview access and test SharePoint, OneDrive, Teams, or Exchange data
+> **Reused by:** `06-ai-workload-security/lab-02-purview-dspm-copilot.md` if you want to reuse the same labeled content and oversharing scenarios
+> **Delete after:** you finish label, DLP, and DSPM validation and no longer need the test content or policies
+
 ## Prerequisites
 
 - Microsoft 365 tenant with Purview portal access

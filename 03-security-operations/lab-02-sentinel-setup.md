@@ -33,6 +33,10 @@ Entra ID Sign-in logs
 
 ---
 
+> **Depends on:** `rg-sc500-lab`, appropriate Azure and Entra permissions, and willingness to keep a Log Analytics workspace active through the next Sentinel lab
+> **Reused by:** `03-security-operations/lab-03-sentinel-triage-investigation.md` and optional SQL auditing in `04-data-protection/lab-02-database-security.md`
+> **Delete after:** you complete the triage lab and any other logging exercises that still need `law-sc500-sentinel`
+
 ## Prerequisites
 
 - Azure subscription with Owner or Security Admin role
