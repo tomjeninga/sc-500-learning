@@ -38,8 +38,9 @@ By completing this module you will be able to:
 | `lab-02-purview-dspm-copilot.md` | Enable Purview DSPM for AI, discover Copilot risks, act on SharePoint oversharing | 60-90 min |
 | `lab-03-entra-agent-id.md` | Register an Entra Agent ID, apply Conditional Access, review blast radius in Defender XDR | 60-90 min |
 | `lab-04-defender-for-ai.md` | Enable Defender for AI Service, generate alerts, review Data and AI security dashboard | 45-60 min |
+| `lab-05-agent-governance-guardrails.md` | Govern Copilot Studio agents, Microsoft 365 agent exposure, and Foundry guardrails | 60-90 min |
 
-Labs are the primary artifact. Start with the study guide, then run at least the AI Gateway and Purview DSPM labs.
+Labs are the primary artifact. Start with the study guide, then run the core Azure AI control path first. Add the Purview and Microsoft 365 branch when you have access to that tenant and licensing.
 
 ## Study guide
 
@@ -54,12 +55,14 @@ See `study-guide.md` for concepts, comparisons, and exam traps.
 - Microsoft Entra Agent ID: <https://learn.microsoft.com/en-us/entra/identity/agentid/overview>
 - Defender for Cloud AI security: <https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-security>
 - Data and AI security dashboard: <https://learn.microsoft.com/en-us/azure/defender-for-cloud/data-aware-security-dashboard-overview>
+- Foundry content filtering and guardrails: <https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-filtering>
 
 ## Start here
 
 1. Read `study-guide.md`.
 2. Complete `lab-01-ai-gateway.md`.
-3. Complete `lab-02-purview-dspm-copilot.md`.
-4. Complete `lab-03-entra-agent-id.md`.
-5. Complete `lab-04-defender-for-ai.md`.
-6. Ask the SC-500 Coach for a quiz on AI security exam traps.
+3. Complete `lab-03-entra-agent-id.md`.
+4. Complete `lab-04-defender-for-ai.md`.
+5. Complete `lab-05-agent-governance-guardrails.md`.
+6. Complete `lab-02-purview-dspm-copilot.md` if you also want the Microsoft 365 and Purview AI data-governance path in the same pass.
+7. Ask the SC-500 Coach for a quiz on AI security exam traps.

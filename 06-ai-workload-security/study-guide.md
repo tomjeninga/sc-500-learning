@@ -86,6 +86,42 @@ Exam trap: "How do you restrict a Copilot Studio agent to require compliant devi
 - Manage agents from the Microsoft 365 admin center.
 - Combine with Purview DSPM for AI to catch data risk.
 
+## Copilot Studio governance and Microsoft 365 admin controls
+
+Copilot Studio governance is broader than prompt blocking.
+
+Key ideas:
+
+- Admins can use **data policies** to govern connectors, triggers, HTTP requests, knowledge sources, and publication paths.
+- Makers can see **runtime protection status** and other security warnings before publishing an agent.
+- Microsoft 365 admin controls decide which agents or AI actions are available to users in Microsoft 365 surfaces.
+
+Exam trap: if the question is about **which agents users can access in Microsoft 365**, think **Microsoft 365 admin center governance**, not Foundry content filters.
+
+## Foundry guardrails in practice
+
+Foundry guardrails are the model-behavior layer.
+
+Important controls include:
+
+- Harm category thresholds for hate, sexual, violence, and self-harm
+- **Prompt shields** for user prompt attacks and indirect attacks
+- Optional filters such as:
+  - PII
+  - Protected material
+  - Groundedness
+
+### Guardrails vs other AI controls
+
+| Control | Primary job |
+| --- | --- |
+| Foundry guardrails | Shape prompts and completions |
+| APIM AI Gateway | Token limits, perimeter policy, gateway logging |
+| Defender for AI Service | Threat detections and dashboard alerts |
+| Entra Agent ID | Identity, CA, and blast-radius governance |
+
+> **Exam tip:** Foundry guardrails can block or annotate unsafe prompts and completions. They do not replace APIM token governance or Defender detections.
+
 ## Data and AI security dashboard (Defender for Cloud)
 
 Central view for AI workload posture and alerts. Pulls from Defender for AI Service, Purview signals, and Defender CSPM.
@@ -102,6 +138,7 @@ Central view for AI workload posture and alerts. Pulls from Defender for AI Serv
 | Require compliant device for an agent | Conditional Access targeting Entra Agent ID |
 | Central AI posture and alerts view | Data and AI security dashboard in Defender for Cloud |
 | Manage which agents users can install | Microsoft 365 admin center - agent management |
+| Limit what connectors, triggers, or actions an agent can use | Copilot Studio governance and Power Platform data policies |
 
 ## Self-check questions
 
@@ -113,6 +150,8 @@ Central view for AI workload posture and alerts. Pulls from Defender for AI Serv
 6. Where do you enable real-time protection for Copilot Studio agents?
 7. Which layer detects prompt injection attempts against a Foundry model?
 8. Why is Purview DSPM for AI not a replacement for DLP?
+9. Which admin surface governs which agents or AI actions are available to Microsoft 365 users?
+10. Which Foundry feature helps detect user prompt attacks and indirect prompt attacks?
 
 ## References
 
@@ -122,3 +161,5 @@ Central view for AI workload posture and alerts. Pulls from Defender for AI Serv
 - Microsoft Copilot Studio security and governance: <https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance>
 - Microsoft Entra Agent ID: <https://learn.microsoft.com/en-us/entra/identity/agentid/overview>
 - Defender for Cloud AI security: <https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-security>
+- Foundry content filtering: <https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-filtering>
+- Data and AI security dashboard: <https://learn.microsoft.com/en-us/azure/defender-for-cloud/data-aware-security-dashboard-overview>

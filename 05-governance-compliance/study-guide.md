@@ -255,6 +255,113 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 
 ---
 
+## 8. Resource Locks
+
+Resource locks protect Azure resources from accidental control-plane deletion or modification.
+
+| Lock type | What it does |
+|----------|---------------|
+| **CanNotDelete** | Resource can be modified but not deleted |
+| **ReadOnly** | Resource can be read but not modified or deleted |
+
+### Key distinctions
+
+- Locks apply to the **control plane**, not automatically to the **data plane**
+- Locks are inherited from parent scope to child scope
+- The most restrictive inherited lock wins
+
+> **Exam tip:** A lock on a storage account does not automatically protect blob data deleted through data-plane operations.
+
+### Important side effects
+
+- Locks can block legitimate management operations that use POST behind the scenes
+- A badly placed lock can interfere with platform features
+- A `CanNotDelete` lock on the Azure Backup service-created resource group can cause backup failures because Azure Backup cannot clean up restore points
+
+---
+
+## 9. Azure RBAC Least Privilege and Custom Roles
+
+Azure RBAC governance questions often test whether you can narrow access instead of defaulting to **Owner** or **Contributor**.
+
+### Review model
+
+When reviewing access, ask:
+
+1. Is the assignment at the correct scope?
+2. Is it inherited when it should be direct, or direct when it should be inherited?
+3. Does a built-in role already fit?
+4. If not, is a custom role justified?
+
+### Custom roles
+
+Use custom roles when built-in roles are too broad and the task is well-defined.
+
+Key properties:
+
+- `Actions`
+- `NotActions`
+- `DataActions`
+- `AssignableScopes`
+
+> **Exam tip:** Prefer explicit actions over broad wildcards unless there is a strong reason to accept future permission expansion.
+
+### Overprivileged access patterns
+
+Common risks include:
+
+- Too many permanent **Owner** assignments
+- Contributor used where a narrower built-in or custom role would work
+- Managed identities with broad subscription-level access
+- Privileged assignments left active instead of governed through PIM
+
+---
+
+## 10. Azure Backup Security Features
+
+For SC-500, backup security is not only about retention. It is also about protecting recovery points from deletion or tampering.
+
+| Control | Why it matters |
+|---------|----------------|
+| **Soft delete / enhanced soft delete** | Recovers from accidental or malicious deletion |
+| **Immutability** | Prevents backup data from being altered or deleted early |
+| **Multi-user authorization (MUA)** | Adds approval protection for critical vault operations |
+| **Resource Guard** | Enforces the second layer used by MUA |
+| **Backup RBAC roles** | Separates backup administration duties |
+
+### Backup RBAC roles to know
+
+- **Backup Contributor**
+- **Backup Operator**
+- **Backup Reader**
+
+### Security posture thinking
+
+The strongest vault posture usually combines:
+
+- locked or always-on soft delete
+- immutability
+- MUA with Resource Guard
+- least-privilege backup roles
+
+---
+
+## 11. Governance as Code
+
+Governance controls should be repeatable.
+
+Common examples:
+
+- Azure Policy definitions and assignments
+- Resource locks in ARM or Bicep
+- Custom role definitions stored as JSON
+- Vault or monitoring standards embedded in deployment pipelines
+
+**Why this matters:**
+If the control matters for every environment, the portal should not be the only place it exists.
+
+---
+
 ## Self-Check Questions
 
 1. What is the difference between a policy **definition** and a policy **assignment**?
@@ -271,6 +378,14 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 
 7. What is the purpose of the **AuditIfNotExists** effect and give an example of where it's used?
 
+8. What is the difference between a `CanNotDelete` lock and a `ReadOnly` lock?
+
+9. Why does a resource lock not automatically protect all data inside a storage account?
+
+10. When is a custom role a better answer than Contributor?
+
+11. Which Azure Backup features best protect recovery points from ransomware-driven deletion?
+
 ---
 
 ## Microsoft Learn Resources
@@ -280,3 +395,6 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 - [Azure Policy effects](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects)
 - [Management Group overview](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview)
 - [Regulatory compliance in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard)
+- [Lock your Azure resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)
+- [Azure custom roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles)
+- [Azure Backup security overview](https://learn.microsoft.com/en-us/azure/backup/security-overview)

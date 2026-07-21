@@ -14,6 +14,8 @@ After reading this guide, you will understand:
 - Azure Bastion: secure RDP/SSH without public IPs
 - Encryption in transit: TLS/HTTPS enforcement
 - Encryption at rest: server-side encryption, CMK, Azure Disk Encryption
+- AKS and ACR security controls, workload identity, and Defender for Containers
+- App platform protection for Container Apps, Logic Apps, App Service, Functions, and API Management
 
 ---
 
@@ -220,7 +222,33 @@ Beyond OWASP, you can create custom rules:
 
 ---
 
-## 7. Azure Bastion
+## 7. Compact Decision Map for the Remaining Network Controls
+
+Use this section together with `lab-08-network-breadth-validation.md`. The goal is not to build every service in depth. The goal is to recognize the correct control boundary in a scenario question.
+
+| Control | What it helps you answer | Best fit |
+| --- | --- | --- |
+| Network Watcher effective security rules | "Which rule is actually applying to this VM?" | Audit the final inbound and outbound rule set on a NIC |
+| IP flow verify | "Why is this packet allowed or denied?" | Test one specific TCP or UDP path against the final rule outcome |
+| Azure Firewall | "Which service centrally filters and routes traffic?" | Hub or centralized egress/ingress policy with network, application, or NAT rules |
+| Azure Virtual Network Manager | "How do I enforce network guardrails across many VNets?" | Centralized security admin rules and network grouping at scale |
+| Azure Virtual WAN secured hub | "How do I secure many branches, sites, or spokes through a managed hub?" | Large-scale connectivity and routing with a managed hub model |
+| VPN | "How do I connect users, devices, or sites to Azure over a tunnel?" | Tunnel-based access for site-to-site or point-to-site scenarios |
+| Microsoft Entra Private Access | "How do I modernize private app access without relying on a traditional VPN pattern?" | Identity-aware access to private apps with Conditional Access alignment |
+| Private Link service | "How do I publish my own service privately to consumers?" | Provider-side private publishing behind a Standard Load Balancer |
+
+### Quick distinction rules
+
+- If you need the **final applied VM rule outcome**, use **Effective security rules** or **IP flow verify**, not just raw NSG inspection.
+- If the requirement is **centralized traffic filtering and routing**, prefer **Azure Firewall** over NSG.
+- If the requirement is **organization-wide network guardrails**, think **Azure Virtual Network Manager**.
+- If the requirement is **large-scale hub, branch, and routing simplification**, think **Azure Virtual WAN secured hub**.
+- If the requirement is **identity-aware access to private apps**, think **Microsoft Entra Private Access**, not classic VPN by default.
+- If you are **consuming** a private service, think **Private Endpoint**. If you are **publishing** your own service privately, think **Private Link service**.
+
+---
+
+## 8. Azure Bastion
 
 Azure Bastion provides RDP and SSH access to VMs through the Azure Portal over HTTPS, **without exposing port 22 or 3389 to the internet**.
 
@@ -236,7 +264,7 @@ Azure Bastion provides RDP and SSH access to VMs through the Azure Portal over H
 
 ---
 
-## 8. Encryption in Transit
+## 9. Encryption in Transit
 
 All Azure PaaS services enforce **TLS 1.2 or higher** by default. Key controls:
 
@@ -247,7 +275,7 @@ All Azure PaaS services enforce **TLS 1.2 or higher** by default. Key controls:
 
 ---
 
-## 9. Encryption at Rest
+## 10. Encryption at Rest
 
 ### Default Encryption
 
@@ -283,6 +311,109 @@ ADE keys are stored in Key Vault. This provides **guest-OS level encryption** in
 
 ---
 
+## 10. Container Platform Security
+
+### AKS security model
+
+For SC-500, think about AKS in four layers:
+
+| Layer | Main controls |
+| --- | --- |
+| Build pipeline | Image scanning, trusted build path, policy gates |
+| Registry | ACR RBAC, disable admin user, restrict network exposure |
+| Cluster | Entra integration, Azure RBAC, private or restricted API access, network policy |
+| Runtime | Defender for Containers, sensor telemetry, posture recommendations |
+
+### AKS controls to remember
+
+- **Microsoft Entra integration** for user access to the cluster
+- **Azure RBAC for Kubernetes authorization** when you want Azure-governed access management
+- **Workload identity** when pods need Azure resource access without embedded secrets
+- **Authorized IP ranges** or a **private cluster** to reduce Kubernetes API exposure
+- **Network policies** to control pod-to-pod communication
+
+> **Exam tip:** If a Kubernetes workload needs access to Key Vault or Storage, workload identity is usually the better answer than a stored secret or a broad node-level credential.
+
+### ACR controls to remember
+
+- Disable the **admin user** unless there is a temporary lab reason to keep it enabled
+- Use Azure RBAC roles such as `AcrPull` and `AcrPush`
+- Reduce public exposure where possible by using network restrictions or private connectivity
+- Treat registry scanning as asynchronous; findings do not always appear immediately after a push
+
+### Defender for Containers
+
+Defender for Containers extends Microsoft Defender for Cloud into Kubernetes and registry scenarios.
+
+Key components include:
+
+- **Defender sensor** for runtime telemetry and threat detection
+- **Azure Policy** for Kubernetes posture recommendations
+- **Kubernetes API access** for inventory and configuration analysis
+- **Registry access** for image vulnerability findings
+
+**Important distinction:**
+- Image scanning in ACR is not the same as AKS runtime protection
+- AKS is where runtime protection and cluster posture meet
+
+---
+
+## 11. App Platform and Workflow Security
+
+### App Service and Functions
+
+For App Service and Azure Functions, the exam often tests combinations of:
+
+- **Built-in authentication** with Microsoft Entra ID
+- **Access restrictions** or private connectivity
+- **HTTPS only** and current TLS settings
+- **Managed identity** and **Key Vault references** instead of embedded secrets
+
+> **Exam tip:** Authentication and network restriction solve different problems. Requiring sign-in does not automatically mean the app is network-isolated.
+
+### Container Apps
+
+For Azure Container Apps, focus on:
+
+- Intentionally choosing **internal** or **external** ingress
+- Using **managed identity** for Azure service access
+- Using **Key Vault** or secure secret references rather than plain-text settings
+- Keeping environment boundaries clear between production and nonproduction workloads
+
+### Logic Apps
+
+Logic Apps are part of the application platform surface because they can become privileged workflow identities.
+
+Focus on:
+
+- **Managed identity** for workflow access to Azure resources
+- Reducing **trigger exposure** when the workflow entry point should not be broadly callable
+- Limiting who can view or operate the workflow and its run history
+- Avoiding broad connector secrets when platform identity is available
+
+### API Management
+
+API Management is an API security enforcement point, not just a publishing surface.
+
+Common exam controls include:
+
+- `validate-jwt` or `validate-azure-ad-token`
+- `rate-limit` or `rate-limit-by-key`
+- Backend authentication and trust boundaries
+- Using APIM as the intended caller path to the backend API
+
+### Common service comparison
+
+| Service | Most likely exam controls |
+| --- | --- |
+| App Service | Entra auth, TLS, access restrictions, Key Vault references |
+| Functions | Entra auth, trigger protection, network restriction, managed identity |
+| Container Apps | Ingress mode, managed identity, secret handling |
+| Logic Apps | Managed identity, trigger exposure, workflow access control |
+| API Management | Token validation, throttling, backend protection |
+
+---
+
 ## Self-Check Questions
 
 1. A VM in `snet-backend` needs to query Azure SQL. The SQL server has a Service Endpoint configured. How does the traffic route, and could you improve this with a Private Endpoint?
@@ -299,6 +430,14 @@ ADE keys are stored in Key Vault. This provides **guest-OS level encryption** in
 
 7. An organization must prove that the keys encrypting their Azure SQL database are controlled exclusively by them and cannot be accessed by Microsoft. What technology and key storage option do you recommend?
 
+8. An AKS workload needs access to Azure Key Vault without storing credentials in a Kubernetes Secret. What identity pattern is the best fit?
+
+9. A team wants vulnerability findings for container images in ACR and runtime threat protection for workloads in AKS. What Defender capability or capabilities are required?
+
+10. A Logic App can call a backend resource, but the workflow currently stores a secret in its configuration. What platform-native improvement is usually preferred?
+
+11. An API must reject callers without a valid Microsoft Entra token before the request reaches the Function App backend. What Azure service and policy category should you use?
+
 ---
 
 ## Microsoft Learn Resources
@@ -309,3 +448,8 @@ ADE keys are stored in Key Vault. This provides **guest-OS level encryption** in
 - [Azure Web Application Firewall on Application Gateway](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview)
 - [Azure Private Endpoint overview](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview)
 - [Azure Bastion overview](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview)
+- [Security concepts for AKS applications and clusters](https://learn.microsoft.com/en-us/azure/aks/concepts-security)
+- [Enable Defender for Containers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-enable-plan)
+- [Authentication and authorization in Azure App Service and Azure Functions](https://learn.microsoft.com/en-us/azure/app-service/overview-authentication-authorization)
+- [Security overview for Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/security)
+- [Validate JWT policy in Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy)
