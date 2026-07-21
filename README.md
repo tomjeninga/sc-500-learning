@@ -185,6 +185,37 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 | `.github/skills/sc-500-study-session/` | Slash-callable study session workflow |
 | `.github/workflows/` | CI: markdown lint + Bicep/ARM validate |
 
+## SC-500 priority path (do these labs first)
+
+If your goal is the **fastest path to exam readiness**, do these 11 labs before
+anything else. They cover the highest-yield SC-500 decisions without drowning
+you in too much Azure-only detail.
+
+| Priority | Lab | Why it is high value |
+| --- | --- | --- |
+| 1 | `01-identity-governance/lab-02-conditional-access.md` | Conditional Access, MFA, report-only, and blocking legacy auth are core exam patterns |
+| 2 | `01-identity-governance/lab-03-pim-access-governance.md` | Teaches PIM vs Access Reviews vs Access Packages - a classic SC-500 distinction |
+| 3 | `01-identity-governance/lab-04-workload-identities.md` | Secretless access, managed identities, and federated credentials show up often |
+| 4 | `04-data-protection/lab-01-storage-encryption.md` | CMK, Key Vault RBAC, and Private Endpoint are foundational |
+| 5 | `02-platform-protection/lab-03-private-access-patterns.md` | Helps you nail Private Endpoint vs Service Endpoint vs firewall decisions |
+| 6 | `04-data-protection/lab-02-database-security.md` | TDE, Entra auth, auditing, Defender for SQL, and data classification |
+| 7 | `03-security-operations/lab-01-defender-cloud.md` | Defender for Cloud plans, recommendations, and Secure Score |
+| 8 | `03-security-operations/lab-02-sentinel-setup.md` | Sentinel onboarding, connectors, analytics rules, and KQL basics |
+| 9 | `03-security-operations/lab-03-sentinel-triage-investigation.md` | Incident triage and KQL pivots - more SC-500 realistic than setup alone |
+| 10 | `04-data-protection/lab-03-purview-labels-dlp-dspm.md` | Purview labels, DLP, and DSPM for AI are major SC-500 differentiators |
+| 11 | `06-ai-workload-security/lab-01-ai-gateway.md` | AI Gateway in APIM is one of the most distinctive new SC-500 topics |
+
+**Then finish with these AI labs:**
+- `06-ai-workload-security/lab-02-purview-dspm-copilot.md`
+- `06-ai-workload-security/lab-03-entra-agent-id.md`
+- `06-ai-workload-security/lab-04-defender-for-ai.md`
+
+**Suggested order by week:**
+1. **Week 1:** Priorities 1-3
+2. **Week 2:** Priorities 4-6
+3. **Week 3:** Priorities 7-9
+4. **Week 4:** Priorities 10-11 + the remaining three AI labs
+
 ## Start here
 
 1. Read `ROADMAP.md`.

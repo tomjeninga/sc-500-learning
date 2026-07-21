@@ -10,6 +10,7 @@ By completing this domain, you will be able to:
 - Understand Always Encrypted for sensitive column protection
 - Configure SQL auditing and data classification
 - Understand Microsoft Purview/MIP sensitivity labels and DLP concepts
+- Understand how Purview DSPM for AI complements labels and DLP
 
 ---
 
@@ -35,6 +36,7 @@ Expect questions on:
 |-----|-------|-----------|
 | `lab-01-storage-encryption.md` | Storage account CMK + Private Endpoint | 45–60 min |
 | `lab-02-database-security.md` | SQL with TDE + Entra auth + Defender for SQL | 60–90 min |
+| `lab-03-purview-labels-dlp-dspm.md` | Labels + DLP + DSPM for AI | 60–90 min |
 
 ---
 
@@ -61,4 +63,5 @@ Expect questions on:
 1. Read `study-guide.md` — understand CMK vs PMK, TDE, and DLP concepts
 2. Complete `lab-01-storage-encryption.md` — configure CMK and private endpoint
 3. Complete `lab-02-database-security.md` — secure SQL database
-4. Deploy ARM templates for IaC practice
+4. Complete `lab-03-purview-labels-dlp-dspm.md` — compare classification, prevention, and AI exposure discovery
+5. Deploy ARM templates for IaC practice

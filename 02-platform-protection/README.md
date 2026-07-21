@@ -11,6 +11,7 @@ By completing this domain, you will be able to:
 - Deploy Application Gateway v2 with WAF_v2 and OWASP ruleset
 - Implement Private Endpoints and Azure Bastion
 - Understand encryption in transit (TLS) and at rest (server-side encryption, disk encryption)
+- Compare Private Endpoint vs Service Endpoint for PaaS isolation
 
 ---
 
@@ -36,6 +37,7 @@ Expect questions on:
 |-----|-------|-----------|
 | `lab-01-network-security.md` | VNet + subnets + NSGs + test VMs | 60–90 min |
 | `lab-02-waf-setup.md` | App Gateway v2 + WAF_v2 + OWASP + simulate attacks | 90–120 min |
+| `lab-03-private-access-patterns.md` | Private access patterns for Storage + SQL | 60–90 min |
 
 ---
 
@@ -63,5 +65,6 @@ Expect questions on:
 1. Read `study-guide.md` — understand the network security controls
 2. Complete `lab-01-network-security.md` — build VNet + NSG infrastructure
 3. Complete `lab-02-waf-setup.md` — deploy and test WAF
-4. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
-5. Answer the self-check questions at the end of each file
+4. Complete `lab-03-private-access-patterns.md` — validate Private Endpoints and DNS resolution
+5. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
+6. Answer the self-check questions at the end of each file

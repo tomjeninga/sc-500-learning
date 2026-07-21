@@ -10,6 +10,9 @@ By completing this domain, you will be able to:
 - Enable and manage Privileged Identity Management (PIM)
 - Configure Multi-Factor Authentication (MFA)
 - Create and manage Access Reviews
+- Implement Privileged Identity Management (PIM) activation settings
+- Understand entitlement management and Access Packages
+- Use workload identities and managed identities instead of secrets
 
 ---
 
@@ -34,6 +37,8 @@ This is the **heaviest domain** on the exam. Expect questions on:
 |-----|-------|-----------|
 | `lab-01-entra-id-setup.md` | Create users/groups, assign RBAC, test least-privilege | 60–90 min |
 | `lab-02-conditional-access.md` | Require MFA for admins, block legacy auth, location-based policy | 60–90 min |
+| `lab-03-pim-access-governance.md` | PIM + Access Reviews + Access Packages | 60–90 min |
+| `lab-04-workload-identities.md` | Managed identities, least-privilege, secretless access | 60–90 min |
 
 ---
 
@@ -62,5 +67,7 @@ This is the **heaviest domain** on the exam. Expect questions on:
 1. Read `study-guide.md` — understand the concepts
 2. Complete `lab-01-entra-id-setup.md` — build it in Azure Portal
 3. Complete `lab-02-conditional-access.md` — configure access policies
-4. Run the PowerShell scripts to automate the setup
-5. Answer the self-check questions at the end of each file
+4. Complete `lab-03-pim-access-governance.md` — remove standing privilege and govern access lifecycle
+5. Complete `lab-04-workload-identities.md` — compare managed identity to app registrations and secrets
+6. Run the PowerShell scripts to automate the setup
+7. Answer the self-check questions at the end of each file

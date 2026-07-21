@@ -11,6 +11,7 @@ By completing this domain, you will be able to:
 - Configure Sentinel connectors and analytics rules
 - Write basic KQL queries for threat hunting
 - Understand SIEM vs SOAR, Sentinel playbooks, and automation rules
+- Triage incidents and pivot through entities with KQL
 
 ---
 
@@ -36,6 +37,7 @@ Expect questions on:
 |-----|-------|-----------|
 | `lab-01-defender-cloud.md` | Enable Defender for Cloud, review Secure Score | 45–60 min |
 | `lab-02-sentinel-setup.md` | Deploy Sentinel, connectors, analytics rules, KQL | 60–90 min |
+| `lab-03-sentinel-triage-investigation.md` | Triage an incident and investigate with KQL | 60–90 min |
 
 ---
 
@@ -62,4 +64,5 @@ Expect questions on:
 1. Read `study-guide.md` — understand Defender for Cloud plans and Sentinel architecture
 2. Complete `lab-01-defender-cloud.md` — enable Defender and review Secure Score
 3. Complete `lab-02-sentinel-setup.md` — deploy Sentinel and write KQL queries
-4. Deploy templates via ARM for practice with IaC
+4. Complete `lab-03-sentinel-triage-investigation.md` — investigate a likely account compromise path
+5. Deploy templates via ARM for practice with IaC
