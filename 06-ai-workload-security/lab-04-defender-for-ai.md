@@ -23,15 +23,15 @@
 ## Steps
 
 1. In **Defender for Cloud** -> **Environment settings** -> select the subscription.
-2. Enable **Defender for AI Service** under workload protection plans.
-3. Confirm the Foundry resource is covered and diagnostic settings are collecting data.
-4. In **Microsoft Foundry**, review **guardrail settings** for the target model and add content filters if missing.
-5. Generate test traffic:
+1. Enable **Defender for AI Service** under workload protection plans.
+1. Confirm the Foundry resource is covered and diagnostic settings are collecting data.
+1. In **Microsoft Foundry**, review **guardrail settings** for the target model and add content filters if missing.
+1. Generate test traffic:
    - Send a benign prompt.
    - Send a jailbreak-style prompt.
    - Send a prompt trying to extract system prompts.
-6. Wait a few minutes for alerts to appear.
-7. In Defender for Cloud, open **Data and AI security dashboard** and review:
+1. Wait a few minutes for alerts to appear.
+1. In Defender for Cloud, open **Data and AI security dashboard** and review:
    - AI resources inventory
    - Recent alerts (prompt injection, data exposure, misuse)
    - Recommendations for AI resources

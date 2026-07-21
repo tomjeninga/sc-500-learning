@@ -28,10 +28,10 @@ The original repository had useful Azure security content, but it was closer to 
 Use this pattern for every topic:
 
 1. **Read** the Microsoft Learn skill bullet and repo study guide.
-2. **Build** the control in a lab subscription or developer tenant.
-3. **Validate** using Defender for Cloud, Sentinel/KQL, Purview, portal evidence, or logs.
-4. **Explain** why the chosen control is better than the distractors.
-5. **Clean up** resources and record weak areas.
+1. **Build** the control in a lab subscription or developer tenant.
+1. **Validate** using Defender for Cloud, Sentinel/KQL, Purview, portal evidence, or logs.
+1. **Explain** why the chosen control is better than the distractors.
+1. **Clean up** resources and record weak areas.
 
 ## Repository modules
 
@@ -52,7 +52,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 
 ### 1. Manage identity, access, and governance (20-25%) -> `01-identity-governance/`, `05-governance-compliance/`
 
-**Secure access to resources by using Microsoft Entra ID**
+#### Secure access to resources by using Microsoft Entra ID
+
 - [ ] Implement and configure Privileged Identity Management (PIM)
 - [ ] Implement conditional access policies
 - [ ] Implement and configure authentication methods, including MFA and passwordless
@@ -60,7 +61,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 - [ ] Manage OAuth permission grants and consent settings
 - [ ] Implement and configure managed identities for Azure resources
 
-**Secure secrets and keys by using Azure Key Vault**
+#### Secure secrets and keys by using Azure Key Vault
+
 - [ ] Deploy Key Vault
 - [ ] Configure Key Vault settings
 - [ ] Configure access to Key Vault
@@ -69,7 +71,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 - [ ] Scan for secrets by using Defender CSPM
 - [ ] Implement Defender for Key Vault
 
-**Implement governance to enforce security and regulatory compliance**
+#### Implement governance to enforce security and regulatory compliance
+
 - [ ] Implement security controls with Azure Policy (built-in and custom)
 - [ ] Evaluate regulatory compliance with Microsoft Defender for Cloud
 - [ ] Implement security standards and recommendations in Defender for Cloud
@@ -82,18 +85,21 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 
 ### 2. Secure storage, databases, and networking (25-30%) -> `02-platform-protection/`, `04-data-protection/`
 
-**Storage accounts**
+#### Storage accounts
+
 - [ ] Implement and configure security for storage accounts
 - [ ] Configure Azure Storage firewall rules
 - [ ] Implement Defender for Storage threat protection
 - [ ] Manage access to storage, including access policies
 
-**Databases**
+#### Databases
+
 - [ ] Implement platform-level security in Azure SQL
 - [ ] Configure database auditing (Azure SQL DB and SQL Managed Instance)
 - [ ] Configure Defender for Databases across Azure database services
 
-**Azure network services**
+#### Azure network services
+
 - [ ] Implement and manage NSGs and ASGs
 - [ ] Configure network access policies with Azure Virtual Network Manager
 - [ ] Configure security for an Azure Virtual WAN
@@ -106,7 +112,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 
 ### 3. Secure compute (20-25%) -> `02-platform-protection/`, `06-ai-workload-security/`
 
-**Implement security for AI**
+#### Implement security for AI
+
 - [ ] Identify overexposure of data in SharePoint
 - [ ] Identify Copilot/AI app risks using Microsoft Purview DSPM
 - [ ] Enable real-time protection for Microsoft Copilot Studio agents
@@ -119,7 +126,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 - [ ] Monitor AI security with the Data and AI security dashboard in Defender for Cloud
 - [ ] Manage agents in the Microsoft 365 admin center
 
-**Servers and VMs**
+#### Servers and VMs
+
 - [ ] Implement and configure disk encryption
 - [ ] Plan and implement Azure Bastion
 - [ ] Enable and enforce just-in-time (JIT) VM access
@@ -130,7 +138,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 - [ ] Configure VM security features (secure boot, vTPM, integrity monitoring, security type)
 - [ ] Enforce server configuration with Azure Machine Configuration
 
-**Application platform services**
+#### Application platform services
+
 - [ ] Detect container misconfigurations and runtime risks with Defender for Containers
 - [ ] Implement security controls for Azure Kubernetes Service (AKS)
 - [ ] Implement security controls for Azure Container Registry
@@ -143,7 +152,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 
 ### 4. Manage and monitor security posture (20-25%) -> `03-security-operations/`
 
-**Defender for Cloud**
+#### Defender for Cloud
+
 - [ ] Identify security risks with Defender CSPM
 - [ ] Evaluate compliance against security frameworks
 - [ ] Enable and configure Defender for Cloud workload protection plans
@@ -151,7 +161,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 - [ ] Configure Microsoft Defender Vulnerability Management for Azure VMs
 - [ ] Discover unprotected assets with Microsoft Defender EASM
 
-**Microsoft Sentinel**
+#### Microsoft Sentinel
+
 - [ ] Create and connect Sentinel workspaces
 - [ ] Assign roles in Microsoft Sentinel
 - [ ] Implement and use content hub solutions
@@ -163,7 +174,8 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 - [ ] Implement data retention in Sentinel data stores
 - [ ] Query Microsoft Purview Audit in Defender XDR
 
-**Microsoft Security Copilot**
+#### Microsoft Security Copilot
+
 - [ ] Configure workspaces for Security Copilot
 - [ ] Manage permissions and roles
 - [ ] Enable and configure plugins
@@ -188,10 +200,10 @@ Use this as your master checklist. Each bullet is an exam-measured skill. Tick t
 ## Start here
 
 1. Read `ROADMAP.md`.
-2. Complete `AZURE-SETUP.md`.
-3. Review `resources\microsoft-learn-links.md`.
-4. Start Week 1 and track wrong answers in your own study notes.
-5. Use the workspace **SC-500 Coach** agent for study debriefs and lab review.
+1. Complete `AZURE-SETUP.md`.
+1. Review `resources\microsoft-learn-links.md`.
+1. Start Week 1 and track wrong answers in your own study notes.
+1. Use the workspace **SC-500 Coach** agent for study debriefs and lab review.
 
 ## Exam readiness checklist
 

@@ -7,12 +7,12 @@ This is the newest and most differentiating part of SC-500. Older AZ-500 materia
 AI security stacks the same layers as any workload, plus AI-specific ones:
 
 1. **Data source security** - where the model or agent reads from (SharePoint, OneDrive, databases). Overshared data becomes overshared answers.
-2. **Identity** - user identity (Entra ID), workload identity (Managed Identity), and agent identity (Microsoft Entra Agent ID).
-3. **Network** - private endpoints for Foundry, storage, and databases; keyless access; no public endpoints unless required.
-4. **Model and API layer** - AI Gateway in APIM in front of models: authentication, token limits, content safety, semantic caching, observability.
-5. **Model behavior** - Foundry guardrails and content safety policies for the model or agent.
-6. **Posture and detection** - Defender for AI Service, Data and AI security dashboard, Purview DSPM, Defender XDR.
-7. **Governance** - agent management in Microsoft 365 admin center, access reviews, conditional access.
+1. **Identity** - user identity (Entra ID), workload identity (Managed Identity), and agent identity (Microsoft Entra Agent ID).
+1. **Network** - private endpoints for Foundry, storage, and databases; keyless access; no public endpoints unless required.
+1. **Model and API layer** - AI Gateway in APIM in front of models: authentication, token limits, content safety, semantic caching, observability.
+1. **Model behavior** - Foundry guardrails and content safety policies for the model or agent.
+1. **Posture and detection** - Defender for AI Service, Data and AI security dashboard, Purview DSPM, Defender XDR.
+1. **Governance** - agent management in Microsoft 365 admin center, access reviews, conditional access.
 
 Memorize this stack. Most SC-500 AI questions ask which layer the correct control lives in.
 
@@ -106,13 +106,13 @@ Central view for AI workload posture and alerts. Pulls from Defender for AI Serv
 ## Self-check questions
 
 1. What is the difference between Foundry guardrails and AI Gateway policies?
-2. Which product identifies data over-exposure to Microsoft Copilot?
-3. How do you enforce Conditional Access on an autonomous agent?
-4. Which dashboard aggregates AI security posture in Defender for Cloud?
-5. Which two Defender products cooperate to analyze agent blast radius?
-6. Where do you enable real-time protection for Copilot Studio agents?
-7. Which layer detects prompt injection attempts against a Foundry model?
-8. Why is Purview DSPM for AI not a replacement for DLP?
+1. Which product identifies data over-exposure to Microsoft Copilot?
+1. How do you enforce Conditional Access on an autonomous agent?
+1. Which dashboard aggregates AI security posture in Defender for Cloud?
+1. Which two Defender products cooperate to analyze agent blast radius?
+1. Where do you enable real-time protection for Copilot Studio agents?
+1. Which layer detects prompt injection attempts against a Foundry model?
+1. Why is Purview DSPM for AI not a replacement for DLP?
 
 ## References
 

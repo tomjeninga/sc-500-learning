@@ -27,15 +27,15 @@ Users chat with Microsoft 365 Copilot. Copilot reads from SharePoint, OneDrive, 
 ## Steps
 
 1. In the **Microsoft Purview portal**, open **Data Security Posture Management for AI**.
-2. **Turn on** the analytics and consent to data collection as prompted.
-3. Wait for the initial scan (usually 24-48 hours in a real tenant).
-4. Open **Recommendations** and review overshared content, risky prompts, and sensitive data exposure.
-5. Pick one **SharePoint oversharing** finding and drill into the file and permissions.
-6. Apply a remediation:
+1. **Turn on** the analytics and consent to data collection as prompted.
+1. Wait for the initial scan (usually 24-48 hours in a real tenant).
+1. Open **Recommendations** and review overshared content, risky prompts, and sensitive data exposure.
+1. Pick one **SharePoint oversharing** finding and drill into the file and permissions.
+1. Apply a remediation:
    - Remove "Everyone except external users" from the file, or
    - Apply a **sensitivity label** (for example, Confidential) that restricts access.
-7. Confirm the DSPM insight moves to "Mitigated" after the next scan cycle.
-8. In **Microsoft 365 admin center**, review the agents blade and confirm which agents can be installed.
+1. Confirm the DSPM insight moves to "Mitigated" after the next scan cycle.
+1. In **Microsoft 365 admin center**, review the agents blade and confirm which agents can be installed.
 
 ## Validate
 

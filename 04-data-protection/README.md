@@ -20,6 +20,7 @@ Data protection secures data **at rest, in transit, and in use** across Azure st
 ### SC-500 Exam Weight: ~15–20%
 
 Expect questions on:
+
 - CMK vs PMK: when each is used, how to rotate keys
 - Key Vault access policies vs RBAC
 - SQL TDE vs Always Encrypted (what each protects against)
@@ -59,6 +60,6 @@ Expect questions on:
 ## Start Here
 
 1. Read `study-guide.md` — understand CMK vs PMK, TDE, and DLP concepts
-2. Complete `lab-01-storage-encryption.md` — configure CMK and private endpoint
-3. Complete `lab-02-database-security.md` — secure SQL database
-4. Deploy ARM templates for IaC practice
+1. Complete `lab-01-storage-encryption.md` — configure CMK and private endpoint
+1. Complete `lab-02-database-security.md` — secure SQL database
+1. Deploy ARM templates for IaC practice

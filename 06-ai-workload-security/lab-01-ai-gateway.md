@@ -29,17 +29,17 @@ Client -> APIM (AI Gateway policies) -> Microsoft Foundry model endpoint. APIM a
 ## Steps (portal + CLI notes)
 
 1. **Create or reuse APIM instance** in the lab resource group. Enable **system-assigned managed identity**.
-2. **Grant APIM managed identity** the appropriate role on the Foundry resource (for example, Cognitive Services User).
-3. **Import the Foundry model as an API** in APIM using the built-in "Azure OpenAI/Foundry" import flow. Choose the model deployment.
-4. **Configure the back-end** to use managed identity auth to Foundry (no keys in the request).
-5. **Attach AI Gateway policies** on the API:
+1. **Grant APIM managed identity** the appropriate role on the Foundry resource (for example, Cognitive Services User).
+1. **Import the Foundry model as an API** in APIM using the built-in "Azure OpenAI/Foundry" import flow. Choose the model deployment.
+1. **Configure the back-end** to use managed identity auth to Foundry (no keys in the request).
+1. **Attach AI Gateway policies** on the API:
    - `azure-openai-token-limit` or the generative AI token limit policy.
    - `azure-openai-emit-token-metric` to send token usage metrics.
    - `azure-openai-semantic-cache-store` and `azure-openai-semantic-cache-lookup` for semantic caching.
    - Content safety policy calling Azure AI Content Safety for jailbreak and harmful content detection.
-6. **Diagnostic settings**: send APIM logs and metrics to Log Analytics and Application Insights.
-7. **Enable Defender for AI Service** in Defender for Cloud on the subscription.
-8. **Test** with a couple of prompts, including a benign one and a jailbreak attempt.
+1. **Diagnostic settings**: send APIM logs and metrics to Log Analytics and Application Insights.
+1. **Enable Defender for AI Service** in Defender for Cloud on the subscription.
+1. **Test** with a couple of prompts, including a benign one and a jailbreak attempt.
 
 ## Validate
 

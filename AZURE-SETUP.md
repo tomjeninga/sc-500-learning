@@ -11,15 +11,16 @@ This guide walks you through creating an Azure subscription, installing the requ
 ### Option A: Azure Free Account (Recommended for beginners)
 
 1. Go to [https://azure.microsoft.com/free](https://azure.microsoft.com/free)
-2. Click **Start free**
-3. Sign in with a Microsoft account (create one if needed)
-4. Enter your details:
+1. Click **Start free**
+1. Sign in with a Microsoft account (create one if needed)
+1. Enter your details:
    - Phone number (for verification)
    - Credit/debit card (for identity verification — **not charged during free tier**)
-5. Complete identity verification
-6. Accept the agreement and click **Sign up**
+1. Complete identity verification
+1. Accept the agreement and click **Sign up**
 
 **Free tier includes:**
+
 - 12 months of popular free services
 - $200 Azure credit (first 30 days)
 - 55+ always-free services
@@ -82,6 +83,7 @@ Connect-AzAccount
 ```
 
 > 💡 **Tip:** If you receive an execution policy error, run:
+>
 > ```powershell
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 > ```
@@ -129,13 +131,13 @@ az group create \
 ### Using Azure Portal
 
 1. Open [https://portal.azure.com](https://portal.azure.com)
-2. Search for **Resource groups** in the top search bar
-3. Click **+ Create**
-4. Fill in:
+1. Search for **Resource groups** in the top search bar
+1. Click **+ Create**
+1. Fill in:
    - **Subscription:** Your subscription
    - **Resource group name:** `rg-sc500-lab`
    - **Region:** East US (or your nearest region)
-5. Click **Review + create** → **Create**
+1. Click **Review + create** → **Create**
 
 ---
 
@@ -146,23 +148,23 @@ Avoid surprise costs by setting up a monthly budget alert.
 ### Using Azure Portal
 
 1. Search for **Cost Management + Billing** in the portal
-2. Select **Cost Management** → **Budgets**
-3. Click **+ Add**
-4. Configure:
+1. Select **Cost Management** → **Budgets**
+1. Click **+ Add**
+1. Configure:
    - **Name:** `sc500-lab-budget`
    - **Reset period:** Monthly
    - **Creation date:** Today
    - **Expiration date:** 6 months from now
    - **Budget amount:** $30 (adjust to your comfort level)
-5. Click **Next: Alerts**
-6. Add an alert condition:
+1. Click **Next: Alerts**
+1. Add an alert condition:
    - **Type:** Actual
    - **% of budget:** 80
    - **Action group:** Create new → enter your email
-7. Add a second alert:
+1. Add a second alert:
    - **Type:** Forecasted
    - **% of budget:** 100
-8. Click **Create**
+1. Click **Create**
 
 ### Using Az PowerShell
 
@@ -257,6 +259,7 @@ New-AzResource -ResourceId $resourceId -Properties $properties -Force
 ### 2. Use Burstable VM Sizes
 
 For lab VMs, use **B-series** (burstable) SKUs instead of D-series:
+
 - `Standard_B1s` — 1 vCPU, 1 GB RAM (~$8/month if left running)
 - `Standard_B2s` — 2 vCPU, 4 GB RAM (~$31/month)
 
@@ -273,7 +276,7 @@ Always run the cleanup script after completing a lab:
 ### 4. Avoid Expensive SKUs
 
 | Service | Avoid | Use Instead | Cost Saving |
-|---------|-------|-------------|-------------|
+| --------- | ------- | ------------- | ------------- |
 | App Gateway | WAF_v2 (production) | WAF_v2 Small (1 instance) | ~80% |
 | VPN Gateway | VpnGw1 | Basic | ~60% |
 | Firewall | Standard | — (use NSG instead) | 100% |
@@ -282,9 +285,10 @@ Always run the cleanup script after completing a lab:
 ### 5. Use Azure Cost Analysis
 
 Regularly review costs:
+
 1. Portal → Cost Management + Billing → Cost analysis
-2. Filter by Resource Group: `rg-sc500-lab`
-3. Group by: Service name
+1. Filter by Resource Group: `rg-sc500-lab`
+1. Group by: Service name
 
 ### 6. Regions with Lower Costs
 

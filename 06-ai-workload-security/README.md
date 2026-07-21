@@ -58,8 +58,8 @@ See `study-guide.md` for concepts, comparisons, and exam traps.
 ## Start here
 
 1. Read `study-guide.md`.
-2. Complete `lab-01-ai-gateway.md`.
-3. Complete `lab-02-purview-dspm-copilot.md`.
-4. Complete `lab-03-entra-agent-id.md`.
-5. Complete `lab-04-defender-for-ai.md`.
-6. Ask the SC-500 Coach for a quiz on AI security exam traps.
+1. Complete `lab-01-ai-gateway.md`.
+1. Complete `lab-02-purview-dspm-copilot.md`.
+1. Complete `lab-03-entra-agent-id.md`.
+1. Complete `lab-04-defender-for-ai.md`.
+1. Ask the SC-500 Coach for a quiz on AI security exam traps.

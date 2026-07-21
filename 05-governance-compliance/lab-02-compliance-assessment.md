@@ -13,6 +13,7 @@
 You will enable a regulatory compliance standard (CIS Microsoft Azure Foundations Benchmark) in Defender for Cloud, review control compliance, identify failing controls, and export a compliance report.
 
 **Why this matters:**
+
 - Regulatory compliance management is directly tested on SC-500
 - You need to know how to assign a compliance standard, read the dashboard, and export reports
 - Understanding which framework applies to which industry is tested conceptually
@@ -31,22 +32,23 @@ You will enable a regulatory compliance standard (CIS Microsoft Azure Foundation
 ### Step 1.1 — Open Regulatory Compliance
 
 1. In Azure Portal, search for **Microsoft Defender for Cloud**
-2. In the left menu, click **Regulatory compliance**
-3. Review the default standards already shown (usually Microsoft Cloud Security Benchmark is pre-enabled)
+1. In the left menu, click **Regulatory compliance**
+1. Review the default standards already shown (usually Microsoft Cloud Security Benchmark is pre-enabled)
 
 ### Step 1.2 — Add CIS Microsoft Azure Foundations Benchmark
 
-4. Click **Manage compliance policies** (top of the page)
-5. Select your subscription from the list
-6. Scroll down to **Industry and regulatory standards**
-7. Click **Add more standards**
-8. Search for `CIS Microsoft Azure Foundations Benchmark v2.0.0`
-9. Click **Add**
-10. Wait 5–15 minutes for the compliance data to populate
+1. Click **Manage compliance policies** (top of the page)
+1. Select your subscription from the list
+1. Scroll down to **Industry and regulatory standards**
+1. Click **Add more standards**
+1. Search for `CIS Microsoft Azure Foundations Benchmark v2.0.0`
+1. Click **Add**
+1. Wait 5–15 minutes for the compliance data to populate
 
 ### Step 1.3 — Add NIST SP 800-53 (optional)
 
 Repeat the process to add:
+
 - `NIST SP 800-53 Rev. 5`
 
 This gives you a second framework to compare.
@@ -58,26 +60,26 @@ This gives you a second framework to compare.
 ### Step 2.1 — Review overall compliance
 
 1. Return to **Regulatory compliance**
-2. Select the **CIS Microsoft Azure Foundations Benchmark** tab
-3. Review:
+1. Select the **CIS Microsoft Azure Foundations Benchmark** tab
+1. Review:
    - **Overall compliance percentage**
    - **Control domain list** (e.g., "1. Identity and Access Management", "2. Security Center")
 
 ### Step 2.2 — Drill into a failing control
 
-4. Click on a control with failing resources (shown in red/orange)
-5. For example: **"1.1 Ensure that Multi-Factor Authentication is enabled for all users with owner permissions"**
-6. Review:
+1. Click on a control with failing resources (shown in red/orange)
+1. For example: **"1.1 Ensure that Multi-Factor Authentication is enabled for all users with owner permissions"**
+1. Review:
    - **Failing resources** — which accounts don't have MFA
    - **Passing resources** — which accounts comply
    - **Related recommendations** — links to Defender for Cloud recommendations
 
 ### Step 2.3 — Remediate from compliance view
 
-7. Click on a failing recommendation within a control
-8. View the **Remediation steps** (same as in Secure Score)
-9. For MFA-related controls, click **View recommendation**
-10. Follow remediation steps (typically: enable MFA for affected users in Entra ID)
+1. Click on a failing recommendation within a control
+1. View the **Remediation steps** (same as in Secure Score)
+1. For MFA-related controls, click **View recommendation**
+1. Follow remediation steps (typically: enable MFA for affected users in Entra ID)
 
 ---
 
@@ -88,7 +90,7 @@ This gives you a second framework to compare.
 The **Microsoft Cloud Security Benchmark (MCSB)** is enabled by default and covers Microsoft's own security best practices for Azure.
 
 1. Click on **Microsoft Cloud Security Benchmark** tab
-2. Review control categories:
+1. Review control categories:
    - NS (Network Security)
    - IM (Identity Management)
    - PA (Privileged Access)
@@ -98,7 +100,7 @@ The **Microsoft Cloud Security Benchmark (MCSB)** is enabled by default and cove
    - IR (Incident Response)
    - VA (Vulnerability Assessment)
 
-3. Click on any failing control to see affected resources and remediation steps
+1. Click on any failing control to see affected resources and remediation steps
 
 ---
 
@@ -107,22 +109,23 @@ The **Microsoft Cloud Security Benchmark (MCSB)** is enabled by default and cove
 ### Step 4.1 — Download a PDF compliance report
 
 1. In Regulatory compliance, select the **CIS Benchmark** tab
-2. Click **Download report** (top of page)
-3. Select:
+1. Click **Download report** (top of page)
+1. Select:
    - **Report format:** PDF
    - **Standard:** CIS Microsoft Azure Foundations Benchmark
-4. Click **Download**
-5. ✅ A PDF report is generated showing compliance status for all controls
+1. Click **Download**
+1. ✅ A PDF report is generated showing compliance status for all controls
 
 > **Use case:** This report is often required for audit evidence — auditors want to see your compliance posture against a standard.
 
 ### Step 4.2 — Configure continuous export (optional)
 
 For ongoing compliance monitoring:
+
 1. In Defender for Cloud → **Environment settings** → Your subscription
-2. Click **Continuous export**
-3. Enable **Regulatory compliance data** → Export to Log Analytics workspace
-4. This enables KQL queries on compliance data over time
+1. Click **Continuous export**
+1. Enable **Regulatory compliance data** → Export to Log Analytics workspace
+1. This enables KQL queries on compliance data over time
 
 ---
 
@@ -146,12 +149,13 @@ Get-AzSecurityRegulatoryComplianceControl -StandardName "CIS Microsoft Azure Fou
 **Important:** Regulatory compliance scores in Defender for Cloud reflect policy evaluation only — they do NOT provide legal or contractual compliance certification.
 
 | Score | Meaning |
-|-------|---------|
+| ------- | --------- |
 | 100% | All evaluated resources pass all controls |
 | 80–99% | Most controls pass; some gaps to address |
 | Below 80% | Significant gaps; prioritize remediation |
 
 **For actual compliance certification** (e.g., ISO 27001 certificate), you need:
+
 - Third-party audit
 - Evidence collection and documentation
 - Formal audit process
@@ -163,7 +167,7 @@ Defender for Cloud helps you **prepare** for audits by showing your technical co
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-|-------|-------|-----------|
+| ------- | ------- | ----------- |
 | Standard shows 0% / no data | Still initializing | Wait 15–30 minutes after enabling |
 | "Add more standards" not visible | Insufficient permissions | Need Security Admin or Owner |
 | Controls show N/A | Resources not in scope | Some controls apply to specific service types |
@@ -174,7 +178,7 @@ Defender for Cloud helps you **prepare** for audits by showing your technical co
 ## Common Compliance Framework Quick Reference
 
 | Framework | Who Uses It | Azure Standard Name |
-|-----------|------------|-------------------|
+| ----------- | ------------ | ------------------- |
 | **ISO 27001** | Any industry, international | ISO 27001:2013 |
 | **SOC 2** | US cloud service providers | SOC TSP |
 | **CIS Benchmarks** | IT security teams | CIS Microsoft Azure Foundations Benchmark |
@@ -190,8 +194,8 @@ Defender for Cloud helps you **prepare** for audits by showing your technical co
 To remove a compliance standard:
 
 1. Defender for Cloud → Environment settings → Your subscription
-2. Find the compliance standard in the policy assignment list
-3. Delete the policy initiative assignment
+1. Find the compliance standard in the policy assignment list
+1. Delete the policy initiative assignment
 
 ```powershell
 # List compliance-related policy assignments

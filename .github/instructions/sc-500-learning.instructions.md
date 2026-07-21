@@ -37,14 +37,14 @@ This repository is a personal SC-500 study companion for Tom Jeninga. All genera
 Each new lab file should follow this structure:
 
 1. **SC-500 skill mapping** - which official bullets it covers
-2. **Learning objectives**
-3. **Prerequisites**
-4. **Architecture (in words)**
-5. **Steps** (Portal + CLI/PowerShell/Bicep alternatives)
-6. **Validate** (how to prove the control works)
-7. **Exam traps**
-8. **Cleanup**
-9. **References** (Microsoft Learn/Docs URLs)
+1. **Learning objectives**
+1. **Prerequisites**
+1. **Architecture (in words)**
+1. **Steps** (Portal + CLI/PowerShell/Bicep alternatives)
+1. **Validate** (how to prove the control works)
+1. **Exam traps**
+1. **Cleanup**
+1. **References** (Microsoft Learn/Docs URLs)
 
 ## KQL conventions
 

@@ -18,6 +18,7 @@ After reading this guide, you will understand:
 ### Platform-Managed Keys (PMK)
 
 By default, Azure encrypts all data at rest using **Platform-Managed Keys (PMK)**:
+
 - Microsoft generates and manages the keys
 - Keys are stored in Microsoft-managed key stores
 - Transparent to users — no configuration needed
@@ -38,6 +39,7 @@ Organizations with specific compliance needs (HIPAA Business Associate Agreement
 ### Key Rotation
 
 Both PMK and CMK support key rotation:
+
 - **PMK:** Microsoft rotates automatically
 - **CMK:** You can configure **automatic key rotation** in Key Vault or rotate manually
 
@@ -46,7 +48,7 @@ After rotation, Azure re-encrypts the DEK with the new key version. Data is **no
 ### CMK Support Matrix
 
 | Service | CMK Support |
-|---------|------------|
+| --------- | ------------ |
 | Azure Storage (Blob, Files, Queues, Tables) | ✅ Yes |
 | Azure SQL Database | ✅ Yes (via TDE + CMK) |
 | Azure Disk Encryption (VM disks) | ✅ Yes |
@@ -63,25 +65,27 @@ After rotation, Azure re-encrypts the DEK with the new key version. Data is **no
 Azure Key Vault is a cloud-hosted **key management service** and **secrets store**. It provides:
 
 | Object Type | Description | Examples |
-|-------------|-------------|---------|
+| ------------- | ------------- | --------- |
 | **Keys** | Cryptographic keys (RSA, EC) | CMK for storage encryption, TLS certificate private key |
 | **Secrets** | Arbitrary sensitive values | Database connection strings, API keys, passwords |
 | **Certificates** | X.509 certificates with private keys | TLS certs for App Service, App Gateway |
 
 ### Key Vault Access Control Models
 
-**Legacy: Access Policies**
+#### Legacy: Access Policies
+
 - Configured at the Key Vault level
 - Grants specific permissions (Get, List, Encrypt, Decrypt, etc.) to a principal
 - Simple but doesn't support Azure RBAC inheritance
 
-**Modern: Azure RBAC**
+#### Modern: Azure RBAC
+
 - Uses Azure role assignments on Key Vault or individual objects
 - Supports Management Group/subscription/resource group scope inheritance
 - Recommended for new deployments
 
 | RBAC Role | Permissions |
-|-----------|-------------|
+| ----------- | ------------- |
 | Key Vault Administrator | Full management + data access |
 | Key Vault Secrets Officer | Create/delete secrets |
 | Key Vault Secrets User | Read secrets |
@@ -105,7 +109,7 @@ Azure Key Vault is a cloud-hosted **key management service** and **secrets store
 ### Storage Account Security Controls
 
 | Control | Purpose |
-|---------|---------|
+| --------- | --------- |
 | **Require HTTPS** (secure transfer) | Enforces TLS for all storage access |
 | **Private Endpoint** | Removes public internet access |
 | **Network rules** | IP-based allow/deny for storage access |
@@ -118,7 +122,7 @@ Azure Key Vault is a cloud-hosted **key management service** and **secrets store
 ### Private Endpoint vs Network Rules
 
 | Approach | Public IP disabled? | DNS required? | Cost |
-|----------|--------------------|--------------|----|
+| ---------- | -------------------- | -------------- | ---- |
 | Private Endpoint | ✅ Yes (optional) | ✅ Private DNS zone | ~$7/month |
 | Network rules (IP firewall) | ❌ No | ❌ No | Free |
 | Service Endpoint | ❌ No | ❌ No | Free |
@@ -130,7 +134,7 @@ For maximum security, use **Private Endpoint** and **disable public network acce
 SAS tokens provide delegated access without sharing account keys:
 
 | SAS Type | Description |
-|----------|-------------|
+| ---------- | ------------- |
 | **Account SAS** | Grants access to multiple services (Blob, Table, Queue, File) |
 | **Service SAS** | Grants access to a single service |
 | **User delegation SAS** | Signed with Entra ID credentials — more secure than account keys |
@@ -144,12 +148,14 @@ Best practice: Use **User Delegation SAS** signed by an Entra ID identity. Avoid
 ### Transparent Data Encryption (TDE)
 
 TDE encrypts the SQL database, log files, and backups at rest:
+
 - Enabled by default for all new Azure SQL databases
 - Uses AES-256 encryption
 - Protects against offline physical storage attacks
 - Transparent to the application — no code changes needed
 
-**TDE with CMK:**
+#### TDE with CMK
+
 - Instead of Microsoft-managed key (PMK), you bring your own key from Key Vault
 - The SQL server's managed identity accesses the Key Vault key
 - Also called "Bring Your Own Key (BYOK)" for SQL TDE
@@ -159,7 +165,7 @@ TDE encrypts the SQL database, log files, and backups at rest:
 Always Encrypted protects **specific columns** at the client side:
 
 | Feature | TDE | Always Encrypted |
-|---------|-----|-----------------|
+| --------- | ----- | ----------------- |
 | Who can see plaintext | SQL Server | Only client app |
 | Database admin can see? | Yes | **No** |
 | Encryption location | At rest (storage) | In client application |
@@ -171,6 +177,7 @@ Always Encrypted protects **specific columns** at the client side:
 ### Entra ID Authentication for SQL
 
 Instead of SQL logins (username/password), Entra ID authentication uses:
+
 - **Managed identities** for applications (no credentials in code)
 - **User accounts** for human access (supports MFA and Conditional Access)
 - **Service principals** for automated processes
@@ -180,12 +187,14 @@ Instead of SQL logins (username/password), Entra ID authentication uses:
 ### SQL Auditing
 
 SQL Auditing captures:
+
 - Database logins/logouts
 - SELECT, INSERT, UPDATE, DELETE operations
 - Schema changes
 - Failed login attempts
 
 Audit logs can be sent to:
+
 - Storage account
 - Log Analytics workspace (→ Sentinel)
 - Event Hub
@@ -193,6 +202,7 @@ Audit logs can be sent to:
 ### SQL Vulnerability Assessment
 
 Part of Defender for SQL:
+
 - Scans database for misconfigurations (e.g., excessive permissions, missing encryption)
 - Reports findings as pass/fail
 - Tracks changes between scans (baseline comparison)
@@ -205,6 +215,7 @@ Part of Defender for SQL:
 ### Microsoft Purview (formerly Azure Purview)
 
 Microsoft Purview is a unified data governance service for:
+
 - Data catalog: discover and classify data across Azure, on-prem, and multi-cloud
 - Sensitivity labels: classify data with labels (Public, Internal, Confidential, Highly Confidential)
 - Data map: visualize data lineage
@@ -212,11 +223,13 @@ Microsoft Purview is a unified data governance service for:
 ### Microsoft Information Protection (MIP)
 
 MIP sensitivity labels can be applied to:
+
 - **Files** (Office documents, PDFs, emails)
 - **Emails** in Outlook
 - **Database columns** in SQL
 
 Labels can trigger:
+
 - Visual markings (headers/footers/watermarks)
 - Encryption (restrict who can open the file)
 - Content marking
@@ -226,12 +239,14 @@ Labels can trigger:
 
 DLP policies detect and prevent the sharing of sensitive information:
 
-**Components:**
+#### Components
+
 - **Sensitive information types** (SITs): Pre-built patterns for credit cards, SSNs, passport numbers, etc.
 - **Conditions:** Where to look (Exchange, SharePoint, OneDrive, Teams, SQL, etc.)
 - **Actions:** Notify user, block, generate alert, restrict sharing
 
-**Common DLP scenarios:**
+#### Common DLP scenarios
+
 - Block emails containing 10+ credit card numbers
 - Alert when documents with "Confidential" label are shared externally
 - Block downloading files with patient health information to unmanaged devices
@@ -241,7 +256,7 @@ DLP policies detect and prevent the sharing of sensitive information:
 ## Comparison: Encryption Features
 
 | Feature | Protects Against | Key Owner | Code Changes? |
-|---------|-----------------|-----------|---------------|
+| --------- | ----------------- | ----------- | --------------- |
 | PMK (default) | Physical storage theft | Microsoft | No |
 | CMK (Key Vault) | Physical + cloud provider access | Customer | No |
 | TDE (SQL) | Database file/backup theft | Microsoft or Customer | No |
@@ -254,17 +269,17 @@ DLP policies detect and prevent the sharing of sensitive information:
 
 1. Your organization's CISO requires that Microsoft cannot technically access the encryption key used for Azure SQL. What technology and configuration do you implement?
 
-2. What is the difference between TDE and Always Encrypted? Which one protects against a malicious database administrator?
+1. What is the difference between TDE and Always Encrypted? Which one protects against a malicious database administrator?
 
-3. A developer committed an Azure Storage account key to a public GitHub repository. What are your immediate remediation steps?
+1. A developer committed an Azure Storage account key to a public GitHub repository. What are your immediate remediation steps?
 
-4. A storage account with a Private Endpoint still receives traffic from the public internet. What additional step must you take?
+1. A storage account with a Private Endpoint still receives traffic from the public internet. What additional step must you take?
 
-5. What Key Vault property prevents permanent deletion of keys even by subscription admins?
+1. What Key Vault property prevents permanent deletion of keys even by subscription admins?
 
-6. Your application connects to Azure SQL using a managed identity. What steps are required to configure this, and what Azure SQL feature do you use?
+1. Your application connects to Azure SQL using a managed identity. What steps are required to configure this, and what Azure SQL feature do you use?
 
-7. What is a User Delegation SAS token, and why is it more secure than an Account SAS?
+1. What is a User Delegation SAS token, and why is it more secure than an Account SAS?
 
 ---
 

@@ -24,16 +24,16 @@
 ## Steps
 
 1. In the **Microsoft Entra admin center**, open **Agent ID** (or Enterprise applications for the agent).
-2. Confirm the agent has an Agent ID and review its **API permissions**, **owners**, and **assigned users/groups**.
-3. Create a **Conditional Access** policy:
+1. Confirm the agent has an Agent ID and review its **API permissions**, **owners**, and **assigned users/groups**.
+1. Create a **Conditional Access** policy:
    - Target: the specific Entra Agent ID (or a group containing agent identities).
    - Conditions: locations, client apps, device compliance.
    - Grant: require compliant device or require managed device.
    - Start in **Report-only mode**, then enable.
-4. In **Microsoft Copilot Studio**, enable **real-time protection** for the agent if the option is available in your tenant.
-5. In **Defender XDR**, open the **Agents / Identity** view and select the agent.
-6. Run **blast radius analysis** to see which data sources, users, and resources the agent could reach if compromised.
-7. Reduce blast radius by removing unused connectors or scoping permissions to a minimal set.
+1. In **Microsoft Copilot Studio**, enable **real-time protection** for the agent if the option is available in your tenant.
+1. In **Defender XDR**, open the **Agents / Identity** view and select the agent.
+1. Run **blast radius analysis** to see which data sources, users, and resources the agent could reach if compromised.
+1. Reduce blast radius by removing unused connectors or scoping permissions to a minimal set.
 
 ## Validate
 

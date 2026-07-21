@@ -35,10 +35,10 @@ This roadmap follows the official SC-500 study guide, not the older AZ-500 domai
 ## Session template (2-3 hours)
 
 1. **10 min** - Read the SC-500 skill bullet you are targeting from `README.md`.
-2. **35 min** - Study the linked Microsoft Learn / Docs page.
-3. **60-90 min** - Complete the hands-on task in Azure or Microsoft 365.
-4. **20 min** - Validate: logs, portal evidence, Defender recommendation, or KQL.
-5. **15 min** - Write "Why this control? What are the distractor answers?" in your study notes.
+1. **35 min** - Study the linked Microsoft Learn / Docs page.
+1. **60-90 min** - Complete the hands-on task in Azure or Microsoft 365.
+1. **20 min** - Validate: logs, portal evidence, Defender recommendation, or KQL.
+1. **15 min** - Write "Why this control? What are the distractor answers?" in your study notes.
 
 ## Lab evidence to record
 
@@ -73,4 +73,3 @@ Do not book the exam until:
 ## Next step
 
 Go to Week 1: complete `AZURE-SETUP.md`, then start Week 2. Ask the **SC-500 Coach** agent for a first-session teach-block on PIM.
-

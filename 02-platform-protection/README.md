@@ -21,6 +21,7 @@ Platform protection secures the **infrastructure layer** — the networks, compu
 ### SC-500 Exam Weight: ~20–25%
 
 Expect questions on:
+
 - NSG rules (inbound/outbound, priority, allow/deny)
 - Azure Firewall DNAT, network rules, application rules
 - WAF modes (Detection vs Prevention), OWASP rulesets
@@ -42,7 +43,7 @@ Expect questions on:
 ## Templates & Scripts
 
 | File | Purpose |
-|------|---------|
+| ------ | --------- |
 | `templates/vnet-with-nsg.json` | ARM template — VNet with subnets and NSG rules |
 | `templates/app-gateway-waf.json` | ARM template — Application Gateway v2 with WAF_v2 |
 | `scripts/deploy-network-lab.ps1` | Deploys both templates, validates deployment |
@@ -61,7 +62,7 @@ Expect questions on:
 ## Start Here
 
 1. Read `study-guide.md` — understand the network security controls
-2. Complete `lab-01-network-security.md` — build VNet + NSG infrastructure
-3. Complete `lab-02-waf-setup.md` — deploy and test WAF
-4. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
-5. Answer the self-check questions at the end of each file
+1. Complete `lab-01-network-security.md` — build VNet + NSG infrastructure
+1. Complete `lab-02-waf-setup.md` — deploy and test WAF
+1. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
+1. Answer the self-check questions at the end of each file

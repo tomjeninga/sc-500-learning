@@ -5,6 +5,7 @@ Reusable KQL queries for the four SC-500 skill areas. Paste into **Log Analytics
 Naming convention: each query header is `// [Area] [What it answers]` so you can grep for `// [Identity]` etc.
 
 > Tip: many of these queries assume the following data connectors are enabled:
+>
 > - Microsoft Entra ID (SigninLogs, AuditLogs, IdentityInfo)
 > - Microsoft Defender for Cloud (SecurityAlert, SecurityRecommendation, SecurityRegulatoryCompliance)
 > - Azure Activity (AzureActivity)

@@ -13,21 +13,21 @@
 You will create a realistic identity structure in Entra ID representing a small security team, then assign Azure RBAC roles at different scopes to test least-privilege access.
 
 **Why this matters for SC-500:**
+
 - Identity is the heaviest exam domain (~25–30%)
 - Understanding RBAC scope inheritance and least-privilege is tested heavily
 - You'll configure the foundation that Conditional Access (Lab 02) and PIM build upon
 
 **Architecture:**
 
-```
+```text
 Entra ID Tenant
 ├── User: alice-admin@<tenant>        → Global Reader (directory role)
 ├── User: bob-security@<tenant>       → Security Reader (directory role)
 ├── User: charlie-dev@<tenant>        → Contributor (subscription RBAC)
 ├── Group: grp-sc500-security-readers → Security Reader (RBAC on rg-sc500-lab)
 └── Group: grp-sc500-contributors     → Contributor (RBAC on rg-sc500-lab)
-```
-
+```text
 ---
 
 ## Prerequisites
@@ -43,26 +43,27 @@ Entra ID Tenant
 ### Step 1.1 — Navigate to Entra ID
 
 1. Open [https://portal.azure.com](https://portal.azure.com)
-2. In the search bar, type **Microsoft Entra ID** and click the result
-3. You are now on the Entra ID overview page for your tenant
+1. In the search bar, type **Microsoft Entra ID** and click the result
+1. You are now on the Entra ID overview page for your tenant
 
 ### Step 1.2 — Create User: alice-admin
 
 1. In the left menu, click **Users**
-2. Click **+ New user** → **Create new user**
-3. Fill in:
+1. Click **+ New user** → **Create new user**
+1. Fill in:
    - **User principal name:** `alice-admin` (the domain is auto-filled, e.g., `alice-admin@yourtenant.onmicrosoft.com`)
    - **Display name:** `Alice Admin`
    - **Password:** Click **Auto-generate password** and copy it
-4. Expand **Properties**:
+1. Expand **Properties**:
    - **Job title:** Security Administrator
    - **Department:** IT Security
-5. Click **Review + create** → **Create**
-6. ✅ You should see a success notification. Note the UPN.
+1. Click **Review + create** → **Create**
+1. ✅ You should see a success notification. Note the UPN.
 
 ### Step 1.3 — Create User: bob-security
 
 Repeat Step 1.2 with:
+
 - UPN: `bob-security`
 - Display name: `Bob Security`
 - Job title: SOC Analyst
@@ -70,6 +71,7 @@ Repeat Step 1.2 with:
 ### Step 1.4 — Create User: charlie-dev
 
 Repeat Step 1.2 with:
+
 - UPN: `charlie-dev`
 - Display name: `Charlie Developer`
 - Job title: Platform Engineer
@@ -77,7 +79,7 @@ Repeat Step 1.2 with:
 ### Step 1.5 — Verify Users Created
 
 1. In Entra ID → **Users**, search for "alice", "bob", and "charlie"
-2. ✅ All three users should appear in the list
+1. ✅ All three users should appear in the list
 
 ---
 
@@ -86,18 +88,19 @@ Repeat Step 1.2 with:
 ### Step 2.1 — Create grp-sc500-security-readers
 
 1. In Entra ID left menu, click **Groups**
-2. Click **+ New group**
-3. Fill in:
+1. Click **+ New group**
+1. Fill in:
    - **Group type:** Security
    - **Group name:** `grp-sc500-security-readers`
    - **Group description:** SC-500 lab — security reader access
    - **Membership type:** Assigned
-4. Click **No members selected** → search for `bob-security` → click **Select**
-5. Click **Create**
+1. Click **No members selected** → search for `bob-security` → click **Select**
+1. Click **Create**
 
 ### Step 2.2 — Create grp-sc500-contributors
 
 Repeat Step 2.1 with:
+
 - **Group name:** `grp-sc500-contributors`
 - **Group description:** SC-500 lab — contributor access
 - **Members:** Add `charlie-dev`
@@ -109,33 +112,34 @@ Repeat Step 2.1 with:
 ### Step 3.1 — Assign Security Reader to the security group on rg-sc500-lab
 
 1. Open [https://portal.azure.com](https://portal.azure.com)
-2. Search for **Resource groups** → click `rg-sc500-lab`
-3. In the left menu, click **Access control (IAM)**
-4. Click **+ Add** → **Add role assignment**
-5. In the **Role** tab:
+1. Search for **Resource groups** → click `rg-sc500-lab`
+1. In the left menu, click **Access control (IAM)**
+1. Click **+ Add** → **Add role assignment**
+1. In the **Role** tab:
    - Search for `Security Reader`
    - Click on it, then click **Next**
-6. In the **Members** tab:
+1. In the **Members** tab:
    - **Assign access to:** User, group, or service principal
    - Click **+ Select members**
    - Search for `grp-sc500-security-readers`
    - Click **Select**
-7. Click **Review + assign** → **Review + assign**
-8. ✅ You should see a success notification
+1. Click **Review + assign** → **Review + assign**
+1. ✅ You should see a success notification
 
 ### Step 3.2 — Assign Contributor to the contributors group on rg-sc500-lab
 
 Repeat Step 3.1 with:
+
 - Role: `Contributor`
 - Members: `grp-sc500-contributors`
 
 ### Step 3.3 — Assign Reader to alice-admin at Subscription scope
 
 1. Search for **Subscriptions** → click your subscription
-2. Click **Access control (IAM)** → **+ Add** → **Add role assignment**
-3. Role: `Reader`
-4. Members: `alice-admin`
-5. Click **Review + assign** → **Review + assign**
+1. Click **Access control (IAM)** → **+ Add** → **Add role assignment**
+1. Role: `Reader`
+1. Members: `alice-admin`
+1. Click **Review + assign** → **Review + assign**
 
 ---
 
@@ -144,14 +148,15 @@ Repeat Step 3.1 with:
 ### Step 4.1 — Assign Global Reader to alice-admin
 
 1. In Entra ID → **Roles and administrators**
-2. Search for `Global Reader`
-3. Click **Global Reader** → **+ Add assignments**
-4. Search for `alice-admin` → Click **Select**
-5. Click **Add**
+1. Search for `Global Reader`
+1. Click **Global Reader** → **+ Add assignments**
+1. Search for `alice-admin` → Click **Select**
+1. Click **Add**
 
 ### Step 4.2 — Assign Security Reader (Entra ID role) to bob-security
 
 Repeat Step 4.1 with:
+
 - Role: `Security Reader`
 - User: `bob-security`
 
@@ -162,8 +167,8 @@ Repeat Step 4.1 with:
 ### Step 5.1 — Verify role assignments via Azure Portal
 
 1. Go back to `rg-sc500-lab` → **Access control (IAM)**
-2. Click **Role assignments** tab
-3. ✅ You should see:
+1. Click **Role assignments** tab
+1. ✅ You should see:
    - `grp-sc500-security-readers` — Security Reader
    - `grp-sc500-contributors` — Contributor
    - `alice-admin` (inherited from subscription) — Reader
@@ -171,9 +176,9 @@ Repeat Step 4.1 with:
 ### Step 5.2 — Check effective permissions for alice-admin
 
 1. Still on `rg-sc500-lab` → **Access control (IAM)**
-2. Click **Check access** tab
-3. Search for `alice-admin`
-4. ✅ You should see Reader access (inherited from subscription)
+1. Click **Check access** tab
+1. Search for `alice-admin`
+1. ✅ You should see Reader access (inherited from subscription)
 
 ---
 
@@ -187,16 +192,14 @@ az deployment group create \
   --resource-group rg-sc500-lab \
   --template-file templates/rbac-assignments.json \
   --parameters principalId="<object-id-of-grp-sc500-security-readers>"
-```
-
+```text
 ```powershell
 # Deploy via Az PowerShell
 New-AzResourceGroupDeployment `
   -ResourceGroupName "rg-sc500-lab" `
   -TemplateFile ".\templates\rbac-assignments.json" `
   -principalId "<object-id-of-grp-sc500-security-readers>"
-```
-
+```text
 ---
 
 ## PowerShell Script Deployment
@@ -206,23 +209,25 @@ Run the automated setup script:
 ```powershell
 # Run the setup script (creates users, groups, RBAC assignments)
 .\scripts\setup-entra-id-lab.ps1 -ResourceGroupName "rg-sc500-lab" -Location "eastus"
-```
-
+```text
 ---
 
 ## Validation Steps
 
 1. **Check IAM assignments:**
+
    ```powershell
    Get-AzRoleAssignment -ResourceGroupName "rg-sc500-lab" | Format-Table DisplayName, RoleDefinitionName, Scope
    ```
 
-2. **Check Entra ID groups:**
+1. **Check Entra ID groups:**
+
    ```powershell
    Get-AzADGroup -DisplayName "grp-sc500-security-readers" | Select-Object DisplayName, Id
    ```
 
-3. **Check Entra ID users:**
+1. **Check Entra ID users:**
+
    ```powershell
    Get-AzADUser -DisplayName "Alice Admin" | Select-Object DisplayName, UserPrincipalName
    ```
@@ -232,7 +237,7 @@ Run the automated setup script:
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-|-------|-------|-----------|
+| ------- | ------- | ----------- |
 | "You do not have permission to create users" | Missing User Administrator role | Request User Admin or Global Admin from your tenant owner |
 | "Cannot assign role at subscription scope" | Missing Owner or User Access Administrator | Assign at resource group scope only |
 | Users not appearing in group | Replication delay | Wait 1–2 minutes and refresh |
@@ -255,13 +260,12 @@ Remove-AzADUser -UPNOrObjectId "charlie-dev@yourtenant.onmicrosoft.com"
 # Remove groups
 Remove-AzADGroup -DisplayName "grp-sc500-security-readers"
 Remove-AzADGroup -DisplayName "grp-sc500-contributors"
-```
-
+```text
 Or run the shared cleanup script:
+
 ```powershell
 .\scripts\cleanup-resources.ps1
-```
-
+```text
 ---
 
 ## Key Takeaways

@@ -17,14 +17,14 @@ Guides Tom through a single high-signal study block for **Exam SC-500: Implement
 ## Procedure
 
 1. Ask which SC-500 skill area Tom wants (default to next weakest based on prior notes).
-2. Confirm mode: **Teach**, **Quiz**, **Lab debrief**, **Study plan**, or **KQL drill**.
-3. Anchor the session to a specific bullet from the SC-500 skills index in `README.md`.
-4. Follow the response shape defined in `.github/agents/sc-500-coach.agent.md`.
-5. End the session with:
+1. Confirm mode: **Teach**, **Quiz**, **Lab debrief**, **Study plan**, or **KQL drill**.
+1. Anchor the session to a specific bullet from the SC-500 skills index in `README.md`.
+1. Follow the response shape defined in `.github/agents/sc-500-coach.agent.md`.
+1. End the session with:
    - 1 sentence on what Tom now knows he did not know before.
    - 1 exam trap to remember.
    - 1 concrete next step (a lab, a Microsoft Learn module, or a KQL query).
-6. Suggest updating a personal wrong-answer journal if the mode was Quiz.
+1. Suggest updating a personal wrong-answer journal if the mode was Quiz.
 
 ## References
 

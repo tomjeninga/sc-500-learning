@@ -3,7 +3,7 @@
 ## Exam overview
 
 | Item | Details |
-|------|---------|
+| ------ | --------- |
 | **Exam Code** | SC-500 |
 | **Full Name** | Implementing End-to-End Security Controls for Cloud and AI Workloads |
 | **Certification** | Microsoft Certified: Cloud and AI Security Engineer Associate |
@@ -18,7 +18,7 @@
 ## Exam skill areas (current weights)
 
 | Skill area | Approximate weight |
-|--------|-------------------|
+| -------- | ------------------- |
 | Manage identity, access, and governance | 20-25% |
 | Secure storage, databases, and networking | 25-30% |
 | Secure compute (servers, containers, apps, AI) | 20-25% |
@@ -31,31 +31,37 @@
 ## Question Types
 
 ### 1. Multiple Choice (Single Answer)
+
 Most common format. Select the ONE best answer.
 
 **Strategy:** Eliminate obviously wrong answers first. Look for qualifier words like "MOST", "BEST", "LEAST", "NOT".
 
 ### 2. Multiple Choice (Multiple Answers)
+
 "Select ALL that apply" or "Select TWO answers."
 
 **Strategy:** Read instructions carefully — partial credit is NOT given. Get all required answers correct.
 
 ### 3. Drag and Drop / Ordering
+
 Match actions to outcomes, or order steps in a process.
 
 **Strategy:** Use process of elimination. Map items you know confidently first.
 
 ### 4. Hot Spot / Graphic
+
 Click on the correct area of a diagram, screenshot, or portal interface.
 
 **Strategy:** These often test portal navigation knowledge — know where settings are located.
 
 ### 5. Case Studies
+
 Multi-part questions based on a scenario with background information.
 
 **Strategy:** Read the question FIRST before reading the scenario. This helps you know what to look for.
 
 ### 6. Build List (Ordering)
+
 Arrange steps in correct order for a process.
 
 **Strategy:** SC-500 commonly tests: remediation task workflow, PIM activation workflow, analytics rule creation steps.
@@ -74,7 +80,7 @@ Arrange steps in correct order for a process.
 ### Time Distribution Strategy
 
 | Question Type | Time Budget |
-|---------------|------------|
+| --------------- | ------------ |
 | Standard MC | 1.5–2 min |
 | Multiple select | 2–3 min |
 | Case study (full set) | 8–12 min |
@@ -93,7 +99,7 @@ Arrange steps in correct order for a process.
 ### Identity & Governance
 
 | Gotcha | What You Need to Know |
-|--------|----------------------|
+| -------- | ---------------------- |
 | Entra ID roles vs Azure RBAC | They are separate systems. Entra ID roles manage directory objects; Azure RBAC manages Azure resources. |
 | Security Defaults vs Conditional Access | Mutually exclusive. You must disable Security Defaults before creating CA policies. |
 | PIM eligible vs active | Eligible = can activate; Active = currently activated. Permanent = always active. |
@@ -103,7 +109,7 @@ Arrange steps in correct order for a process.
 ### Platform Protection
 
 | Gotcha | What You Need to Know |
-|--------|----------------------|
+| -------- | ---------------------- |
 | NSG default rules | Outbound internet is ALLOWED by default. You must explicitly deny it. |
 | NSG on NIC vs Subnet | Both can have NSGs. When both apply, inbound: subnet → NIC; outbound: NIC → subnet. |
 | Azure Firewall vs WAF | Firewall is L3/L4 + FQDN filtering. WAF is L7 HTTP/S only with OWASP rules. |
@@ -114,7 +120,7 @@ Arrange steps in correct order for a process.
 ### Security Operations
 
 | Gotcha | What You Need to Know |
-|--------|----------------------|
+| -------- | ---------------------- |
 | Defender for Cloud plan confusion | Know which plan covers which workload — Servers, SQL, Storage, Containers are separate plans. |
 | JIT VM Access | Part of Defender for Servers, not Defender CSPM. |
 | Sentinel analytics rule types | Scheduled (periodic KQL), NRT (near-real-time), Fusion (ML multi-stage), Microsoft Security (Defender alerts), Anomaly (UEBA). |
@@ -124,7 +130,7 @@ Arrange steps in correct order for a process.
 ### Data Protection
 
 | Gotcha | What You Need to Know |
-|--------|----------------------|
+| -------- | ---------------------- |
 | TDE vs Always Encrypted | TDE: DBAs can read data. Always Encrypted: DBAs CANNOT read encrypted columns. |
 | CMK key rotation impact | Rotating CMK does NOT re-encrypt the underlying data — only the DEK wrapper changes. |
 | Soft delete and purge protection | Soft delete: deleted items recoverable for N days. Purge protection: prevents permanent deletion even by admins. |
@@ -134,7 +140,7 @@ Arrange steps in correct order for a process.
 ### Governance & Compliance
 
 | Gotcha | What You Need to Know |
-|--------|----------------------|
+| -------- | ---------------------- |
 | Deny vs Audit effects | Deny blocks creation. Audit logs non-compliance. Remediation tasks fix existing resources. |
 | AuditIfNotExists | Audits if a RELATED resource does NOT exist (e.g., VM without a diagnostic extension). |
 | DeployIfNotExists | Deploys a related resource if it doesn't exist. Needs a managed identity with appropriate permissions. |
@@ -156,10 +162,10 @@ Arrange steps in correct order for a process.
 
 ## Keywords That Signal the Answer
 
-### When you see these words → think these answers:
+### When you see these words → think these answers
 
 | Question keyword | Likely answer |
-|-----------------|--------------|
+| ----------------- | -------------- |
 | "Just-in-time" | PIM (Entra ID roles) or JIT VM Access (Defender) |
 | "Least privilege" | Custom role, resource-level RBAC, PIM eligible |
 | "Phishing-resistant MFA" | FIDO2 security keys or certificate-based auth |
@@ -194,7 +200,7 @@ Arrange steps in correct order for a process.
 ## Practice Exam Sources
 
 | Source | Cost | Notes |
-|--------|------|-------|
+| -------- | ------ | ------- |
 | [Microsoft Learn (free questions)](https://learn.microsoft.com/en-us/credentials/certifications/exams/sc-500) | Free | Practice assessment at end of each learning path |
 | MeasureUp SC-500 | Paid (~$99) | Most exam-like; highly recommended |
 | Whizlabs SC-500 | Paid (~$25) | Good volume of questions |
@@ -208,12 +214,14 @@ Arrange steps in correct order for a process.
 ## Exam Day Checklist
 
 ### Night Before
+
 - [ ] Get 7–8 hours sleep
 - [ ] Confirm exam time and location (or test your online proctoring setup)
 - [ ] Review glossary.md for any unfamiliar terms
 - [ ] Do NOT cram new material — review only what you know
 
 ### Exam Day (Online Proctoring)
+
 - [ ] Clean desk — only water allowed (no food)
 - [ ] Remove all notes/books from view
 - [ ] Solid internet connection
@@ -222,6 +230,7 @@ Arrange steps in correct order for a process.
 - [ ] Close all programs except the exam
 
 ### Exam Day (Test Center)
+
 - [ ] Arrive 15 minutes early
 - [ ] Bring valid government ID (passport or driver's license)
 - [ ] Lockers provided for personal items
@@ -232,7 +241,7 @@ Arrange steps in correct order for a process.
 ## Score Interpretation
 
 | Score | Interpretation |
-|-------|---------------|
+| ------- | --------------- |
 | Below 700 | Not passing — review failing domains, retry in 24 hours minimum (first retake), 14 days (second retake) |
 | 700–749 | Passing — certified! Consider reviewing weak areas for professional confidence. |
 | 750–850 | Good pass — solid knowledge across domains |
@@ -242,13 +251,15 @@ Arrange steps in correct order for a process.
 
 ## After the Exam
 
-### If you pass:
+### If you pass
+
 - Certificate available in your Microsoft Learn profile within 24–48 hours
 - Badge available from Credly for LinkedIn
 - Certification valid for 1 year (renew via free online assessment)
 - Consider SC-100 (Microsoft Cybersecurity Architect) as next step
 
-### If you don't pass:
+### If you don't pass
+
 - Review your score report — it shows percentages per domain
 - Focus study on domains below 70%
 - Wait 24 hours before retake (first attempt), 14 days for subsequent retakes

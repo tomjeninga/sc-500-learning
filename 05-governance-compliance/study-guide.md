@@ -24,7 +24,7 @@ Azure Policy evaluates resources against defined rules and enforces organization
 ### Policy Components
 
 | Component | Description |
-|-----------|-------------|
+| ----------- | ------------- |
 | **Policy definition** | The rule itself — conditions to evaluate + effect to apply |
 | **Initiative (policy set)** | A collection of policy definitions to achieve a compliance goal |
 | **Assignment** | Binding a definition or initiative to a scope (subscription, RG, MG) |
@@ -34,13 +34,12 @@ Azure Policy evaluates resources against defined rules and enforces organization
 
 ### Policy Scope
 
-```
+```text
 Management Group
   └── Subscription
         └── Resource Group
               └── Resource
-```
-
+```text
 Policies assigned at a higher scope apply to all resources at lower scopes.
 
 ---
@@ -50,7 +49,7 @@ Policies assigned at a higher scope apply to all resources at lower scopes.
 Effects determine what happens when the policy conditions are met:
 
 | Effect | Action | Example Use Case |
-|--------|--------|-----------------|
+| -------- | -------- | ----------------- |
 | **Deny** | Block the CREATE/UPDATE operation | Prevent storage accounts without HTTPS |
 | **Audit** | Allow but create a compliance finding | Log VMs not using managed disks |
 | **AuditIfNotExists** | Audit if a related resource doesn't exist | Audit VMs without Defender extension |
@@ -62,16 +61,16 @@ Effects determine what happens when the policy conditions are met:
 ### Effect Priority Order
 
 When multiple policies apply to a resource:
-```
-Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists → Modify
-```
 
+```text
+Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists → Modify
+```text
 > **Exam tip:** Deny is evaluated before Audit. If a resource fails a Deny policy, it is blocked — Audit effects for the same condition don't matter.
 
 ### Deny vs Audit Decision
 
 | Question | Answer |
-|----------|--------|
+| ---------- | -------- |
 | "Log non-compliant resources" | Use **Audit** |
 | "Block non-compliant resources" | Use **Deny** |
 | "Fix automatically on create" | Use **DeployIfNotExists** or **Modify** |
@@ -110,12 +109,11 @@ Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists �
     }
   }
 }
-```
-
+```text
 ### Built-In vs Custom Policies
 
 | | Built-In | Custom |
-|-|---------|--------|
+| - | --------- | -------- |
 | Created by | Microsoft | You |
 | Available scope | All subscriptions | Your tenant/MG/subscription |
 | Examples | "Require TLS 1.2 for storage", "Allowed locations" | "Require CostCenter tag", company-specific rules |
@@ -124,7 +122,7 @@ Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists �
 ### Key Built-In Policies for SC-500
 
 | Policy | Effect |
-|--------|--------|
+| -------- | -------- |
 | "Require secure transfer to storage accounts" | Deny |
 | "Ensure SSL connection is enabled for PostgreSQL" | Audit |
 | "Deploy Log Analytics agent for Windows VMs" | DeployIfNotExists |
@@ -138,13 +136,15 @@ Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists �
 
 An initiative groups related policies to achieve a broader compliance goal.
 
-**Example: CIS Microsoft Azure Foundations Benchmark initiative**
+#### Example: CIS Microsoft Azure Foundations Benchmark initiative
+
 - Contains 100+ individual policies
 - Each maps to a CIS control
 - Assigned at subscription level
 - Generates compliance score
 
-**Microsoft provides pre-built regulatory compliance initiatives for:**
+#### Microsoft provides pre-built regulatory compliance initiatives for:
+
 - CIS Microsoft Azure Foundations Benchmark
 - ISO 27001:2013
 - NIST SP 800-53
@@ -160,13 +160,14 @@ An initiative groups related policies to achieve a broader compliance goal.
 ### What are Management Groups?
 
 Management Groups are containers above subscriptions that let you:
+
 - Apply policies across multiple subscriptions at once
 - Delegate RBAC at a higher scope
 - Organize subscriptions by business unit, environment, or geography
 
 ### Default Hierarchy
 
-```
+```text
 Tenant Root Group (automatically created)
 ├── Management Group: Corp
 │   ├── Management Group: Production
@@ -176,11 +177,11 @@ Tenant Root Group (automatically created)
 │       └── Subscription: Sub-DevTest-1
 └── Management Group: Sandbox
     └── Subscription: Sub-Sandbox-1
-```
-
+```text
 ### Policy Inheritance
 
 A policy assigned to `Corp` management group:
+
 - Applies to all child management groups (Production, Dev-Test)
 - Applies to all subscriptions within those groups
 - Applies to all resource groups and resources in those subscriptions
@@ -188,6 +189,7 @@ A policy assigned to `Corp` management group:
 ### Azure Landing Zones
 
 The Azure Landing Zone (ALZ) architecture uses Management Groups to provide:
+
 - Consistent governance across subscriptions
 - Pre-configured policy initiatives (security, networking, identity)
 - Platform management subscriptions (hub, identity, management)
@@ -201,24 +203,25 @@ The Azure Landing Zone (ALZ) architecture uses Management Groups to provide:
 
 The Defender for Cloud Regulatory Compliance dashboard shows how your environment maps to compliance frameworks.
 
-**How it works:**
+#### How it works:
+
 1. You enable a compliance standard (initiative) in Defender for Cloud
-2. Azure Policy evaluates your resources against the controls
-3. The dashboard shows pass/fail for each control
-4. You drill into failing controls to see which resources need remediation
+1. Azure Policy evaluates your resources against the controls
+1. The dashboard shows pass/fail for each control
+1. You drill into failing controls to see which resources need remediation
 
 ### Enabling a Compliance Standard
 
 1. Defender for Cloud → **Regulatory compliance**
-2. Click **Manage compliance policies**
-3. Select your subscription
-4. Under **Azure Policy Add-ons**, find the standard (e.g., PCI-DSS)
-5. Toggle to **On**
+1. Click **Manage compliance policies**
+1. Select your subscription
+1. Under **Azure Policy Add-ons**, find the standard (e.g., PCI-DSS)
+1. Toggle to **On**
 
 ### Reading the Dashboard
 
 | Column | Description |
-|--------|-------------|
+| -------- | ------------- |
 | **Control** | Compliance control (e.g., "1.1 Implement a security policy") |
 | **Passing resources** | Resources compliant with this control |
 | **Failing resources** | Resources not meeting the control |
@@ -230,7 +233,7 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 ## 7. Common Compliance Frameworks
 
 | Framework | Relevant For | Key SC-500 Relevance |
-|-----------|-------------|---------------------|
+| ----------- | ------------- | --------------------- |
 | **ISO 27001:2013** | International general security standard | Broad information security controls |
 | **SOC 2 Type II** | Service organizations storing customer data | Trust service criteria (Security, Availability, etc.) |
 | **CIS Benchmarks** | Technical hardening guidelines | Specific configuration checks for Azure resources |
@@ -245,7 +248,7 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 ## Comparison: Policy Effects
 
 | Scenario | Recommended Effect |
-|----------|-------------------|
+| ---------- | ------------------- |
 | Block resource creation if non-compliant | **Deny** |
 | Report non-compliant resources without blocking | **Audit** |
 | Report when a required resource doesn't exist | **AuditIfNotExists** |
@@ -259,17 +262,17 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 
 1. What is the difference between a policy **definition** and a policy **assignment**?
 
-2. You want to ensure all new VMs in your subscription are deployed with disk encryption enabled. Which policy effect would you use to enforce this, and what alternative effect would only log violations?
+1. You want to ensure all new VMs in your subscription are deployed with disk encryption enabled. Which policy effect would you use to enforce this, and what alternative effect would only log violations?
 
-3. A resource has been created without the required `CostCenter` tag. A `Modify` policy is assigned to add the tag, but the resource was created before the policy was assigned. What must you do to fix the existing resource?
+1. A resource has been created without the required `CostCenter` tag. A `Modify` policy is assigned to add the tag, but the resource was created before the policy was assigned. What must you do to fix the existing resource?
 
-4. How does policy assignment at the Management Group level affect subscriptions that are members of that group?
+1. How does policy assignment at the Management Group level affect subscriptions that are members of that group?
 
-5. What is the difference between a **policy set (initiative)** and an individual policy definition?
+1. What is the difference between a **policy set (initiative)** and an individual policy definition?
 
-6. A SOC analyst asks you to prove that your Azure environment meets ISO 27001 requirements. What Defender for Cloud feature do you use?
+1. A SOC analyst asks you to prove that your Azure environment meets ISO 27001 requirements. What Defender for Cloud feature do you use?
 
-7. What is the purpose of the **AuditIfNotExists** effect and give an example of where it's used?
+1. What is the purpose of the **AuditIfNotExists** effect and give an example of where it's used?
 
 ---
 

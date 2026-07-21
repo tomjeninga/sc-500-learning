@@ -27,7 +27,7 @@ Defender for Cloud is Microsoft's **Cloud Security Posture Management (CSPM)** a
 ### Defender for Cloud Plans
 
 | Plan | What it Protects | Key Features |
-|------|-----------------|-------------|
+| ------ | ----------------- | ------------- |
 | **Foundational CSPM** | Azure resources posture | Secure Score, recommendations (free) |
 | **Defender CSPM** | Multi-cloud posture | Attack path analysis, cloud security explorer, data sensitivity |
 | **Defender for Servers Plan 1** | Azure VMs + on-prem | MDE integration, just-in-time VM access |
@@ -45,6 +45,7 @@ Defender for Cloud is Microsoft's **Cloud Security Posture Management (CSPM)** a
 ### Just-in-Time (JIT) VM Access
 
 Part of Defender for Servers Plan 1/2:
+
 - Management ports (22, 3389, 5985, 5986) are closed by default
 - User requests access via Portal, API, or PowerShell
 - Defender temporarily opens the port for the requester's IP only
@@ -61,6 +62,7 @@ This dramatically reduces the attack surface for VM management.
 Secure Score is a measurement (as a percentage) of how well your Azure environment aligns with security best practices. Higher score = better security posture.
 
 **How it's calculated:**
+
 - Microsoft publishes security controls (groups of related recommendations)
 - Each control has a maximum score (e.g., "Enable MFA" = 10 points)
 - You earn points by implementing the recommendations within a control
@@ -69,6 +71,7 @@ Secure Score is a measurement (as a percentage) of how well your Azure environme
 ### Understanding Recommendations
 
 Each Secure Score recommendation has:
+
 - **Severity:** High / Medium / Low
 - **Affected resources:** Which subscriptions/resources fail the check
 - **Remediation steps:** How to fix it (Quick Fix button for some)
@@ -77,10 +80,11 @@ Each Secure Score recommendation has:
 ### Improving Secure Score
 
 Priority order for maximum impact:
+
 1. Fix all **High severity** recommendations
-2. Focus on controls with most **potential score increase**
-3. Enable MFA (highest score control in most tenants)
-4. Enable Defender for Cloud plans (each plan adds recommendations)
+1. Focus on controls with most **potential score increase**
+1. Enable MFA (highest score control in most tenants)
+1. Enable Defender for Cloud plans (each plan adds recommendations)
 
 ---
 
@@ -91,14 +95,15 @@ Priority order for maximum impact:
 Microsoft Sentinel is a **cloud-native SIEM (Security Information and Event Management)** and **SOAR (Security Orchestration, Automation, and Response)** solution.
 
 | Capability | Description |
-|-----------|-------------|
+| ----------- | ------------- |
 | **SIEM** | Collect, aggregate, and analyze security data from across your environment |
 | **SOAR** | Automate responses to security incidents using playbooks (Logic Apps) |
 | **Threat Intelligence** | Ingest threat feeds for IoC matching |
 | **User Entity Behavior Analytics (UEBA)** | Detect anomalous behavior |
 
 **Architecture:**
-```
+
+```text
 Data Sources (connectors)
     ↓
 Log Analytics Workspace (data store)
@@ -108,14 +113,13 @@ Sentinel Analytics Rules (detection)
 Incidents (investigations)
     ↓
 Playbooks / Automation Rules (response)
-```
-
+```text
 ### Log Analytics Workspace
 
 Sentinel runs on top of a Log Analytics workspace. The workspace is where log data is stored in tables:
 
 | Table | Data Source | Use Case |
-|-------|-------------|---------|
+| ------- | ------------- | --------- |
 | `SecurityEvent` | Windows event logs | Logon events, process creation |
 | `SigninLogs` | Entra ID | Sign-in success/failure, location |
 | `AuditLogs` | Entra ID | User/role changes |
@@ -130,7 +134,7 @@ Sentinel runs on top of a Log Analytics workspace. The workspace is where log da
 Connectors ingest data into Sentinel's Log Analytics workspace:
 
 | Connector Type | Examples | Configuration |
-|----------------|---------|---------------|
+| ---------------- | --------- | --------------- |
 | **Native connectors** | Azure Activity, Entra ID, Defender for Cloud | One-click enable |
 | **API connectors** | Microsoft 365 Defender, Defender for Cloud Apps | OAuth-based |
 | **Agent-based** | Windows/Linux VMs, on-prem SIEM | Install MMA/AMA agent |
@@ -142,7 +146,7 @@ Connectors ingest data into Sentinel's Log Analytics workspace:
 Analytics rules define how Sentinel detects threats:
 
 | Rule Type | Description | Use Case |
-|-----------|-------------|---------|
+| ----------- | ------------- | --------- |
 | **Scheduled** | KQL query runs on a schedule, creates incidents | Most custom detections |
 | **Near Real-Time (NRT)** | Runs every minute | High-urgency detections |
 | **Fusion** | ML-based correlation across multiple signals | Advanced multi-stage attacks |
@@ -164,12 +168,11 @@ TableName
 | summarize Count = count() by Column
 | order by Count desc
 | take 10
-```
-
+```text
 ### Key Operators
 
 | Operator | Description | Example |
-|----------|-------------|---------|
+| ---------- | ------------- | --------- |
 | `where` | Filter rows | `where TimeGenerated > ago(1h)` |
 | `project` | Select/rename columns | `project UserName, TimeGenerated` |
 | `summarize` | Aggregate data | `summarize count() by bin(TimeGenerated, 1h)` |
@@ -184,6 +187,7 @@ TableName
 ### Common Security Queries
 
 **Failed sign-ins in last 24 hours:**
+
 ```kql
 SigninLogs
 | where TimeGenerated > ago(24h)
@@ -191,9 +195,9 @@ SigninLogs
 | summarize FailureCount = count() by UserPrincipalName, ResultDescription
 | where FailureCount > 5
 | order by FailureCount desc
-```
-
+```text
 **Azure resource deletions:**
+
 ```kql
 AzureActivity
 | where TimeGenerated > ago(24h)
@@ -201,9 +205,9 @@ AzureActivity
 | where ActivityStatusValue == "Success"
 | project TimeGenerated, Caller, ResourceGroup, ResourceId, OperationNameValue
 | order by TimeGenerated desc
-```
-
+```text
 **VM sign-in failures:**
+
 ```kql
 SecurityEvent
 | where TimeGenerated > ago(1h)
@@ -211,8 +215,7 @@ SecurityEvent
 | summarize FailureCount = count() by TargetAccount, IpAddress
 | where FailureCount > 10  // Potential brute force
 | order by FailureCount desc
-```
-
+```text
 ---
 
 ## 5. Playbooks and Automation
@@ -222,6 +225,7 @@ SecurityEvent
 A playbook is a **Logic App** triggered by Sentinel alerts or incidents. It automates response actions:
 
 **Example playbook flows:**
+
 - Alert triggered → Block IP in firewall → Notify SOC via Teams
 - Incident created → Get user manager → Send approval email → Disable account if approved
 - Alert triggered → Enrich IP from threat intelligence → Update incident severity
@@ -229,6 +233,7 @@ A playbook is a **Logic App** triggered by Sentinel alerts or incidents. It auto
 ### Automation Rules
 
 Automation rules (simpler than playbooks) can:
+
 - Automatically assign incidents to analysts
 - Add tags to incidents
 - Change incident severity or status
@@ -238,7 +243,7 @@ Automation rules (simpler than playbooks) can:
 ### Trigger Types
 
 | Trigger | When Used |
-|---------|----------|
+| --------- | ---------- |
 | **When an alert is created** | Run playbook immediately on alert |
 | **When an incident is created** | Run on new incident creation |
 | **When an incident is updated** | Run when incident changes (status, severity) |
@@ -248,7 +253,7 @@ Automation rules (simpler than playbooks) can:
 ## SIEM vs SOAR
 
 | Aspect | SIEM | SOAR |
-|--------|------|------|
+| -------- | ------ | ------ |
 | Primary function | Collect, correlate, detect | Automate and orchestrate response |
 | Data type | Logs, events | Alerts, incidents |
 | Human involvement | High (analyst reviews) | Low (automation) |
@@ -263,17 +268,17 @@ Sentinel fulfils **both** SIEM and SOAR roles.
 
 1. What is the difference between Defender for Cloud's CSPM and CWPP functionality?
 
-2. Your Secure Score is 45%. The single recommendation "Enable MFA for users with administrative roles" would increase it by 12 points. What does this tell you about the recommendation?
+1. Your Secure Score is 45%. The single recommendation "Enable MFA for users with administrative roles" would increase it by 12 points. What does this tell you about the recommendation?
 
-3. Write a KQL query to find all Azure Resource Manager operations in the last 7 days where a resource group was deleted.
+1. Write a KQL query to find all Azure Resource Manager operations in the last 7 days where a resource group was deleted.
 
-4. What is the difference between a Scheduled analytics rule and a Near Real-Time (NRT) rule?
+1. What is the difference between a Scheduled analytics rule and a Near Real-Time (NRT) rule?
 
-5. Your SOC wants to automatically create a Microsoft Teams notification every time a Sentinel incident of High severity is created. What Sentinel feature do you use?
+1. Your SOC wants to automatically create a Microsoft Teams notification every time a Sentinel incident of High severity is created. What Sentinel feature do you use?
 
-6. A junior analyst notices Sentinel is showing many false positive alerts from a known vulnerability scanner IP. How do you suppress these without disabling the analytics rule?
+1. A junior analyst notices Sentinel is showing many false positive alerts from a known vulnerability scanner IP. How do you suppress these without disabling the analytics rule?
 
-7. What Log Analytics table stores Azure Activity log data?
+1. What Log Analytics table stores Azure Activity log data?
 
 ---
 

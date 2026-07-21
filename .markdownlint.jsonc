@@ -10,5 +10,7 @@
   // Allow duplicate headings across sections (e.g. "Objectives" per lab).
   "MD024": { "siblings_only": true },
   // Ordered lists can use 1. everywhere.
-  "MD029": { "style": "one" }
+  "MD029": { "style": "one" },
+  // Table pipe alignment style is not enforced (unaligned pipes are acceptable).
+  "MD060": false
 }

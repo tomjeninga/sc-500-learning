@@ -19,6 +19,7 @@ Governance ensures your Azure environment stays compliant with organizational po
 ### SC-500 Exam Weight: ~15–20%
 
 Expect questions on:
+
 - Policy effect differences (Deny vs Audit vs DeployIfNotExists)
 - Initiative definitions (a group of policies)
 - Regulatory compliance standards and how to assign them
@@ -56,6 +57,6 @@ Expect questions on:
 ## Start Here
 
 1. Read `study-guide.md` — understand policy effects and compliance frameworks
-2. Complete `lab-01-azure-policy.md` — create and test Azure Policy
-3. Complete `lab-02-compliance-assessment.md` — review the Regulatory Compliance dashboard
-4. Deploy `templates/azure-policy-definitions.json` for IaC practice
+1. Complete `lab-01-azure-policy.md` — create and test Azure Policy
+1. Complete `lab-02-compliance-assessment.md` — review the Regulatory Compliance dashboard
+1. Deploy `templates/azure-policy-definitions.json` for IaC practice

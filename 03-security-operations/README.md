@@ -21,6 +21,7 @@ Security Operations is about **detecting, investigating, and responding** to thr
 ### SC-500 Exam Weight: ~20–25%
 
 Expect questions on:
+
 - Defender for Cloud plans and what each protects
 - Secure Score: what it measures and how to improve it
 - Sentinel workspace deployment and connector types
@@ -60,6 +61,6 @@ Expect questions on:
 ## Start Here
 
 1. Read `study-guide.md` — understand Defender for Cloud plans and Sentinel architecture
-2. Complete `lab-01-defender-cloud.md` — enable Defender and review Secure Score
-3. Complete `lab-02-sentinel-setup.md` — deploy Sentinel and write KQL queries
-4. Deploy templates via ARM for practice with IaC
+1. Complete `lab-01-defender-cloud.md` — enable Defender and review Secure Score
+1. Complete `lab-02-sentinel-setup.md` — deploy Sentinel and write KQL queries
+1. Deploy templates via ARM for practice with IaC

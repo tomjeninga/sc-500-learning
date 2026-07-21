@@ -13,6 +13,7 @@
 You will deploy an Azure SQL Database with TDE enabled (using Microsoft-managed keys), configure Entra ID authentication, set up firewall rules, enable auditing to Log Analytics, configure Defender for SQL, and classify sensitive data columns.
 
 **Why this matters:**
+
 - SQL security is tested on SC-500 across multiple angles: TDE, auth, auditing, Defender
 - Understanding which control protects against which threat is exam-critical
 - Data classification (sensitivity labels) is increasingly tested as organizations adopt Purview
@@ -32,21 +33,21 @@ You will deploy an Azure SQL Database with TDE enabled (using Microsoft-managed 
 ### Step 1.1 — Create SQL Server
 
 1. Search for **SQL servers** → **+ Create**
-2. **Basics:**
+1. **Basics:**
    - **Resource group:** `rg-sc500-lab`
    - **Server name:** `sql-sc500-lab-<suffix>` (globally unique, lowercase)
    - **Region:** East US
    - **Authentication method:** Use only Microsoft Entra authentication
    - **Microsoft Entra admin:** Click **Set admin** → select your account (or alice-admin if created)
-3. Click **Next: Networking**
+1. Click **Next: Networking**
 
 ### Step 1.2 — Configure Networking
 
-4. **Connectivity method:** No access (private only for production; we'll add an exception)
-5. For lab purposes:
+1. **Connectivity method:** No access (private only for production; we'll add an exception)
+1. For lab purposes:
    - **Allow Azure services and resources to access this server:** Yes
    - **Add current client IP address:** Yes
-6. Click **Review + create** → **Create**
+1. Click **Review + create** → **Create**
 
 ---
 
@@ -55,13 +56,13 @@ You will deploy an Azure SQL Database with TDE enabled (using Microsoft-managed 
 ### Step 2.1 — Create database
 
 1. Open your SQL server → **+ Create database**
-2. **Basics:**
+1. **Basics:**
    - **Database name:** `sqldb-sc500-lab`
    - **Compute + storage:** Click **Configure database**
      - **Service tier:** General Purpose (Serverless) or Basic
      - **Max vCores:** 1
      - **Autopause delay:** 1 hour (saves cost when idle)
-3. Click **Review + create** → **Create**
+1. Click **Review + create** → **Create**
 
 ---
 
@@ -70,17 +71,18 @@ You will deploy an Azure SQL Database with TDE enabled (using Microsoft-managed 
 ### Step 3.1 — Check TDE status
 
 1. Open `sqldb-sc500-lab`
-2. In the left menu, click **Transparent data encryption**
-3. ✅ TDE should show as **Enabled** with **Service-managed key** (PMK)
+1. In the left menu, click **Transparent data encryption**
+1. ✅ TDE should show as **Enabled** with **Service-managed key** (PMK)
 
 ### Step 3.2 — (Optional) Switch to CMK
 
 To use Customer-Managed Keys:
+
 1. In TDE settings, select **Customer-managed key**
-2. Select Key Vault: `kv-sc500-lab`
-3. Select key: `storage-cmk-key` (reuse from Lab 01, or create a new one)
-4. Check **Auto-rotate key** (recommended)
-5. Click **Save**
+1. Select Key Vault: `kv-sc500-lab`
+1. Select key: `storage-cmk-key` (reuse from Lab 01, or create a new one)
+1. Check **Auto-rotate key** (recommended)
+1. Click **Save**
 
 ---
 
@@ -118,17 +120,19 @@ ALTER ROLE db_datareader ADD MEMBER [alice-admin@yourtenant.onmicrosoft.com];
 ### Step 5.1 — Configure auditing
 
 1. Open your SQL server → **Auditing**
-2. Toggle **Azure SQL Auditing** to **On**
-3. **Audit log destination:**
+1. Toggle **Azure SQL Auditing** to **On**
+1. **Audit log destination:**
    - Check **Log Analytics**
    - Select `law-sc500-sentinel` workspace
-4. Click **Save**
+1. Click **Save**
 
 ### Step 5.2 — Verify audit logs appear
 
 After a few minutes:
+
 1. Open `law-sc500-sentinel` → **Logs**
-2. Run:
+1. Run:
+
 ```kql
 AzureDiagnostics
 | where ResourceType == "SERVERS/DATABASES"
@@ -145,17 +149,17 @@ AzureDiagnostics
 ### Step 6.1 — Enable Defender for SQL on the database
 
 1. Open `sqldb-sc500-lab` → **Microsoft Defender for Cloud**
-2. Click **Enable Microsoft Defender for SQL**
-3. ✅ Defender for SQL enables:
+1. Click **Enable Microsoft Defender for SQL**
+1. ✅ Defender for SQL enables:
    - Advanced Threat Protection (SQL injection detection, anomalous access)
    - Vulnerability Assessment
 
 ### Step 6.2 — Run Vulnerability Assessment
 
-4. Click **Vulnerability assessment**
-5. **Configure storage account** for scan results (create or select a storage account)
-6. Click **Scan**
-7. Review findings — common findings in a new database:
+1. Click **Vulnerability assessment**
+1. **Configure storage account** for scan results (create or select a storage account)
+1. Click **Scan**
+1. Review findings — common findings in a new database:
    - "Email notifications are not configured for subscription owners" (severity: medium)
    - "Auditing of critical database activities is not configured" (if not done in Part 5)
 
@@ -166,9 +170,9 @@ AzureDiagnostics
 ### Step 7.1 — Discover sensitive columns
 
 1. Open `sqldb-sc500-lab` → **Data Discovery & Classification**
-2. Defender for SQL scans the schema and recommends classifications
-3. If you have no tables yet, the scanner will show no recommendations
-4. For a realistic test, create a table first:
+1. Defender for SQL scans the schema and recommends classifications
+1. If you have no tables yet, the scanner will show no recommendations
+1. For a realistic test, create a table first:
 
 ```sql
 -- Create a sample table with sensitive data columns
@@ -183,14 +187,14 @@ CREATE TABLE CustomerData (
 );
 ```
 
-5. Re-scan in Data Discovery & Classification
-6. ✅ Columns like `CreditCard`, `SSN`, `Email` should be flagged with recommended sensitivity labels
+1. Re-scan in Data Discovery & Classification
+1. ✅ Columns like `CreditCard`, `SSN`, `Email` should be flagged with recommended sensitivity labels
 
 ### Step 7.2 — Apply sensitivity labels
 
-7. In the classification recommendations, click **Accept all recommendations**
-8. Click **Save**
-9. ✅ Columns are now labeled — any Defender for SQL alerts about these columns will include the classification context
+1. In the classification recommendations, click **Accept all recommendations**
+1. Click **Save**
+1. ✅ Columns are now labeled — any Defender for SQL alerts about these columns will include the classification context
 
 ---
 
@@ -239,7 +243,7 @@ Write-Host "Advanced Threat Protection: $($atps.IsEnabled)"
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-|-------|-------|-----------|
+| ------- | ------- | ----------- |
 | Cannot connect with Entra ID | Server blocks public access | Add client IP in SQL server firewall rules |
 | Entra auth fails | Not set as Entra admin | Set Entra admin on SQL server before connecting |
 | Audit logs not appearing | Log Analytics delay | Wait 15 minutes; verify diagnostic setting saved |
