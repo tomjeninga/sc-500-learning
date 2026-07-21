@@ -13,6 +13,7 @@ By completing this domain, you will be able to:
 - Implement Privileged Identity Management (PIM) activation settings
 - Understand entitlement management and Access Packages
 - Use workload identities and managed identities instead of secrets
+- Govern enterprise applications, app registrations, and OAuth consent
 
 ---
 
@@ -28,6 +29,8 @@ This is the **heaviest domain** on the exam. Expect questions on:
 - Conditional Access policy conditions and controls
 - PIM activation, approval workflows, and access reviews
 - MFA registration and enforcement methods
+- Enterprise applications, app registrations, delegated vs application permissions
+- User consent, admin consent, and OAuth permission grants
 
 ---
 
@@ -39,6 +42,7 @@ This is the **heaviest domain** on the exam. Expect questions on:
 | `lab-02-conditional-access.md` | Require MFA for admins, block legacy auth, location-based policy | 60–90 min |
 | `lab-03-pim-access-governance.md` | PIM + Access Reviews + Access Packages | 60–90 min |
 | `lab-04-workload-identities.md` | Managed identities, least-privilege, secretless access | 60–90 min |
+| `lab-05-enterprise-app-governance.md` | Enterprise apps, app registrations, and consent governance | 60–90 min |
 
 ---
 
@@ -59,6 +63,7 @@ This is the **heaviest domain** on the exam. Expect questions on:
 - [Manage identities in Microsoft Entra ID](https://learn.microsoft.com/en-us/training/modules/manage-identities-microsoft-entra-id/)
 - [Configure role-based access control](https://learn.microsoft.com/en-us/training/modules/configure-role-based-access-control/)
 - [Manage Microsoft Entra identities](https://learn.microsoft.com/en-us/training/paths/implement-identity-access-management/)
+- [Secure applications with Microsoft Entra ID](https://learn.microsoft.com/en-us/training/modules/secure-applications-with-entra-id/)
 
 ---
 
@@ -69,5 +74,6 @@ This is the **heaviest domain** on the exam. Expect questions on:
 3. Complete `lab-02-conditional-access.md` — configure access policies
 4. Complete `lab-03-pim-access-governance.md` — remove standing privilege and govern access lifecycle
 5. Complete `lab-04-workload-identities.md` — compare managed identity to app registrations and secrets
-6. Run the PowerShell scripts to automate the setup
-7. Answer the self-check questions at the end of each file
+6. Complete `lab-05-enterprise-app-governance.md` — control app consent, permissions, and enterprise app assignment
+7. Run the PowerShell scripts to automate the setup
+8. Answer the self-check questions at the end of each file

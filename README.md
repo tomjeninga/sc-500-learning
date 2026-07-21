@@ -216,6 +216,21 @@ you in too much Azure-only detail.
 3. **Week 3:** Priorities 7-9
 4. **Week 4:** Priorities 10-11 + the remaining three AI labs
 
+## Final 3 additions for near-complete SC-500 coverage
+
+After you finish the priority path, use these three labs to close the biggest
+remaining official study-guide gaps:
+
+1. `01-identity-governance/lab-05-enterprise-app-governance.md`
+   - Covers enterprise apps, app registrations, OAuth permission grants, admin consent workflow, and assignment controls
+2. `02-platform-protection/lab-04-vm-security.md`
+   - Covers Defender for Servers, JIT VM access, trusted launch, secure boot, vTPM, and agentless scanning
+3. `02-platform-protection/lab-05-app-platform-security.md`
+   - Covers App Service, Functions, Container Apps, and API Management back-end protection
+
+These are not the fastest-pass labs, but they bring the repo much closer to the
+full official study guide.
+
 ## Start here
 
 1. Read `ROADMAP.md`.

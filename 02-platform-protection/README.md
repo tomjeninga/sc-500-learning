@@ -12,6 +12,8 @@ By completing this domain, you will be able to:
 - Implement Private Endpoints and Azure Bastion
 - Understand encryption in transit (TLS) and at rest (server-side encryption, disk encryption)
 - Compare Private Endpoint vs Service Endpoint for PaaS isolation
+- Secure virtual machines with Defender for Servers, JIT, and trusted launch
+- Implement application platform security for App Service, Functions, Container Apps, and API Management
 
 ---
 
@@ -28,6 +30,9 @@ Expect questions on:
 - Private Endpoints vs Service Endpoints
 - Bastion deployment and RDP/SSH without public IP
 - Encryption at rest options (PMK vs CMK, Azure Disk Encryption)
+- JIT VM access, secure boot, vTPM, and Defender for Servers
+- App Service and Functions authentication/network restrictions
+- API Management as a protection boundary for back-end APIs
 
 ---
 
@@ -38,6 +43,8 @@ Expect questions on:
 | `lab-01-network-security.md` | VNet + subnets + NSGs + test VMs | 60–90 min |
 | `lab-02-waf-setup.md` | App Gateway v2 + WAF_v2 + OWASP + simulate attacks | 90–120 min |
 | `lab-03-private-access-patterns.md` | Private access patterns for Storage + SQL | 60–90 min |
+| `lab-04-vm-security.md` | Defender for Servers, JIT, trusted launch, and agentless scanning | 60–90 min |
+| `lab-05-app-platform-security.md` | App Service, Functions, Container Apps, and APIM protection | 60–90 min |
 
 ---
 
@@ -57,6 +64,8 @@ Expect questions on:
 - [Introduction to Azure Firewall](https://learn.microsoft.com/en-us/training/modules/introduction-azure-firewall/)
 - [Secure network connectivity on Azure](https://learn.microsoft.com/en-us/training/modules/secure-network-connectivity-azure/)
 - [SC-500: Implement platform protection](https://learn.microsoft.com/en-us/training/paths/implement-platform-protection/)
+- [Plan your Defender for Servers deployment](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction)
+- [Security in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/overview-security)
 
 ---
 
@@ -66,5 +75,7 @@ Expect questions on:
 2. Complete `lab-01-network-security.md` — build VNet + NSG infrastructure
 3. Complete `lab-02-waf-setup.md` — deploy and test WAF
 4. Complete `lab-03-private-access-patterns.md` — validate Private Endpoints and DNS resolution
-5. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
-6. Answer the self-check questions at the end of each file
+5. Complete `lab-04-vm-security.md` — secure a VM with Defender for Servers, JIT, and trusted launch controls
+6. Complete `lab-05-app-platform-security.md` — apply security controls across platform services and API Management
+7. Run `scripts/deploy-network-lab.ps1` to automate the full deployment
+8. Answer the self-check questions at the end of each file
