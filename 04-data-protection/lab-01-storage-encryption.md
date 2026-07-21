@@ -28,7 +28,8 @@ You will create an Azure Key Vault, generate an encryption key, create a storage
   ├── Encryption: CMK via Key Vault (using Managed Identity)
   ├── Public network access: Disabled
   └── Private Endpoint → snet-data subnet
-```text
+```
+
 ---
 
 ## Prerequisites
@@ -168,7 +169,8 @@ $storageAccountName = "stsc500lab<yoursuffix>"
 $ctx = New-AzStorageContext -StorageAccountName $storageAccountName -UseConnectedAccount
 Get-AzStorageContainer -Context $ctx
 # Expected: Error — public access disabled
-```text
+```
+
 ### Step 5.2 — Test via private endpoint (from VM in VNet)
 
 From a VM deployed in `snet-data` or `snet-backend`:
@@ -176,7 +178,8 @@ From a VM deployed in `snet-data` or `snet-backend`:
 ```bash
 # Should resolve to private IP (10.0.3.x)
 nslookup stsc500lab<suffix>.blob.core.windows.net
-```text
+```
+
 ---
 
 ## ARM Template Deployment
@@ -186,14 +189,16 @@ az deployment group create \
   --resource-group rg-sc500-lab \
   --template-file templates/storage-account-encrypted.json \
   --parameters storageAccountName=stsc500lab<suffix> keyVaultName=kv-sc500-lab
-```text
+```
+
 ```powershell
 New-AzResourceGroupDeployment `
   -ResourceGroupName "rg-sc500-lab" `
   -TemplateFile ".\templates\storage-account-encrypted.json" `
   -storageAccountName "stsc500lab<suffix>" `
   -keyVaultName "kv-sc500-lab"
-```text
+```
+
 ---
 
 ## Validation Steps
@@ -215,13 +220,14 @@ Write-Host "Public Network Access: $($storage.PublicNetworkAccess)"
 # Check private endpoint
 $pe = Get-AzPrivateEndpoint -ResourceGroupName $rg -Name "pe-storage-sc500"
 Write-Host "Private Endpoint: $($pe.Name) - State: $($pe.ProvisioningState)"
-```text
+```
+
 ---
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-| ------- | ------- | ----------- |
+|-------|-------|-----------|
 | "The specified key is not accessible" | Managed identity lacks Key Vault permissions | Assign Key Vault Crypto Service Encryption User role |
 | Cannot access storage after private endpoint | DNS not resolving to private IP | Ensure private DNS zone is linked to VNet |
 | Storage account creation fails | Name already taken (globally unique) | Add more random suffix |
@@ -244,7 +250,8 @@ Remove-AzPrivateEndpoint -ResourceGroupName $rg -Name "pe-storage-sc500" -Force
 Remove-AzKeyVault -VaultName "kv-sc500-lab" -ResourceGroupName $rg -Force
 # To purge (permanently delete after soft-delete):
 # Remove-AzKeyVault -VaultName "kv-sc500-lab" -InRemovedState -Force
-```text
+```
+
 ---
 
 ## Key Takeaways

@@ -32,7 +32,8 @@ VNet: 10.0.0.0/16
 ├── Subnet: snet-data      10.0.3.0/24  ← Database tier (private)
 ├── Subnet: AzureBastionSubnet  10.0.4.0/27  ← Required for Azure Bastion
 └── Subnet: AzureFirewallSubnet 10.0.0.0/26  ← Required for Azure Firewall
-```text
+```
+
 > **Real-world context for platform engineers:** A typical 3-tier application separates web, app, and database tiers into separate subnets with NSG rules that only allow traffic between tiers on specific ports. This limits the blast radius if any tier is compromised.
 
 ### Hub-Spoke Network Topology
@@ -47,7 +48,8 @@ Hub VNet (shared services)
 └── Spoke VNet 1 (workload A) ─── peering ───┐
 └── Spoke VNet 2 (workload B) ─── peering ───┤── connected to Hub
 └── Spoke VNet N (workload N) ─── peering ───┘
-```text
+```
+
 **Benefits:**
 
 - Centralized security controls (all internet-bound traffic through Firewall)
@@ -68,7 +70,7 @@ An NSG is a stateful layer-4 firewall (TCP/UDP/ICMP) that can be attached to:
 ### NSG Rule Properties
 
 | Property | Description |
-| ---------- | ------------- |
+|----------|-------------|
 | **Priority** | 100–4096. Lower = higher priority. Rule evaluation stops at first match. |
 | **Source/Destination** | IP address, CIDR range, Service Tag, or ASG |
 | **Port/Protocol** | Specific port, range, or * (any) |
@@ -107,7 +109,8 @@ Example rule: Allow HTTPS from internet to frontend subnet:
 
 ```text
 Priority: 100 | Source: Internet | Destination: snet-frontend | Port: 443 | Allow
-```text
+```
+
 ### Application Security Groups (ASGs)
 
 ASGs let you group VMs by role and use those groups in NSG rules, instead of managing IP addresses:
@@ -120,7 +123,8 @@ ASG: asg-db-servers   → all database VMs
 NSG Rule: Allow TCP 8080 from asg-web-servers to asg-app-servers
 NSG Rule: Allow TCP 1433 from asg-app-servers to asg-db-servers
 NSG Rule: Deny all from asg-web-servers to asg-db-servers
-```text
+```
+
 This approach scales cleanly — add a VM to an ASG and it immediately inherits the security rules.
 
 ---
@@ -130,7 +134,7 @@ This approach scales cleanly — add a VM to an ASG and it immediately inherits 
 This is a frequently tested comparison:
 
 | Feature | NSG | Azure Firewall | WAF (App Gateway) |
-| --------- | ----- | ---------------- | ------------------- |
+|---------|-----|----------------|-------------------|
 | OSI Layer | Layer 4 (L4) | Layer 4 + L7 | Layer 7 (HTTP/S) |
 | Protocol support | TCP, UDP, ICMP | TCP, UDP, ICMP, FQDN | HTTP, HTTPS, WebSocket |
 | FQDN filtering | ❌ | ✅ (application rules) | ❌ |
@@ -144,7 +148,7 @@ This is a frequently tested comparison:
 ### When to Use Each
 
 | Scenario | Tool |
-| ---------- | ------ |
+|----------|------|
 | Block all SSH from internet to VMs | NSG (deny inbound TCP 22 from Internet) |
 | Allow only specific FQDNs from VMs to internet | Azure Firewall (application rule) |
 | Protect a web app from SQLi, XSS attacks | WAF on App Gateway |
@@ -157,7 +161,7 @@ This is a frequently tested comparison:
 ## 4. Azure DDoS Protection
 
 | Tier | Cost | Protection Level |
-| ------ | ------ | ----------------- |
+|------|------|-----------------|
 | **Network Protection (Basic)** | Free (included) | Infrastructure-level. Protects all Azure resources from common volumetric DDoS. |
 | **Network Protection (Standard)** | ~$2,944/month | Application-specific policies, adaptive tuning, DDoS analytics, cost protection |
 | **IP Protection** | ~$199/month per IP | Covers single public IP addresses |
@@ -171,7 +175,7 @@ This is a frequently tested comparison:
 ### WAF Deployment Options
 
 | Platform | Use Case |
-| ---------- | --------- |
+|----------|---------|
 | **Application Gateway v2** | Single-region HTTP/S load balancer + WAF |
 | **Azure Front Door** | Global HTTP/S load balancer + WAF |
 | **Azure CDN** | Static content delivery + WAF |
@@ -213,7 +217,7 @@ Beyond OWASP, you can create custom rules:
 ## 6. Private Endpoints vs Service Endpoints
 
 | Feature | Private Endpoint | Service Endpoint |
-| --------- | ----------------- | ----------------- |
+|---------|-----------------|-----------------|
 | **What it does** | Creates a private NIC in your VNet for the Azure service | Routes VNet traffic to Azure service over Azure backbone |
 | **Traffic path** | Stays entirely within your VNet | Optimized path through Azure backbone, but service is still accessible via public IP |
 | **Public IP disabled?** | ✅ Yes (can fully disable public access) | ❌ No — public access still available |
@@ -283,7 +287,7 @@ ADE keys are stored in Key Vault. This provides **guest-OS level encryption** in
 ## Comparison: Encryption Options
 
 | Type | Default? | Key Management | Use Case |
-| ------ | --------- | ---------------- | --------- |
+|------|---------|----------------|---------|
 | PMK (Server-Side Encryption) | ✅ Yes | Azure-managed | Most workloads |
 | CMK (Server-Side Encryption) | ❌ Opt-in | Customer (Key Vault) | Regulated industries |
 | Azure Disk Encryption (ADE) | ❌ Opt-in | Customer (Key Vault) | VM disk encryption compliance |

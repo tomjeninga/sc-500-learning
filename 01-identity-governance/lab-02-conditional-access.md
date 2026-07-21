@@ -222,7 +222,8 @@ $policy = @{
     }
 }
 New-MgIdentityConditionalAccessPolicy -BodyParameter $policy
-```text
+```
+
 ---
 
 ## Equivalent Az CLI Commands
@@ -230,7 +231,8 @@ New-MgIdentityConditionalAccessPolicy -BodyParameter $policy
 ```bash
 # View existing Conditional Access policies (requires Graph extension)
 az ad conditional-access policy list --query "[].{Name:displayName, State:state}" -o table
-```text
+```
+
 ---
 
 ## Validation Steps
@@ -239,7 +241,8 @@ az ad conditional-access policy list --query "[].{Name:displayName, State:state}
 # List Conditional Access policies via Graph API
 Connect-MgGraph -Scopes "Policy.Read.ConditionalAccess"
 Get-MgIdentityConditionalAccessPolicy | Select-Object DisplayName, State | Format-Table
-```text
+```
+
 Expected output:
 
 ```text
@@ -248,13 +251,14 @@ DisplayName                                  State
 CA-01: Require MFA for Administrators        enabledForReportingButNotEnforced
 CA-02: Block Legacy Authentication           enabledForReportingButNotEnforced
 CA-03: Require MFA from Untrusted Locations  enabledForReportingButNotEnforced
-```text
+```
+
 ---
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-| ------- | ------- | ----------- |
+|-------|-------|-----------|
 | Conditional Access menu not visible | Entra ID P1/P2 not licensed | Assign a P1 or P2 license to users; activate trial |
 | Policy not evaluating | User not in scope | Check users/groups assignment in policy |
 | Locked out after enabling MFA policy | No MFA method registered | Use break-glass account or disable policy via Graph API |
@@ -267,7 +271,8 @@ CA-03: Require MFA from Untrusted Locations  enabledForReportingButNotEnforced
 Connect-MgGraph -Scopes "Policy.ReadWrite.ConditionalAccess"
 $policy = Get-MgIdentityConditionalAccessPolicy | Where-Object { $_.DisplayName -eq "CA-01: Require MFA for Administrators" }
 Update-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $policy.Id -State "disabled"
-```text
+```
+
 ---
 
 ## Cleanup Instructions
@@ -290,7 +295,8 @@ foreach ($name in $policiesToDelete) {
         Write-Host "Deleted: $name"
     }
 }
-```text
+```
+
 ---
 
 ## Key Takeaways

@@ -32,7 +32,8 @@ Create files like `notes/2025-01-15-wrong-answers.md` and copy this block per qu
   - [ ] Read <docs link> (15 min)
   - [ ] Redo lab <n> step <m> (30 min)
 - **Confidence after review** (1-5): _
-```text
+```
+
 ## Suggested folder layout
 
 ```text
@@ -46,7 +47,8 @@ notes/
     kql-quick-ref.md
   lab-debriefs/
     lab-01-entra-pim.md
-```text
+```
+
 ## Weekly ritual
 
 1. Every Friday: review the week's wrong-answer entries.

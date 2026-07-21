@@ -33,7 +33,8 @@ Internet
     │
     ▼
 [Backend pool: test VM in snet-frontend]
-```text
+```
+
 ---
 
 ## Prerequisites
@@ -174,7 +175,8 @@ Enable logging to track WAF-blocked requests.
 $pip = Get-AzPublicIpAddress -Name "pip-agw-sc500" -ResourceGroupName "rg-sc500-lab"
 $appGwIp = $pip.IpAddress
 Write-Host "App Gateway IP: $appGwIp"
-```text
+```
+
 ### Step 4.2 — Simulate a SQL Injection attempt
 
 ```bash
@@ -182,7 +184,8 @@ Write-Host "App Gateway IP: $appGwIp"
 curl "http://$appGwIp/?id=1' OR '1'='1"
 
 # Expected response: 403 Forbidden
-```text
+```
+
 ### Step 4.3 — Simulate an XSS attempt
 
 ```bash
@@ -190,7 +193,8 @@ curl "http://$appGwIp/?id=1' OR '1'='1"
 curl "http://$appGwIp/?search=<script>alert('xss')</script>"
 
 # Expected response: 403 Forbidden
-```text
+```
+
 ### Step 4.4 — Review WAF Logs
 
 1. Open the Log Analytics workspace `law-sc500-waf`
@@ -204,7 +208,8 @@ AzureDiagnostics
 | project TimeGenerated, clientIp_s, requestUri_s, ruleGroup_s, ruleId_s, message_s
 | order by TimeGenerated desc
 | take 20
-```text
+```
+
 1. ✅ You should see log entries for the blocked SQLi and XSS attempts
 
 ---
@@ -216,14 +221,16 @@ az deployment group create \
   --resource-group rg-sc500-lab \
   --template-file templates/app-gateway-waf.json \
   --parameters appGatewayName=agw-sc500-waf vnetName=vnet-sc500-lab
-```text
+```
+
 ```powershell
 New-AzResourceGroupDeployment `
   -ResourceGroupName "rg-sc500-lab" `
   -TemplateFile ".\templates\app-gateway-waf.json" `
   -appGatewayName "agw-sc500-waf" `
   -vnetName "vnet-sc500-lab"
-```text
+```
+
 ---
 
 ## Validation Steps
@@ -238,13 +245,14 @@ Write-Host "WAF Mode: $($agw.WebApplicationFirewallConfiguration.FirewallMode)"
 
 # Verify WAF policy association
 Write-Host "WAF Policy: $($agw.FirewallPolicy.Id.Split('/')[-1])"
-```text
+```
+
 ---
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-| ------- | ------- | ----------- |
+|-------|-------|-----------|
 | 403 on legitimate traffic | WAF rule false positive | Switch policy to Detection mode, identify rule, add exclusion |
 | App Gateway not responding | Backend pool is empty/unhealthy | Check backend health probe in App Gateway → Backend health |
 | WAF logs not appearing | Diagnostic settings delay | Wait 5–10 min; logs have up to 3-min delay |
@@ -274,7 +282,8 @@ Remove-AzApplicationGatewayFirewallPolicy -Name "waf-policy-sc500" -ResourceGrou
 
 # Delete Log Analytics workspace
 Remove-AzOperationalInsightsWorkspace -Name "law-sc500-waf" -ResourceGroupName $rg -Force
-```text
+```
+
 ---
 
 ## Key Takeaways

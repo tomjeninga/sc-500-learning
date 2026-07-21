@@ -28,7 +28,7 @@ Microsoft Entra ID is Microsoft's cloud-based **Identity Provider (IdP)**. It is
 ### Key Concepts
 
 | Concept | Description |
-| --------- | ------------- |
+|---------|-------------|
 | **Tenant** | A dedicated instance of Entra ID for your organization. Each Azure subscription is associated with exactly one tenant. |
 | **Directory** | The database inside a tenant that stores users, groups, and app registrations. |
 | **User objects** | Human users or service accounts in the directory. |
@@ -40,7 +40,7 @@ Microsoft Entra ID is Microsoft's cloud-based **Identity Provider (IdP)**. It is
 ### Entra ID Licensing Tiers
 
 | Feature | Free | P1 | P2 |
-| --------- | ------ | ---- | ---- |
+|---------|------|----|----|
 | Basic users/groups | ✅ | ✅ | ✅ |
 | MFA per-user | ✅ | ✅ | ✅ |
 | Conditional Access | ❌ | ✅ | ✅ |
@@ -59,7 +59,7 @@ Microsoft Entra ID is Microsoft's cloud-based **Identity Provider (IdP)**. It is
 These are two separate role systems — a common exam gotcha:
 
 | | **Azure RBAC** | **Entra ID Roles** |
-| - | ---------------- | ------------------- |
+|-|----------------|-------------------|
 | Scope | Management groups, subscriptions, resource groups, resources | Tenant-level only |
 | Examples | Owner, Contributor, Reader, Storage Blob Data Contributor | Global Administrator, User Administrator, Security Reader |
 | Where assigned | Azure Portal → IAM blade | Entra ID Portal → Roles and administrators |
@@ -72,13 +72,14 @@ Management Group
   └── Subscription
         └── Resource Group
               └── Resource
-```text
+```
+
 Permissions assigned at a higher scope are **inherited** by all child scopes. A `Reader` role at the subscription level means the user can read all resource groups and resources in that subscription.
 
 ### Key Built-In Roles
 
 | Role | Description | Use Case |
-| ------ | ------------- | ---------- |
+|------|-------------|----------|
 | **Owner** | Full access + can assign roles | Subscription owners only |
 | **Contributor** | Full access, cannot assign roles | DevOps engineers |
 | **Reader** | Read-only | Security auditors |
@@ -115,7 +116,8 @@ When no built-in role fits, create a custom role:
   "NotDataActions": [],
   "AssignableScopes": ["/subscriptions/{subscriptionId}"]
 }
-```text
+```
+
 ---
 
 ## 3. Conditional Access
@@ -126,7 +128,8 @@ Conditional Access is an **if-then policy engine** in Entra ID. It evaluates sig
 
 ```text
 IF (User + App + Location + Device + Risk) THEN (Allow | Block | Require MFA | Require compliant device)
-```text
+```
+
 > **Real-world context:** Your organization wants to allow employees to access the Azure Portal, but only if they're using a company-managed device AND have completed MFA. You create a Conditional Access policy that targets the "Microsoft Azure Management" app, requires MFA (control), and requires a Hybrid Azure AD joined device (condition).
 
 ### Policy Anatomy
@@ -150,7 +153,7 @@ IF (User + App + Location + Device + Risk) THEN (Allow | Block | Require MFA | R
 ### Policy Modes
 
 | Mode | Behaviour |
-| ------ | ----------- |
+|------|-----------|
 | **Report-only** | Evaluates the policy but does NOT enforce — logs the outcome. Use to test impact. |
 | **On** | Full enforcement |
 | **Off** | Policy disabled |
@@ -192,7 +195,7 @@ PIM provides **just-in-time (JIT)** privileged access. Instead of permanently as
 ### PIM Concepts
 
 | Term | Description |
-| ------ | ------------- |
+|------|-------------|
 | **Eligible assignment** | User can activate the role when needed |
 | **Active assignment** | User has permanent (or time-bound) active access |
 | **Activation** | The process of elevating from eligible to active |
@@ -212,7 +215,8 @@ PIM provides **just-in-time (JIT)** privileged access. Instead of permanently as
 5. Role becomes active for the configured duration
 6. Role expires automatically OR user deactivates manually
 7. Audit log records all activations
-```text
+```
+
 ### PIM Settings per Role
 
 For each managed role you can configure:
@@ -231,7 +235,7 @@ For each managed role you can configure:
 ### MFA Methods (in order of security)
 
 | Method | Security Level | Notes |
-| -------- | --------------- | ------- |
+|--------|---------------|-------|
 | FIDO2 security key | ★★★★★ | Phishing-resistant |
 | Microsoft Authenticator (passwordless) | ★★★★ | Push notification or number match |
 | Certificate-based authentication | ★★★★ | Smart card equivalent |
@@ -265,7 +269,7 @@ Access Reviews are scheduled reviews where designated reviewers confirm or deny 
 ### Access Review Configuration
 
 | Setting | Options |
-| --------- | --------- |
+|---------|---------|
 | **Scope** | Users, Groups, Service Principals |
 | **Review target** | Group membership, App assignment, Entra ID role, Azure RBAC role |
 | **Reviewers** | Users themselves (self-review), Manager, Group owner, Selected reviewers |
@@ -290,7 +294,7 @@ Identity is the foundation. Entra ID, RBAC, Conditional Access, and PIM are the 
 ## Comparison: Identity Security Controls
 
 | Control | Purpose | Requires P2? |
-| --------- | --------- | ------------- |
+|---------|---------|-------------|
 | RBAC | Who can do what to which resource | No |
 | Conditional Access | When and how access is granted | P1 |
 | PIM | Just-in-time privileged access | P2 |

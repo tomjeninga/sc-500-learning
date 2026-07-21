@@ -24,7 +24,7 @@ Azure Policy evaluates resources against defined rules and enforces organization
 ### Policy Components
 
 | Component | Description |
-| ----------- | ------------- |
+|-----------|-------------|
 | **Policy definition** | The rule itself — conditions to evaluate + effect to apply |
 | **Initiative (policy set)** | A collection of policy definitions to achieve a compliance goal |
 | **Assignment** | Binding a definition or initiative to a scope (subscription, RG, MG) |
@@ -39,7 +39,8 @@ Management Group
   └── Subscription
         └── Resource Group
               └── Resource
-```text
+```
+
 Policies assigned at a higher scope apply to all resources at lower scopes.
 
 ---
@@ -49,7 +50,7 @@ Policies assigned at a higher scope apply to all resources at lower scopes.
 Effects determine what happens when the policy conditions are met:
 
 | Effect | Action | Example Use Case |
-| -------- | -------- | ----------------- |
+|--------|--------|-----------------|
 | **Deny** | Block the CREATE/UPDATE operation | Prevent storage accounts without HTTPS |
 | **Audit** | Allow but create a compliance finding | Log VMs not using managed disks |
 | **AuditIfNotExists** | Audit if a related resource doesn't exist | Audit VMs without Defender extension |
@@ -64,13 +65,14 @@ When multiple policies apply to a resource:
 
 ```text
 Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists → Modify
-```text
+```
+
 > **Exam tip:** Deny is evaluated before Audit. If a resource fails a Deny policy, it is blocked — Audit effects for the same condition don't matter.
 
 ### Deny vs Audit Decision
 
 | Question | Answer |
-| ---------- | -------- |
+|----------|--------|
 | "Log non-compliant resources" | Use **Audit** |
 | "Block non-compliant resources" | Use **Deny** |
 | "Fix automatically on create" | Use **DeployIfNotExists** or **Modify** |
@@ -109,11 +111,12 @@ Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists �
     }
   }
 }
-```text
+```
+
 ### Built-In vs Custom Policies
 
 | | Built-In | Custom |
-| - | --------- | -------- |
+|-|---------|--------|
 | Created by | Microsoft | You |
 | Available scope | All subscriptions | Your tenant/MG/subscription |
 | Examples | "Require TLS 1.2 for storage", "Allowed locations" | "Require CostCenter tag", company-specific rules |
@@ -122,7 +125,7 @@ Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists �
 ### Key Built-In Policies for SC-500
 
 | Policy | Effect |
-| -------- | -------- |
+|--------|--------|
 | "Require secure transfer to storage accounts" | Deny |
 | "Ensure SSL connection is enabled for PostgreSQL" | Audit |
 | "Deploy Log Analytics agent for Windows VMs" | DeployIfNotExists |
@@ -136,14 +139,14 @@ Disabled → Append → Deny → Audit/AuditIfNotExists → DeployIfNotExists �
 
 An initiative groups related policies to achieve a broader compliance goal.
 
-#### Example: CIS Microsoft Azure Foundations Benchmark initiative
+### Example: CIS Microsoft Azure Foundations Benchmark initiative
 
 - Contains 100+ individual policies
 - Each maps to a CIS control
 - Assigned at subscription level
 - Generates compliance score
 
-#### Microsoft provides pre-built regulatory compliance initiatives for:
+**Microsoft provides pre-built regulatory compliance initiatives for:**
 
 - CIS Microsoft Azure Foundations Benchmark
 - ISO 27001:2013
@@ -177,7 +180,8 @@ Tenant Root Group (automatically created)
 │       └── Subscription: Sub-DevTest-1
 └── Management Group: Sandbox
     └── Subscription: Sub-Sandbox-1
-```text
+```
+
 ### Policy Inheritance
 
 A policy assigned to `Corp` management group:
@@ -203,7 +207,7 @@ The Azure Landing Zone (ALZ) architecture uses Management Groups to provide:
 
 The Defender for Cloud Regulatory Compliance dashboard shows how your environment maps to compliance frameworks.
 
-#### How it works:
+**How it works:**
 
 1. You enable a compliance standard (initiative) in Defender for Cloud
 1. Azure Policy evaluates your resources against the controls
@@ -221,7 +225,7 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 ### Reading the Dashboard
 
 | Column | Description |
-| -------- | ------------- |
+|--------|-------------|
 | **Control** | Compliance control (e.g., "1.1 Implement a security policy") |
 | **Passing resources** | Resources compliant with this control |
 | **Failing resources** | Resources not meeting the control |
@@ -233,7 +237,7 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 ## 7. Common Compliance Frameworks
 
 | Framework | Relevant For | Key SC-500 Relevance |
-| ----------- | ------------- | --------------------- |
+|-----------|-------------|---------------------|
 | **ISO 27001:2013** | International general security standard | Broad information security controls |
 | **SOC 2 Type II** | Service organizations storing customer data | Trust service criteria (Security, Availability, etc.) |
 | **CIS Benchmarks** | Technical hardening guidelines | Specific configuration checks for Azure resources |
@@ -248,7 +252,7 @@ The Defender for Cloud Regulatory Compliance dashboard shows how your environmen
 ## Comparison: Policy Effects
 
 | Scenario | Recommended Effect |
-| ---------- | ------------------- |
+|----------|-------------------|
 | Block resource creation if non-compliant | **Deny** |
 | Report non-compliant resources without blocking | **Audit** |
 | Report when a required resource doesn't exist | **AuditIfNotExists** |

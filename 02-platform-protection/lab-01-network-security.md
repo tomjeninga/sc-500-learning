@@ -26,7 +26,8 @@ VNet: vnet-sc500-lab (10.0.0.0/16)
 ├── snet-backend  (10.0.2.0/24)  ← NSG: allow 8080 from frontend only
 ├── snet-data     (10.0.3.0/24)  ← NSG: allow 1433 from backend only
 └── AzureBastionSubnet (10.0.4.0/26) ← No NSG (Bastion manages its own)
-```text
+```
+
 ---
 
 ## Prerequisites
@@ -166,14 +167,16 @@ az deployment group create \
   --resource-group rg-sc500-lab \
   --template-file templates/vnet-with-nsg.json \
   --parameters vnetName=vnet-sc500-lab location=eastus
-```text
+```
+
 ```powershell
 New-AzResourceGroupDeployment `
   -ResourceGroupName "rg-sc500-lab" `
   -TemplateFile ".\templates\vnet-with-nsg.json" `
   -vnetName "vnet-sc500-lab" `
   -location "eastus"
-```text
+```
+
 ---
 
 ## Validation Steps
@@ -191,13 +194,14 @@ Get-AzVirtualNetwork -Name "vnet-sc500-lab" -ResourceGroupName "rg-sc500-lab" |
 # Verify NSG-subnet associations
 $nsg = Get-AzNetworkSecurityGroup -Name "nsg-frontend" -ResourceGroupName "rg-sc500-lab"
 $nsg.Subnets | ForEach-Object { Write-Host "NSG associated with subnet: $($_.Id.Split('/')[-1])" }
-```text
+```
+
 ---
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-| ------- | ------- | ----------- |
+|-------|-------|-----------|
 | Cannot reach VM on port 443 | NSG rule not matching | Check NSG effective security rules on NIC |
 | NSG rule not applying | NSG not associated with subnet/NIC | Verify association in NSG → Subnets |
 | Two NSGs in conflict | NSG on subnet AND NSG on NIC | Both apply; NIC NSG takes precedence for inbound |
@@ -221,7 +225,8 @@ Remove-AzNetworkSecurityGroup -Name "nsg-frontend" -ResourceGroupName $rg -Force
 Remove-AzNetworkSecurityGroup -Name "nsg-backend" -ResourceGroupName $rg -Force
 Remove-AzNetworkSecurityGroup -Name "nsg-data" -ResourceGroupName $rg -Force
 # Or run cleanup-resources.ps1
-```text
+```
+
 ---
 
 ## Key Takeaways

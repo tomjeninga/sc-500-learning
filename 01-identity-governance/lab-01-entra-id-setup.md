@@ -27,7 +27,8 @@ Entra ID Tenant
 ├── User: charlie-dev@<tenant>        → Contributor (subscription RBAC)
 ├── Group: grp-sc500-security-readers → Security Reader (RBAC on rg-sc500-lab)
 └── Group: grp-sc500-contributors     → Contributor (RBAC on rg-sc500-lab)
-```text
+```
+
 ---
 
 ## Prerequisites
@@ -192,14 +193,16 @@ az deployment group create \
   --resource-group rg-sc500-lab \
   --template-file templates/rbac-assignments.json \
   --parameters principalId="<object-id-of-grp-sc500-security-readers>"
-```text
+```
+
 ```powershell
 # Deploy via Az PowerShell
 New-AzResourceGroupDeployment `
   -ResourceGroupName "rg-sc500-lab" `
   -TemplateFile ".\templates\rbac-assignments.json" `
   -principalId "<object-id-of-grp-sc500-security-readers>"
-```text
+```
+
 ---
 
 ## PowerShell Script Deployment
@@ -209,7 +212,8 @@ Run the automated setup script:
 ```powershell
 # Run the setup script (creates users, groups, RBAC assignments)
 .\scripts\setup-entra-id-lab.ps1 -ResourceGroupName "rg-sc500-lab" -Location "eastus"
-```text
+```
+
 ---
 
 ## Validation Steps
@@ -237,7 +241,7 @@ Run the automated setup script:
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-| ------- | ------- | ----------- |
+|-------|-------|-----------|
 | "You do not have permission to create users" | Missing User Administrator role | Request User Admin or Global Admin from your tenant owner |
 | "Cannot assign role at subscription scope" | Missing Owner or User Access Administrator | Assign at resource group scope only |
 | Users not appearing in group | Replication delay | Wait 1–2 minutes and refresh |
@@ -260,12 +264,14 @@ Remove-AzADUser -UPNOrObjectId "charlie-dev@yourtenant.onmicrosoft.com"
 # Remove groups
 Remove-AzADGroup -DisplayName "grp-sc500-security-readers"
 Remove-AzADGroup -DisplayName "grp-sc500-contributors"
-```text
+```
+
 Or run the shared cleanup script:
 
 ```powershell
 .\scripts\cleanup-resources.ps1
-```text
+```
+
 ---
 
 ## Key Takeaways

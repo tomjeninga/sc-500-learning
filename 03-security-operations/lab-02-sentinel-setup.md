@@ -30,7 +30,8 @@ Entra ID Sign-in logs
   ├── Analytics Rule: Detect admin sign-in failures
   ├── Workbook: Azure Activity overview
   └── Incident: Created when rule triggers
-```text
+```
+
 ---
 
 ## Prerequisites
@@ -132,7 +133,8 @@ SigninLogs
     by UserPrincipalName, AppDisplayName, IPAddress
 | where FailureCount >= 5
 | project UserPrincipalName, IPAddress, AppDisplayName, FailureCount, LastAttempt, Locations
-```text
+```
+
 1. Click **View query results** to test the query
 
 ### Step 4.3 — Configure Rule Settings
@@ -178,7 +180,8 @@ AzureActivity
 | summarize OperationCount = count() by OperationNameValue, ActivityStatusValue
 | order by OperationCount desc
 | take 20
-```text
+```
+
 ### Query 2: Resource deletions
 
 ```kql
@@ -188,7 +191,8 @@ AzureActivity
 | where ActivityStatusValue == "Success"
 | project TimeGenerated, Caller, ResourceGroup, ResourceId, OperationNameValue
 | order by TimeGenerated desc
-```text
+```
+
 ### Query 3: Sign-in failures from multiple locations
 
 ```kql
@@ -201,7 +205,8 @@ SigninLogs
 | where UniqueLocations >= 3
 | project UserPrincipalName, FailureCount, UniqueLocations
 | order by FailureCount desc
-```text
+```
+
 ### Query 4: New role assignments in last 7 days
 
 ```kql
@@ -212,7 +217,8 @@ AuditLogs
     Target = tostring(TargetResources[0].userPrincipalName),
     Role   = tostring(TargetResources[0].modifiedProperties[0].newValue)
 | project TimeGenerated, InitiatedBy = InitiatedBy.user.userPrincipalName, Target, Role
-```text
+```
+
 ---
 
 ## Part 6: Review Sentinel Workbooks
@@ -241,7 +247,8 @@ az deployment group create \
   --resource-group rg-sc500-lab \
   --template-file templates/sentinel-workspace.json \
   --parameters workspaceName=law-sc500-sentinel
-```text
+```
+
 ```powershell
 # Deploy Log Analytics workspace
 New-AzResourceGroupDeployment `
@@ -255,7 +262,8 @@ New-AzResourceGroupDeployment `
   -ResourceGroupName "rg-sc500-lab" `
   -TemplateFile ".\templates\sentinel-workspace.json" `
   -workspaceName "law-sc500-sentinel"
-```text
+```
+
 ---
 
 ## Validation Steps
@@ -269,13 +277,14 @@ Write-Host "Workspace: $($workspace.Name) - Sku: $($workspace.Sku) - Location: $
 $solutions = Get-AzOperationalInsightsIntelligencePack -ResourceGroupName "rg-sc500-lab" -WorkspaceName "law-sc500-sentinel"
 $sentinel = $solutions | Where-Object { $_.Name -eq "SecurityInsights" }
 Write-Host "Sentinel enabled: $($sentinel.Enabled)"
-```text
+```
+
 ---
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
-| ------- | ------- | ----------- |
+|-------|-------|-----------|
 | SigninLogs table empty | Entra ID connector not configured | Verify connector shows "Connected" in Data connectors |
 | AzureActivity table empty | Diagnostic settings delay | Wait 15 min; check Diagnostic settings on subscription |
 | Analytics rule not creating incidents | Threshold too high | Test query first; lower threshold or use "Is greater than 0" |
@@ -296,7 +305,8 @@ $workspaceName = "law-sc500-sentinel"
 Remove-AzOperationalInsightsWorkspace -Name $workspaceName -ResourceGroupName $rg -Force
 
 Write-Host "Sentinel workspace removed."
-```text
+```
+
 > Note: In the Portal — Sentinel → Settings → scroll to bottom → **Remove Microsoft Sentinel** before deleting the workspace.
 
 ---

@@ -27,7 +27,7 @@ Defender for Cloud is Microsoft's **Cloud Security Posture Management (CSPM)** a
 ### Defender for Cloud Plans
 
 | Plan | What it Protects | Key Features |
-| ------ | ----------------- | ------------- |
+|------|-----------------|-------------|
 | **Foundational CSPM** | Azure resources posture | Secure Score, recommendations (free) |
 | **Defender CSPM** | Multi-cloud posture | Attack path analysis, cloud security explorer, data sensitivity |
 | **Defender for Servers Plan 1** | Azure VMs + on-prem | MDE integration, just-in-time VM access |
@@ -95,7 +95,7 @@ Priority order for maximum impact:
 Microsoft Sentinel is a **cloud-native SIEM (Security Information and Event Management)** and **SOAR (Security Orchestration, Automation, and Response)** solution.
 
 | Capability | Description |
-| ----------- | ------------- |
+|-----------|-------------|
 | **SIEM** | Collect, aggregate, and analyze security data from across your environment |
 | **SOAR** | Automate responses to security incidents using playbooks (Logic Apps) |
 | **Threat Intelligence** | Ingest threat feeds for IoC matching |
@@ -113,13 +113,14 @@ Sentinel Analytics Rules (detection)
 Incidents (investigations)
     ↓
 Playbooks / Automation Rules (response)
-```text
+```
+
 ### Log Analytics Workspace
 
 Sentinel runs on top of a Log Analytics workspace. The workspace is where log data is stored in tables:
 
 | Table | Data Source | Use Case |
-| ------- | ------------- | --------- |
+|-------|-------------|---------|
 | `SecurityEvent` | Windows event logs | Logon events, process creation |
 | `SigninLogs` | Entra ID | Sign-in success/failure, location |
 | `AuditLogs` | Entra ID | User/role changes |
@@ -134,7 +135,7 @@ Sentinel runs on top of a Log Analytics workspace. The workspace is where log da
 Connectors ingest data into Sentinel's Log Analytics workspace:
 
 | Connector Type | Examples | Configuration |
-| ---------------- | --------- | --------------- |
+|----------------|---------|---------------|
 | **Native connectors** | Azure Activity, Entra ID, Defender for Cloud | One-click enable |
 | **API connectors** | Microsoft 365 Defender, Defender for Cloud Apps | OAuth-based |
 | **Agent-based** | Windows/Linux VMs, on-prem SIEM | Install MMA/AMA agent |
@@ -146,7 +147,7 @@ Connectors ingest data into Sentinel's Log Analytics workspace:
 Analytics rules define how Sentinel detects threats:
 
 | Rule Type | Description | Use Case |
-| ----------- | ------------- | --------- |
+|-----------|-------------|---------|
 | **Scheduled** | KQL query runs on a schedule, creates incidents | Most custom detections |
 | **Near Real-Time (NRT)** | Runs every minute | High-urgency detections |
 | **Fusion** | ML-based correlation across multiple signals | Advanced multi-stage attacks |
@@ -168,11 +169,12 @@ TableName
 | summarize Count = count() by Column
 | order by Count desc
 | take 10
-```text
+```
+
 ### Key Operators
 
 | Operator | Description | Example |
-| ---------- | ------------- | --------- |
+|----------|-------------|---------|
 | `where` | Filter rows | `where TimeGenerated > ago(1h)` |
 | `project` | Select/rename columns | `project UserName, TimeGenerated` |
 | `summarize` | Aggregate data | `summarize count() by bin(TimeGenerated, 1h)` |
@@ -195,7 +197,8 @@ SigninLogs
 | summarize FailureCount = count() by UserPrincipalName, ResultDescription
 | where FailureCount > 5
 | order by FailureCount desc
-```text
+```
+
 **Azure resource deletions:**
 
 ```kql
@@ -205,7 +208,8 @@ AzureActivity
 | where ActivityStatusValue == "Success"
 | project TimeGenerated, Caller, ResourceGroup, ResourceId, OperationNameValue
 | order by TimeGenerated desc
-```text
+```
+
 **VM sign-in failures:**
 
 ```kql
@@ -215,7 +219,8 @@ SecurityEvent
 | summarize FailureCount = count() by TargetAccount, IpAddress
 | where FailureCount > 10  // Potential brute force
 | order by FailureCount desc
-```text
+```
+
 ---
 
 ## 5. Playbooks and Automation
@@ -243,7 +248,7 @@ Automation rules (simpler than playbooks) can:
 ### Trigger Types
 
 | Trigger | When Used |
-| --------- | ---------- |
+|---------|----------|
 | **When an alert is created** | Run playbook immediately on alert |
 | **When an incident is created** | Run on new incident creation |
 | **When an incident is updated** | Run when incident changes (status, severity) |
@@ -253,7 +258,7 @@ Automation rules (simpler than playbooks) can:
 ## SIEM vs SOAR
 
 | Aspect | SIEM | SOAR |
-| -------- | ------ | ------ |
+|--------|------|------|
 | Primary function | Collect, correlate, detect | Automate and orchestrate response |
 | Data type | Logs, events | Alerts, incidents |
 | Human involvement | High (analyst reviews) | Low (automation) |
