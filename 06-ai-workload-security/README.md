@@ -1,4 +1,4 @@
-# Domain 6: AI Workload Security
+# Module 6: AI Workload Security
 
 New SC-500 territory. This is the module the older AZ-500 style repos are missing. Master this and you have a real edge on the exam.
 
@@ -30,7 +30,7 @@ By completing this module you will be able to:
 - Secure **Entra Agent ID** with Conditional Access and access reviews, and analyze blast radius in Defender XDR.
 - Manage agents in the Microsoft 365 admin center.
 
-## Labs in this domain
+## Labs in This Module
 
 | Lab | Topic | Est. time |
 | --- | --- | --- |

@@ -1,4 +1,4 @@
-# Domain 6 Study Guide: AI Workload Security
+# Module 6 Study Guide: AI Workload Security
 
 This is the newest and most differentiating part of SC-500. Older AZ-500 material will not prepare you for it.
 

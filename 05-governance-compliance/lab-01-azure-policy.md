@@ -17,7 +17,7 @@ You will assign a built-in audit policy, create a custom deny policy that requir
 - Policy effects (Deny, Audit, DeployIfNotExists, Modify) are directly examined
 - Remediation tasks are often the correct answer when asked about fixing existing resources
 
-> **Depends on:** no earlier governance lab is required; this is the best Domain 5 starting point
+> **Depends on:** no earlier governance lab is required; this is the best Module 5 starting point
 > **Reused by:** `05-governance-compliance/lab-03-rbac-locks-backup-iac.md` and `05-governance-compliance/lab-02-compliance-assessment.md`
 > **Delete after:** you finish the later governance labs that reuse the policy context or compliance evidence
 

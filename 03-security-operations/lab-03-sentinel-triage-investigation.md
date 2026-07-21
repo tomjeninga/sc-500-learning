@@ -39,7 +39,7 @@ Goal:
 
 ## Prerequisites
 
-- Domain 3 Lab 02 complete
+- Module 3 Lab 02 complete
 - `law-sc500-sentinel` exists and has Microsoft Sentinel enabled
 - Azure Activity and Entra ID connectors sending logs
 - At least one test user such as `bob-security`

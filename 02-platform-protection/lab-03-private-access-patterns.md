@@ -44,9 +44,9 @@ Private Endpoints
 
 ## Prerequisites
 
-- `vnet-sc500-lab` and `snet-data` from Domain 2 Lab 01
-- A storage account from Domain 4 Lab 01
-- An Azure SQL server from Domain 4 Lab 02
+- `vnet-sc500-lab` and `snet-data` from Module 2 Lab 01
+- A storage account from Module 4 Lab 01
+- An Azure SQL server from Module 4 Lab 02
 - A VM in the VNet for DNS/connectivity testing
 
 ---
@@ -79,7 +79,7 @@ Before you build, make sure you can explain:
 
 ### Step 2.2 - Create or verify the Storage Private Endpoint
 
-1. If not already created in Domain 4 Lab 01, add a private endpoint:
+1. If not already created in Module 4 Lab 01, add a private endpoint:
    - **Name:** `pe-storage-sc500`
    - **Target sub-resource:** `blob`
    - **VNet:** `vnet-sc500-lab`

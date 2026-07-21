@@ -62,7 +62,7 @@ Decision coverage
 ---
 
 > **Depends on:** `02-platform-protection/lab-01-network-security.md` and an existing VM or NIC to inspect
-> **Reused by:** no required follow-up lab; this is a compact closure lab for the remaining Domain 2 networking bullets
+> **Reused by:** no required follow-up lab; this is a compact closure lab for the remaining Module 2 networking bullets
 > **Delete after:** you finish Network Watcher validation and no longer need the temporary Azure Firewall policy object
 
 ## Part 1: Lock in the remaining control boundaries

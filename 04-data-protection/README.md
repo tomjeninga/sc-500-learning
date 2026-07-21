@@ -1,8 +1,8 @@
-# Domain 4: Data Protection
+# Module 4: Data Protection
 
 ## Learning Objectives
 
-By completing this domain, you will be able to:
+By completing this module, you will be able to:
 
 - Configure Azure Storage encryption with Customer-Managed Keys (CMK) via Key Vault
 - Implement Private Endpoints and disable public access on storage accounts
@@ -14,13 +14,13 @@ By completing this domain, you will be able to:
 
 ---
 
-## Domain Overview
+## Module Overview
 
-Data protection secures data **at rest, in transit, and in use** across Azure storage, databases, and analytics services. This domain also covers the governance and classification of sensitive data.
+Data protection secures data **at rest, in transit, and in use** across Azure storage, databases, and analytics services. This module also covers the governance and classification of sensitive data.
 
-### SC-500 Exam Weight: ~15–20%
+### Mapped SC-500 Skill Areas
 
-Expect questions on:
+This module primarily maps to **Secure storage, databases, and networking (25-30%)** and also contributes Key Vault coverage used in **Manage identity, access, and governance (20-25%)**. Expect questions on:
 - CMK vs PMK: when each is used, how to rotate keys
 - Key Vault access policies vs RBAC
 - SQL TDE vs Always Encrypted (what each protects against)
@@ -30,7 +30,7 @@ Expect questions on:
 
 ---
 
-## Labs in This Domain
+## Labs in This Module
 
 | Lab | Topic | Est. Time |
 |-----|-------|-----------|

@@ -1,4 +1,4 @@
-# Domain 1 Study Guide: Identity & Governance
+# Module 1 Study Guide: Identity & Governance
 
 ## Learning Objectives (SC-500 Aligned)
 

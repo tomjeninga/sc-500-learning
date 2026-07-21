@@ -13,7 +13,7 @@
 You will create a realistic identity structure in Entra ID representing a small security team, then assign Azure RBAC roles at different scopes to test least-privilege access.
 
 **Why this matters for SC-500:**
-- Identity is the heaviest exam domain (~25–30%)
+- Identity, access, and governance is one of the heaviest SC-500 skill areas (20-25%)
 - Understanding RBAC scope inheritance and least-privilege is tested heavily
 - You'll configure the foundation that Conditional Access (Lab 02) and PIM build upon
 

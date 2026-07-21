@@ -1,6 +1,6 @@
 # Microsoft Learn Links for SC-500
 
-Curated Microsoft Learn paths and modules organized by SC-500 exam domain.
+Curated Microsoft Learn paths and modules organized by repo module and mapped SC-500 skill area.
 
 ---
 
@@ -8,19 +8,19 @@ Curated Microsoft Learn paths and modules organized by SC-500 exam domain.
 
 These are the Microsoft-published learning paths and modules that best map to the SC-500 exam. Microsoft occasionally changes path slugs, so use the study guide if a link moves again.
 
-| Learning Path | Domain Alignment | Duration |
+| Learning Path | Repo Module Alignment | Duration |
 |---------------|-----------------|---------|
-| [Protect identity and access in Azure](https://learn.microsoft.com/en-us/training/paths/secure-identity-access/) | Domain 1 | ~6 hrs |
-| [SC-500: Implement platform protection](https://learn.microsoft.com/en-us/training/paths/implement-platform-protection/) | Domain 2 | ~5 hrs |
-| [SC-500: Manage security operations](https://learn.microsoft.com/en-us/training/paths/manage-security-operations/) | Domain 3 | ~8 hrs |
-| [Secure your cloud data in Azure](https://learn.microsoft.com/en-us/training/paths/secure-your-cloud-data/) | Domain 4 | ~5 hrs |
-| [Implement and manage enforcement of cloud governance policies](https://learn.microsoft.com/en-us/training/modules/implement-manage-enforcement-cloud-governance-policies/) | Domain 5 | ~45 min |
+| [Protect identity and access in Azure](https://learn.microsoft.com/en-us/training/paths/secure-identity-access/) | Module 1 | ~6 hrs |
+| [SC-500: Implement platform protection](https://learn.microsoft.com/en-us/training/paths/implement-platform-protection/) | Module 2 | ~5 hrs |
+| [SC-500: Manage security operations](https://learn.microsoft.com/en-us/training/paths/manage-security-operations/) | Module 3 | ~8 hrs |
+| [Secure your cloud data in Azure](https://learn.microsoft.com/en-us/training/paths/secure-your-cloud-data/) | Module 4 | ~5 hrs |
+| [Implement and manage enforcement of cloud governance policies](https://learn.microsoft.com/en-us/training/modules/implement-manage-enforcement-cloud-governance-policies/) | Module 5 | ~45 min |
 
 **Approximate Microsoft Learn Time for the items above:** ~25 hours
 
 ---
 
-## Domain 1: Identity & Governance
+## Module 1: Identity & Governance
 
 ### Core Modules
 
@@ -43,7 +43,7 @@ These are the Microsoft-published learning paths and modules that best map to th
 
 ---
 
-## Domain 2: Platform Protection
+## Module 2: Platform Protection
 
 ### Core Modules
 
@@ -77,7 +77,7 @@ These are the Microsoft-published learning paths and modules that best map to th
 
 ---
 
-## Domain 3: Security Operations
+## Module 3: Security Operations
 
 ### Core Modules
 
@@ -122,7 +122,7 @@ These are the Microsoft-published learning paths and modules that best map to th
 
 ---
 
-## Domain 4: Data Protection
+## Module 4: Data Protection
 
 ### Core Modules
 
@@ -144,7 +144,7 @@ These are the Microsoft-published learning paths and modules that best map to th
 
 ---
 
-## Domain 5: Governance & Compliance
+## Module 5: Governance & Compliance
 
 ### Core Modules
 
@@ -165,7 +165,7 @@ These are the Microsoft-published learning paths and modules that best map to th
 
 ---
 
-## Domain 6: AI Workload Security
+## Module 6: AI Workload Security
 
 ### Core Docs and Modules
 

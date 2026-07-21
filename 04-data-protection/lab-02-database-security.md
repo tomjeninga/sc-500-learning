@@ -27,7 +27,7 @@ You will deploy an Azure SQL Database with TDE enabled (using Microsoft-managed 
 
 - `rg-sc500-lab` resource group
 - Contributor role on `rg-sc500-lab`
-- Optional: Log Analytics workspace `law-sc500-sentinel` from Domain 3 if you want to reuse an existing workspace for audit logs
+- Optional: Log Analytics workspace `law-sc500-sentinel` from Module 3 if you want to reuse an existing workspace for audit logs
 
 ---
 

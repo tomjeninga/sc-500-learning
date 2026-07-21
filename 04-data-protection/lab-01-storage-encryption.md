@@ -39,7 +39,7 @@ You will create an Azure Key Vault, generate an encryption key, create a storage
 ## Prerequisites
 
 - `rg-sc500-lab` resource group
-- `vnet-sc500-lab` with `snet-data` subnet (from Domain 2 Lab 01)
+- `vnet-sc500-lab` with `snet-data` subnet (from Module 2 Lab 01)
 - Owner or Contributor + Key Vault Crypto Officer on `rg-sc500-lab`
 
 > **Keep for later labs:** On your first pass, do **not** delete `kv-sc500-lab` or the storage account immediately after this lab. They are reused by `01-identity-governance/lab-04-workload-identities.md`, and the storage account can also support later private access validation.

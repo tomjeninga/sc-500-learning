@@ -1,8 +1,8 @@
-# Domain 3: Security Operations
+# Module 3: Security Operations
 
 ## Learning Objectives
 
-By completing this domain, you will be able to:
+By completing this module, you will be able to:
 
 - Enable and configure Microsoft Defender for Cloud
 - Understand and improve Secure Score
@@ -19,13 +19,13 @@ By completing this domain, you will be able to:
 
 ---
 
-## Domain Overview
+## Module Overview
 
 Security Operations is about **detecting, investigating, and responding** to threats across your Azure environment. Defender for Cloud provides posture management and workload protection; Sentinel provides SIEM/SOAR capabilities.
 
-### SC-500 Exam Weight: ~20–25%
+### Mapped SC-500 Skill Areas
 
-Expect questions on:
+This module primarily maps to **Manage and monitor security posture (20-25%)** in the official SC-500 study guide. Expect questions on:
 - Defender for Cloud plans and what each protects
 - Secure Score: what it measures and how to improve it
 - Sentinel workspace deployment and connector types
@@ -36,7 +36,7 @@ Expect questions on:
 
 ---
 
-## Labs in This Domain
+## Labs in This Module
 
 | Lab | Topic | Est. Time |
 |-----|-------|-----------|

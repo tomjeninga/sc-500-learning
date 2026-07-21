@@ -1,4 +1,4 @@
-# Domain 5 Study Guide: Governance & Compliance
+# Module 5 Study Guide: Governance & Compliance
 
 ## Learning Objectives (SC-500 Aligned)
 

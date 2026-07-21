@@ -24,8 +24,8 @@ This roadmap follows the official SC-500 study guide, not the older AZ-500 domai
 | 3 | Foundation resources for later labs | `02-platform-protection/lab-01-network-security.md`, `04-data-protection/lab-01-storage-encryption.md`, `01-identity-governance/lab-04-workload-identities.md` | Managed identities, Key Vault, private endpoints, secure storage | Shared lab environment ready |
 | 4 | Database and private access | `04-data-protection/lab-02-database-security.md`, `02-platform-protection/lab-03-private-access-patterns.md` | Azure SQL, TDE, Always Encrypted, Private Link, DNS | SQL + private-only access working |
 | 5 | Identity governance and app identity | `01-identity-governance/lab-03-pim-access-governance.md`, `01-identity-governance/lab-05-enterprise-app-governance.md`, `05-governance-compliance/lab-01-azure-policy.md`, `05-governance-compliance/lab-03-rbac-locks-backup-iac.md`, `05-governance-compliance/lab-02-compliance-assessment.md` | App registrations, OAuth consent, PIM, Access Reviews, Azure Policy, RBAC governance, resource locks, Azure Backup security | Secure app identity and governance controls |
-| 6 | Network security extras | `02-platform-protection/lab-02-waf-setup.md` | NSG, ASG, Azure Firewall, WAF, Virtual WAN, Entra Private Access | Choose NSG vs Firewall vs WAF |
-| 7 | Compute: servers and VMs | Extend `02-platform-protection/` with VM/Bastion/JIT | Disk encryption, Bastion, JIT, Arc, Defender for Servers, secure boot, vTPM | Secure VM without public RDP/SSH |
+| 6 | Network security extras | `02-platform-protection/lab-02-waf-setup.md`, `02-platform-protection/lab-08-network-breadth-validation.md` | NSG, ASG, Azure Firewall, WAF, Virtual WAN, Entra Private Access, Network Watcher | Choose the correct network control boundary for each scenario |
+| 7 | Compute: servers and VMs | `02-platform-protection/lab-04-vm-security.md` | Disk encryption, Bastion, JIT, Arc, Defender for Servers, secure boot, vTPM | Secure VM without public RDP/SSH |
 | 8 | Compute: containers, apps, APIs | `02-platform-protection/lab-05-app-platform-security.md`, `02-platform-protection/lab-06-aks-acr-defender-containers.md`, `02-platform-protection/lab-07-logic-apps-and-apim-security.md` | AKS, ACR, Container Apps, Functions, Logic Apps, App Service, WAF, APIM policies | Explain secure app platform controls with concrete service choices |
 | 9 | AI workload security | `06-ai-workload-security/lab-01-ai-gateway.md`, `06-ai-workload-security/lab-03-entra-agent-id.md`, `06-ai-workload-security/lab-04-defender-for-ai.md`, `06-ai-workload-security/lab-05-agent-governance-guardrails.md`, `06-ai-workload-security/lab-02-purview-dspm-copilot.md` | Foundry, AI Gateway in APIM, Purview DSPM for AI, Defender for AI Service, Entra Agent ID, Copilot Studio, M365 agent governance, Foundry guardrails | Secure an end-to-end AI workload |
 | 10 | Posture: Defender for Cloud | `03-security-operations/lab-01-defender-cloud.md`, `03-security-operations/lab-07-defender-cloud-hybrid-arc.md`, `03-security-operations/lab-08-defender-cloud-multicloud-connectors.md`, `05-governance-compliance/lab-02-compliance-assessment.md` | Defender CSPM, workload plans, Azure Arc, AWS/GCP connectors, Defender Vulnerability Management | Prioritize posture risks across Azure, hybrid, and multicloud |
@@ -46,8 +46,8 @@ For the smoothest first pass, keep these resources alive across multiple weeks:
 
 - `vnet-sc500-lab`
 - `kv-sc500-lab`
-- the storage account from Domain 4 Lab 01
-- the SQL server from Domain 4 Lab 02
+- the storage account from Module 4 Lab 01
+- the SQL server from Module 4 Lab 02
 - one test VM for JIT / Defender / private DNS checks
 
 Delete them after Week 6 or after you finish the dependent labs, not immediately after the first lab that created them.

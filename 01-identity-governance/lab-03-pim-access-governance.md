@@ -38,7 +38,7 @@ Entra ID
 
 - Global Administrator or Privileged Role Administrator role
 - Microsoft Entra ID P2
-- Test identities from Domain 1 Lab 01
+- Test identities from Module 1 Lab 01
 - One security group for privileged operations, such as `grp-sc500-privileged`
 
 ---

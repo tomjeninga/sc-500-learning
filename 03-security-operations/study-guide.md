@@ -1,4 +1,4 @@
-# Domain 3 Study Guide: Security Operations
+# Module 3 Study Guide: Security Operations
 
 ## Learning Objectives (SC-500 Aligned)
 

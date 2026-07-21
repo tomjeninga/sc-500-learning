@@ -1,8 +1,8 @@
-# Domain 1: Identity & Governance
+# Module 1: Identity & Governance
 
 ## Learning Objectives
 
-By completing this domain, you will be able to:
+By completing this module, you will be able to:
 
 - Configure and manage Microsoft Entra ID (formerly Azure Active Directory)
 - Implement Role-Based Access Control (RBAC) following least-privilege principles
@@ -17,13 +17,13 @@ By completing this domain, you will be able to:
 
 ---
 
-## Domain Overview
+## Module Overview
 
 Identity is the **first line of defence** in Microsoft's Zero Trust model. "Never trust, always verify" — meaning every access request must be authenticated and authorized regardless of where it originates.
 
-### SC-500 Exam Weight: ~25–30%
+### Mapped SC-500 Skill Areas
 
-This is the **heaviest domain** on the exam. Expect questions on:
+This module primarily maps to **Manage identity, access, and governance (20-25%)** in the official SC-500 study guide. Expect questions on:
 - Entra ID tenant structure and licensing
 - RBAC scope, role definitions, and inheritance
 - Conditional Access policy conditions and controls
@@ -32,9 +32,11 @@ This is the **heaviest domain** on the exam. Expect questions on:
 - Enterprise applications, app registrations, delegated vs application permissions
 - User consent, admin consent, and OAuth permission grants
 
+It also supports the repo's broader identity-and-governance coverage alongside `05-governance-compliance/` and the Key Vault material in `04-data-protection/`.
+
 ---
 
-## Labs in This Domain
+## Labs in This Module
 
 | Lab | Topic | Est. Time |
 |-----|-------|-----------|

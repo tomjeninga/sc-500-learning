@@ -1,8 +1,8 @@
-# Domain 2: Platform Protection
+# Module 2: Platform Protection
 
 ## Learning Objectives
 
-By completing this domain, you will be able to:
+By completing this module, you will be able to:
 
 - Design and implement network segmentation with VNets, subnets, and NSGs
 - Configure Application Security Groups (ASGs) for workload-level traffic control
@@ -17,13 +17,13 @@ By completing this domain, you will be able to:
 
 ---
 
-## Domain Overview
+## Module Overview
 
-Platform protection secures the **infrastructure layer** — the networks, compute, and storage that your workloads run on. This domain maps to Microsoft's **Secure Network Connectivity** and **Host Security** areas of the Azure Well-Architected Framework security pillar.
+Platform protection secures the **infrastructure layer** — the networks, compute, and storage that your workloads run on. This module maps to Microsoft's **Secure Network Connectivity** and **Host Security** areas of the Azure Well-Architected Framework security pillar.
 
-### SC-500 Exam Weight: ~20–25%
+### Mapped SC-500 Skill Areas
 
-Expect questions on:
+This module primarily maps to **Secure storage, databases, and networking (25-30%)** for network controls and to **Secure compute (20-25%)** for VM, container, app platform, API, and WAF controls. Expect questions on:
 - NSG rules (inbound/outbound, priority, allow/deny)
 - Azure Firewall DNAT, network rules, application rules
 - WAF modes (Detection vs Prevention), OWASP rulesets
@@ -38,7 +38,7 @@ Expect questions on:
 
 ---
 
-## Labs in This Domain
+## Labs in This Module
 
 | Lab | Topic | Est. Time |
 |-----|-------|-----------|

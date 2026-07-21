@@ -4,7 +4,7 @@ Hands-on study repository for **Microsoft Certified: Cloud and AI Security Engin
 
 This repository is a practical study companion: read the concept, build the control, validate the result, clean up, and explain the decision like an exam case study.
 
-The repository is organized by **exam domain**, but some labs create **shared foundation resources** that are reused later. Do not assume every cleanup section means "delete this immediately before moving on."
+The repository is organized into numbered **repo modules** that map to the official SC-500 **skill areas**, but some labs create **shared foundation resources** that are reused later. Do not assume every cleanup section means "delete this immediately before moving on."
 
 ## Who this repo is for
 
@@ -36,7 +36,7 @@ Recommended flow:
 
 For most learners, the best approach is:
 
-1. Use the folder structure to understand the **exam domains**.
+1. Use the folder structure to understand the **repo modules** and the SC-500 skill areas they support.
 2. Use `ROADMAP.md` and `resources/lab-matrix.md` to choose the **actual lab execution order**.
 3. Do **not** follow the folders as a strict hands-on sequence on your first pass.
 
@@ -46,10 +46,10 @@ The repository should stay organized by SC-500 topic because that matches how th
 
 Use both of these views together:
 
-1. **Domain view**: follow the folder structure to study the exam objectives.
+1. **Module view**: follow the folder structure to study the exam objectives.
 2. **Build view**: follow the dependency-aware order below when you want the smoothest hands-on experience.
 
-If there is a conflict between the two, prefer the **build view** for your first full hands-on pass and return to the **domain view** for review and exam revision.
+If there is a conflict between the two, prefer the **build view** for your first full hands-on pass and return to the **module view** for review and exam revision.
 
 ### Recommended build order for hands-on labs
 
@@ -65,7 +65,7 @@ If you want to avoid jumping back and forth, use this order for the first full p
    - Keep `kv-sc500-lab` and the storage account for later labs.
 4. **Identity for workloads**
    - `01-identity-governance/lab-04-workload-identities.md`
-   - Reuses the Key Vault and storage account from Domain 4 Lab 01.
+   - Reuses the Key Vault and storage account from Module 4 Lab 01.
 5. **Database security**
    - `04-data-protection/lab-02-database-security.md`
    - Creates the SQL server that is reused by private access testing.
@@ -160,11 +160,11 @@ Use this pattern for every topic:
 
 | Module | Purpose |
 | --- | --- |
-| `01-identity-governance/` | Entra ID, RBAC, Conditional Access, PIM, MFA |
-| `02-platform-protection/` | NSGs, WAF, Bastion, private access, network isolation |
+| `01-identity-governance/` | Entra ID, RBAC, Conditional Access, PIM, MFA, workload identities, enterprise app governance |
+| `02-platform-protection/` | NSGs, WAF, Bastion, private access, Azure Firewall, VM security, app platform security, AKS/ACR, API protection |
 | `03-security-operations/` | Defender for Cloud, Sentinel, KQL, detection and response |
-| `04-data-protection/` | Storage, SQL, Key Vault, CMK, private endpoints |
-| `05-governance-compliance/` | Azure Policy, compliance, remediation |
+| `04-data-protection/` | Storage, SQL, Key Vault, CMK, private endpoints, Purview labels, DLP, DSPM |
+| `05-governance-compliance/` | Azure Policy, compliance, RBAC review, locks, backup security, IaC governance |
 | `06-ai-workload-security/` | AI Gateway, Foundry guardrails, Defender for AI Service, Purview DSPM, Entra Agent ID |
 
 ## SC-500 skills index (official study guide)
@@ -390,7 +390,7 @@ full official study guide.
 - [ ] I can write basic KQL for Sentinel investigation scenarios.
 - [ ] I can compare Key Vault RBAC/access policies, CMK/PMK, TDE/Always Encrypted, NSG/Firewall/WAF, and Private Endpoint/Service Endpoint.
 - [ ] I can describe AI workload security with Foundry guardrails, AI Gateway, Purview DSPM, Defender for AI Service, Entra Agent ID, and Security Copilot.
-- [ ] Practice scores are consistently above 80%, with no domain below 70%.
+- [ ] Practice scores are consistently above 80%, with no skill area below 70%.
 
 ## Official references
 

@@ -1,4 +1,4 @@
-# Domain 2 Study Guide: Platform Protection
+# Module 2 Study Guide: Platform Protection
 
 ## Learning Objectives (SC-500 Aligned)
 
