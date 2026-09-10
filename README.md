@@ -6,6 +6,8 @@ This repository is a practical study companion: read the concept, build the cont
 
 The repository is organized into numbered **repo modules** that map to the official SC-500 **skill areas**, but some labs create **shared foundation resources** that are reused later. Do not assume every cleanup section means "delete this immediately before moving on."
 
+Lab steps are authored against Microsoft documentation and the official study guide. Not every lab has been personally executed end to end — validate costs and portal steps before running.
+
 ## Who this repo is for
 
 This repository is designed for:
